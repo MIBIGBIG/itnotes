@@ -23,7 +23,7 @@
 * [持续交付](持续交付.md)
     * [kubenetes基础](kubenetes基础.md)
         * [容器生态](容器平台生态.md)
-        * [kubeadm管理工具](K8S概念和简单体验.md)
+        * [kube概念和初步体验](K8S概念和初步体验.md)
         * [部署kubenetes集群](部署kubenetes集群.md)
         * [k8s简单架构原理](k8s架构原理.md)
         * [Deployment管理](deployment.md)

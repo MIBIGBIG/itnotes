@@ -812,7 +812,226 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="kubeadm&#x7BA1;&#x7406;&#x5DE5;&#x5177;">kubeadm&#x7BA1;&#x7406;&#x5DE5;&#x5177;</h1>
+                                <p>[toc]</p>
+<h3 id="&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;k8s&#x96C6;&#x7FA4;">&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;k8s&#x96C6;&#x7FA4;</h3>
+<p>&#x636E;&#x8BF4; Google &#x7684;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x91CC;&#x8FD0;&#x884C;&#x7740;&#x8D85;&#x8FC7; 20 &#x4EBF;&#x4E2A;&#x5BB9;&#x5668;&#xFF0C;&#x800C;&#x4E14; Google &#x5341;&#x5E74;&#x524D;&#x5C31;&#x5F00;&#x59CB;&#x4F7F;&#x7528;&#x5BB9;&#x5668;&#x6280;&#x672F;&#x3002;</p>
+<p>&#x6700;&#x521D;&#xFF0C;Google &#x5F00;&#x53D1;&#x4E86;&#x4E00;&#x4E2A;&#x53EB; Borg &#x7684;&#x7CFB;&#x7EDF;&#xFF08;&#x73B0;&#x5728;&#x547D;&#x4EE4;&#x4E3A; Omega&#xFF09;&#x6765;&#x8C03;&#x5EA6;&#x5982;&#x6B64;&#x5E9E;&#x5927;&#x6570;&#x91CF;&#x7684;&#x5BB9;&#x5668;&#x548C;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x3002;&#x5728;&#x79EF;&#x7D2F;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#x5E74;&#x7684;&#x7ECF;&#x9A8C;&#x540E;&#xFF0C;Google &#x51B3;&#x5B9A;&#x91CD;&#x5199;&#x8FD9;&#x4E2A;&#x5BB9;&#x5668;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x8D21;&#x732E;&#x5230;&#x5F00;&#x6E90;&#x793E;&#x533A;&#xFF0C;&#x8BA9;&#x5168;&#x4E16;&#x754C;&#x90FD;&#x80FD;&#x53D7;&#x76CA;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x5C31;&#x662F; Kubernetes&#x3002;&#x7B80;&#x5355;&#x7684;&#x8BB2;&#xFF0C;Kubernetes &#x662F; Google Omega &#x7684;&#x5F00;&#x6E90;&#x7248;&#x672C;&#x3002;</p>
+<p>&#x4ECE; 2014 &#x5E74;&#x7B2C;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x53D1;&#x5E03;&#x4EE5;&#x6765;&#xFF0C;Kubernetes &#x8FC5;&#x901F;&#x83B7;&#x5F97;&#x5F00;&#x6E90;&#x793E;&#x533A;&#x7684;&#x8FFD;&#x6367;&#xFF0C;&#x5305;&#x62EC; Red Hat&#x3001;VMware&#x3001;Canonical &#x5728;&#x5185;&#x7684;&#x5F88;&#x591A;&#x6709;&#x5F71;&#x54CD;&#x529B;&#x7684;&#x516C;&#x53F8;&#x52A0;&#x5165;&#x5230;&#x5F00;&#x53D1;&#x548C;&#x63A8;&#x5E7F;&#x7684;&#x9635;&#x8425;&#x3002;&#x76EE;&#x524D; Kubernetes &#x5DF2;&#x7ECF;&#x6210;&#x4E3A;&#x53D1;&#x5C55;&#x6700;&#x5FEB;&#x3001;&#x5E02;&#x573A;&#x5360;&#x6709;&#x7387;&#x6700;&#x9AD8;&#x7684;&#x5BB9;&#x5668;&#x7F16;&#x6392;&#x5F15;&#x64CE;&#x4EA7;&#x54C1;&#x3002;</p>
+<p>Kubernetes &#x4E00;&#x76F4;&#x5728;&#x5FEB;&#x901F;&#x5730;&#x5F00;&#x53D1;&#x548C;&#x8FED;&#x4EE3;&#x3002;
+&#x6211;&#x4EEC;&#x4F1A;&#x8BA8;&#x8BBA; Kubernetes &#x91CD;&#x8981;&#x7684;&#x6982;&#x5FF5;&#x548C;&#x67B6;&#x6784;&#xFF0C;&#x5B66;&#x4E60; Kubernetes &#x5982;&#x4F55;&#x7F16;&#x6392;&#x5BB9;&#x5668;&#xFF0C;&#x5305;&#x62EC;&#x4F18;&#x5316;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x3001;&#x9AD8;&#x53EF;&#x7528;&#x3001;&#x6EDA;&#x52A8;&#x66F4;&#x65B0;&#x3001;&#x7F51;&#x7EDC;&#x63D2;&#x4EF6;&#x3001;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#x3001;&#x76D1;&#x63A7;&#x3001;&#x6570;&#x636E;&#x7BA1;&#x7406;&#x3001;&#x65E5;&#x5FD7;&#x7BA1;&#x7406;&#x7B49;&#x3002;</p>
+<h4 id="&#x6700;&#x5C0F;&#x53EF;&#x7528;&#x7CFB;&#x7EDF;&#x642D;&#x5EFA;">&#x6700;&#x5C0F;&#x53EF;&#x7528;&#x7CFB;&#x7EDF;&#x642D;&#x5EFA;</h4>
+<p>&#x6309;&#x7167;&#x4E00;&#x8D2F;&#x7684;&#x5B66;&#x4E60;&#x601D;&#x8DEF;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x6700;&#x77ED;&#x65F6;&#x95F4;&#x5185;&#x642D;&#x5EFA;&#x8D77;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x5C3D;&#x5FEB;&#x5EFA;&#x7ACB;&#x8D77;&#x5BF9;&#x5B66;&#x4E60;&#x5BF9;&#x8C61;&#x7684;&#x611F;&#x6027;&#x8BA4;&#x8BC6;&#x3002;&#x5148;&#x628A;&#x73A9;&#x8D77;&#x6765;&#xFF0C;&#x5FEB;&#x901F;&#x4E86;&#x89E3;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x3001;&#x529F;&#x80FD;&#x548C;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x3002;</p>
+<p>&#x8D8A;&#x662F;&#x95E8;&#x69DB;&#x9AD8;&#x7684;&#x77E5;&#x8BC6;&#xFF0C;&#x5C31;&#x8D8A;&#x9700;&#x8981;&#x6709;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x6700;&#x5C0F;&#x53EF;&#x7528;&#x7CFB;&#x7EDF;&#x3002;&#x5982;&#x679C;&#x76F4;&#x63A5;&#x4E0A;&#x6765;&#x5C31;&#x5B66;&#x4E60;&#x7406;&#x8BBA;&#x77E5;&#x8BC6;&#x548C;&#x6982;&#x5FF5;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x653E;&#x5F03;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x8981;&#x642D;&#x5EFA;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x53EF;&#x8FD0;&#x884C;&#x7684;&#x7CFB;&#x7EDF;&#x901A;&#x5E38;&#x4E5F;&#x4E0D;&#x4F1A;&#x592A;&#x5BB9;&#x6613;&#xFF0C;&#x4E0D;&#x8FC7;&#x5F88;&#x5E78;&#x8FD0;&#xFF0C;Kubernetes &#x5B98;&#x7F51;&#x5DF2;&#x7ECF;&#x4E3A;&#x5927;&#x5BB6;&#x51C6;&#x5907;&#x597D;&#x4E86;&#x73B0;&#x6210;&#x7684;&#x6700;&#x5C0F;&#x53EF;&#x7528;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>kubernetes.io &#x5F00;&#x53D1;&#x4E86;&#x4E00;&#x4E2A;&#x4EA4;&#x4E92;&#x5F0F;&#x6559;&#x7A0B;&#xFF0C;&#x901A;&#x8FC7; Web &#x6D4F;&#x89C8;&#x5668;&#x5C31;&#x80FD;&#x4F7F;&#x7528;&#x9884;&#x5148;&#x90E8;&#x7F72;&#x597D;&#x7684;&#x4E00;&#x4E2A; kubernetes &#x96C6;&#x7FA4;&#xFF0C;&#x5FEB;&#x901F;&#x4F53;&#x9A8C; kubernetes &#x7684;&#x529F;&#x80FD;&#x548C;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x5C31;&#x5E26;&#x7740;&#x5927;&#x5BB6;&#x53BB;&#x73A9;&#x4E00;&#x4E0B;&#x3002;</p>
+<p>&#x6253;&#x5F00;<a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/" target="_blank">&#x5B98;&#x7F51;</a>
+&#x5DE6;&#x8FB9;&#x5C31;&#x6709;&#x6559;&#x7A0B;&#x83DC;&#x5355;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3819" alt="58efa53ba3cac436a9e5602747fac465.png">
+&#x6559;&#x7A0B;&#x4F1A;&#x6307;&#x5F15;&#x5927;&#x5BB6;&#x5B8C;&#x6210;&#x521B;&#x5EFA; kubernetes &#x96C6;&#x7FA4;&#x3001;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x3001;&#x8BBF;&#x95EE;&#x5E94;&#x7528;&#x3001;&#x6269;&#x5C55;&#x5E94;&#x7528;&#x3001;&#x66F4;&#x65B0;&#x5E94;&#x7528;&#x7B49;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x8FC5;&#x901F;&#x5EFA;&#x7ACB;&#x611F;&#x6027;&#x8BA4;&#x8BC6;&#x3002;</p>
+<p>&#x521B;&#x5EFA; Kubernetes &#x96C6;&#x7FA4;
+&#x70B9;&#x51FB;&#x6559;&#x7A0B;&#x83DC;&#x5355; 1. Create a Cluster -&gt; Interactive Tutorial - Creating a Cluster</p>
+<p>&#x5DE6;&#x8FB9;&#x90E8;&#x5206;&#x662F;&#x64CD;&#x4F5C;&#x8BF4;&#x660E;&#xFF0C;&#x53F3;&#x8FB9;&#x662F; Terminal&#xFF0C;&#x547D;&#x4EE4;&#x7EC8;&#x7AEF;&#x7A97;&#x53E3;&#x3002;</p>
+<p>&#x6309;&#x7167;&#x64CD;&#x4F5C;&#x8BF4;&#x660E;&#xFF0C;&#x6211;&#x4EEC;&#x5728; Terminal &#x4E2D;&#x6267;&#x884C; minikube start&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C; kubectl get nodes&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x521B;&#x5EFA;&#x597D;&#x4E86;&#x4E00;&#x4E2A;&#x5355;&#x8282;&#x70B9;&#x7684; kubernetes &#x96C6;&#x7FA4;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3820" alt="bbd8b7f33e129b34eaecfaf4fab3a741.png"></p>
+<p>&#x96C6;&#x7FA4;&#x7684;&#x552F;&#x4E00;&#x8282;&#x70B9;&#x4E3A; minikube&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5F53;&#x524D;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x7684;&#x5730;&#x65B9;&#x5E76;&#x4E0D;&#x662F; minikube&#x3002;&#x6211;&#x4EEC;&#x662F;&#x5728;&#x901A;&#x8FC7; Kubernetes &#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177; kubectl &#x8FDC;&#x7A0B;&#x7BA1;&#x7406;&#x96C6;&#x7FA4;&#x3002;</p>
+<p>&#x6267;&#x884C; kubectl cluster-info &#x67E5;&#x770B;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3821" alt="5d3cf20e430ea01293b78cb6a3fec7bf.png"></p>
+<p>&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x8282;&#x70B9;</p>
+<h3 id="&#x6838;&#x5FC3;&#x529F;&#x80FD;">&#x6838;&#x5FC3;&#x529F;&#x80FD;</h3>
+<h4 id="&#x90E8;&#x7F72;&#x5E94;&#x7528;">&#x90E8;&#x7F72;&#x5E94;&#x7528;</h4>
+<p>&#x6267;&#x884C;&#x547D;&#x4EE4;
+$ kubectl run kubernetes-bootcamp \</p>
+<blockquote>
+<pre><code>  --image=docker.io/jocatalin/kubernetes-bootcamp:v1 \
+  --port=8080
+</code></pre></blockquote>
+<pre><code class="lang-shell">$ kubectl run kubernetes-bootcamp \
+&gt;       --image=docker.io/jocatalin/kubernetes-bootcamp:v1 \
+&gt;       --port=8080
+deployment.apps/kubernetes-bootcamp created
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x901A;&#x8FC7; kubectl run &#x90E8;&#x7F72;&#x4E86;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#xFF0C;&#x547D;&#x540D;&#x4E3A; kubernetes-bootcamp&#x3002;</p>
+<p>Docker &#x955C;&#x50CF;&#x901A;&#x8FC7; --image &#x6307;&#x5B9A;&#x3002;</p>
+<p>--port &#x8BBE;&#x7F6E;&#x5E94;&#x7528;&#x5BF9;&#x5916;&#x670D;&#x52A1;&#x7684;&#x7AEF;&#x53E3;&#x3002;</p>
+<p>&#x8FD9;&#x91CC; deployment &#x662F; Kubernetes &#x7684;&#x672F;&#x8BED;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5E94;&#x7528;&#x3002;</p>
+<hr>
+<p>Kubernetes &#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x672F;&#x8BED; Pod&#x3002;</p>
+<p>Pod &#x662F;&#x5BB9;&#x5668;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x5C06;&#x7D27;&#x5BC6;&#x76F8;&#x5173;&#x7684;&#x4E00;&#x7EC4;&#x5BB9;&#x5668;&#x653E;&#x5230;&#x4E00;&#x4E2A; Pod &#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x4E2A; Pod &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x5171;&#x4EAB; IP &#x5730;&#x5740;&#x548C; Port &#x7A7A;&#x95F4;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5B83;&#x4EEC;&#x5728;&#x4E00;&#x4E2A; network namespace &#x4E2D;&#x3002;</p>
+<p>Pod &#x662F; Kubernetes &#x8C03;&#x5EA6;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x4F4D;&#xFF0C;&#x540C;&#x4E00; Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x59CB;&#x7EC8;&#x88AB;&#x4E00;&#x8D77;&#x8C03;&#x5EA6;&#x3002;</p>
+<p>&#x8FD0;&#x884C; kubectl get pods &#x67E5;&#x770B;&#x5F53;&#x524D;&#x7684; Pod&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3822" alt="8c9e1f535692a8cb0f062ce4407919dd.png"></p>
+<p>kubernetes-bootcamp-56cdd766d-...&#x5C31;&#x662F;&#x5E94;&#x7528;&#x7684;pod.</p>
+<h4 id="&#x8BBF;&#x95EE;&#x5E94;&#x7528;">&#x8BBF;&#x95EE;&#x5E94;&#x7528;</h4>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6240;&#x6709; Pod &#x53EA;&#x80FD;&#x5728;&#x96C6;&#x7FA4;&#x5185;&#x90E8;&#x8BBF;&#x95EE;&#x3002;&#x5BF9;&#x4E8E;&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x8981;&#x8BBF;&#x95EE;&#x5E94;&#x7528;&#x53EA;&#x80FD;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x5BB9;&#x5668;&#x7684; 8080 &#x7AEF;&#x53E3;&#x3002;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x4ECE;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x5E94;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5C06;&#x5BB9;&#x5668;&#x7684; 8080 &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x8282;&#x70B9;&#x7684;&#x7AEF;&#x53E3;&#x3002;</p>
+<p>&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;:</p>
+<pre><code class="lang-shell">kubectl expose deployment/kubernetes-bootcamp \
+      --type=&quot;NodePort&quot; \
+      --port 8080
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3823" alt="b9c7d068f3b5b3f5145c3060518c2e6b.png">
+&#x6267;&#x884C;&#x547D;&#x4EE4; kubectl get services &#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5E94;&#x7528;&#x88AB;&#x6620;&#x5C04;&#x5230;&#x8282;&#x70B9;&#x7684;&#x54EA;&#x4E2A;&#x7AEF;&#x53E3;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3824" alt="97ac125e5c23d1f25c9ab769311976d7.png">
+&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A; service&#xFF0C;&#x53EF;&#x4EE5;&#x5C06; service &#x6682;&#x65F6;&#x7406;&#x89E3;&#x4E3A;&#x7AEF;&#x53E3;&#x6620;&#x5C04;&#xFF0C;&#x540E;&#x9762;&#x6211;&#x4EEC;&#x4F1A;&#x8BE6;&#x7EC6;&#x8BA8;&#x8BBA;&#x3002;</p>
+<p>kubernetes &#x662F;&#x9ED8;&#x8BA4;&#x7684; service&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x3002;kubernetes-bootcamp &#x662F;&#x6211;&#x4EEC;&#x5E94;&#x7528;&#x7684; service&#xFF0C;8080 &#x7AEF;&#x53E3;&#x5DF2;&#x7ECF;&#x6620;&#x5C04;&#x5230; minikube &#x7684; 31961 &#x7AEF;&#x53E3;&#xFF0C;&#x7AEF;&#x53E3;&#x53F7;&#x662F;&#x968F;&#x673A;&#x5206;&#x914D;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x8BBF;&#x95EE;&#x5E94;&#x7528;&#xFF1A;
+curl minikube:31961</p>
+<pre><code class="lang-shell">$ curl minikube:31961
+
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-sgqc5 | v=1
+</code></pre>
+<p>Scale &#x5E94;&#x7528;
+&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x5E94;&#x7528;&#x53EA;&#x4F1A;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; kubectl get deployments&#x67E5;&#x770B;&#x526F;&#x672C;&#x6570;&#x3002;</p>
+<pre><code class="lang-shell">$ kubectl get deployments
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   1         1         1            1           10m
+</code></pre>
+<p>&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x5C06;&#x526F;&#x672C;&#x6570;&#x589E;&#x52A0;&#x5230; 3 &#x4E2A;&#xFF1A;</p>
+<p>kubectl scale deployments/kubernetes-bootcamp --replicas=3</p>
+<pre><code class="lang-shell">$ kubectl scale deployments/kubernetes-bootcamp --replicas=3
+deployment.extensions/kubernetes-bootcamp scaled
+$ kubectl get deployments
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   3         3         3            3           11m
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;pods&#x4E5F;&#x53D8;&#x6210;3&#x4E2A;&#x4E86;</p>
+<pre><code class="lang-shell">$ kubectl get pods
+NAME                                  READY     STATUS    RESTARTS   AGE
+kubernetes-bootcamp-56cdd766d-95b58   1/1       Running   0          50s
+kubernetes-bootcamp-56cdd766d-sgqc5   1/1       Running   0          11m
+kubernetes-bootcamp-56cdd766d-zqvq5   1/1       Running   0          50s
+</code></pre>
+<p>&#x901A;&#x8FC7; curl &#x8BBF;&#x95EE;&#x5E94;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x5230;&#x4E0D;&#x540C;&#x7684; Pod&#xFF0C;&#x4E09;&#x4E2A;&#x526F;&#x672C;&#x8F6E;&#x8BE2;&#x5904;&#x7406;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x5B9E;&#x73B0;&#x4E86;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<pre><code class="lang-shell">$ for n in `seq 10`; do curl minikube:31961; done
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zqvq5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-sgqc5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-95b58 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zqvq5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zqvq5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zqvq5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-95b58 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-95b58 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zqvq5 | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-95b58 | v=1
+</code></pre>
+<p>&#x8981; scale down &#x4E5F;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF1A;</p>
+<p>kubectl scale deployments/kubernetes-bootcamp --replicas=2</p>
+<pre><code class="lang-shell">$ kubectl scale deployments/kubernetes-bootcamp --replicas=2
+deployment.extensions/kubernetes-bootcamp scaled
+$ kubectl get pods
+NAME                                  READY     STATUS    RESTARTS   AGE
+kubernetes-bootcamp-56cdd766d-95b58   1/1       Running   0          4m
+kubernetes-bootcamp-56cdd766d-sgqc5   1/1       Running   0          15m
+
+$ kubectl get deployments
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   2         2         2            2           16m
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x526F;&#x672C;&#x88AB;&#x5220;&#x9664;&#x4E86;&#x3002;</p>
+<h4 id="&#x6EDA;&#x52A8;&#x66F4;&#x65B0;">&#x6EDA;&#x52A8;&#x66F4;&#x65B0;</h4>
+<p>&#x5F53;&#x524D;&#x5E94;&#x7528;&#x4F7F;&#x7528;&#x7684; image &#x7248;&#x672C;&#x4E3A; v1&#xFF0C;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x5C06;&#x5176;&#x5347;&#x7EA7;&#x5230; v2&#xFF1A;
+$ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2</p>
+<pre><code class="lang-shell">$ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+
+deployment.extensions/kubernetes-bootcamp image updated
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3825" alt="61d78c26c01d40267a4b734fa27eaf27.png">
+&#x901A;&#x8FC7; kubectl get pods &#x53EF;&#x4EE5;&#x89C2;&#x5BDF;&#x6EDA;&#x52A8;&#x66F4;&#x65B0;&#x7684;&#x8FC7;&#x7A0B;&#xFF1A;v1 &#x7684; Pod &#x88AB;&#x9010;&#x4E2A;&#x5220;&#x9664;&#xFF0C;&#x540C;&#x65F6;&#x542F;&#x52A8;&#x4E86;&#x65B0;&#x7684; v2 Pod&#x3002;&#x66F4;&#x65B0;&#x5B8C;&#x6210;&#x540E;&#x8BBF;&#x95EE;&#x65B0;&#x7248;&#x672C;&#x5E94;&#x7528;&#x3002;</p>
+<pre><code class="lang-shell">$ for n in `seq 3`; do curl minikube:31961; done
+
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-lbvh8 | v=2
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-qxk49 | v=2
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-7799cbcb86-qxk49 | v=2
+</code></pre>
+<p>&#x5982;&#x679C;&#x8981;&#x56DE;&#x9000;&#x5230; v1 &#x7248;&#x672C;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x6267;&#x884C; kubectl rollout undo &#x547D;&#x4EE4;&#xFF1A;</p>
+<p>kubectl rollout undo deployments/kubernetes-bootcamp</p>
+<pre><code class="lang-shell">$ kubectl get pods
+NAME                                   READY     STATUS        RESTARTS AGE
+kubernetes-bootcamp-56cdd766d-59j9r    1/1       Running       0 22s
+kubernetes-bootcamp-56cdd766d-zpcr5    1/1       Running       0 24s
+kubernetes-bootcamp-7799cbcb86-lbvh8   1/1       Terminating   0 3m
+kubernetes-bootcamp-7799cbcb86-qxk49   1/1       Terminating   0
+</code></pre>
+<p>&#x9A8C;&#x8BC1;&#x7248;&#x672C;&#x5DF2;&#x7ECF;&#x56DE;&#x9000;&#x5230; v1&#x3002;
+curl minikube:31961</p>
+<pre><code class="lang-shell">$ for n in `seq 3`; do curl minikube:31961; done
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-59j9r | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-59j9r | v=1
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-56cdd766d-zpcr5 | v=1
+</code></pre>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x901A;&#x8FC7;&#x5B98;&#x7F51;&#x7684;&#x4EA4;&#x4E92;&#x5F0F;&#x6559;&#x7A0B;&#x5FEB;&#x901F;&#x4F53;&#x9A8C;&#x4E86; Kubernetes &#x7684;&#x529F;&#x80FD;&#x548C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</p>
+<h3 id="&#x91CD;&#x8981;&#x6982;&#x5FF5;">&#x91CD;&#x8981;&#x6982;&#x5FF5;</h3>
+<p>&#x5728;&#x5B9E;&#x8DF5;&#x4E4B;&#x524D;&#xFF0C;&#x5FC5;&#x987B;&#x5148;&#x5B66;&#x4E60; Kubernetes &#x7684;&#x51E0;&#x4E2A;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#xFF0C;&#x5B83;&#x4EEC;&#x662F;&#x7EC4;&#x6210; Kubernetes &#x96C6;&#x7FA4;&#x7684;&#x57FA;&#x77F3;&#x3002;</p>
+<ol>
+<li><p>Cluster 
+Cluster &#x662F;&#x8BA1;&#x7B97;&#x3001;&#x5B58;&#x50A8;&#x548C;&#x7F51;&#x7EDC;&#x8D44;&#x6E90;&#x7684;&#x96C6;&#x5408;&#xFF0C;Kubernetes &#x5229;&#x7528;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#x8FD0;&#x884C;&#x5404;&#x79CD;&#x57FA;&#x4E8E;&#x5BB9;&#x5668;&#x7684;&#x5E94;&#x7528;&#x3002;</p>
+</li>
+<li><p>Master 
+Master &#x662F; Cluster &#x7684;&#x5927;&#x8111;&#xFF0C;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x804C;&#x8D23;&#x662F;&#x8C03;&#x5EA6;&#xFF0C;&#x5373;&#x51B3;&#x5B9A;&#x5C06;&#x5E94;&#x7528;&#x653E;&#x5728;&#x54EA;&#x91CC;&#x8FD0;&#x884C;&#x3002;Master &#x8FD0;&#x884C; Linux &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x7269;&#x7406;&#x673A;&#x6216;&#x8005;&#x865A;&#x62DF;&#x673A;&#x3002;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x591A;&#x4E2A; Master&#x3002;</p>
+</li>
+<li><p>Node 
+Node &#x7684;&#x804C;&#x8D23;&#x662F;&#x8FD0;&#x884C;&#x5BB9;&#x5668;&#x5E94;&#x7528;&#x3002;Node &#x7531; Master &#x7BA1;&#x7406;&#xFF0C;Node &#x8D1F;&#x8D23;&#x76D1;&#x63A7;&#x5E76;&#x6C47;&#x62A5;&#x5BB9;&#x5668;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x6839;&#x636E; Master &#x7684;&#x8981;&#x6C42;&#x7BA1;&#x7406;&#x5BB9;&#x5668;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;Node &#x8FD0;&#x884C;&#x5728; Linux &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x7269;&#x7406;&#x673A;&#x6216;&#x8005;&#x662F;&#x865A;&#x62DF;&#x673A;&#x3002;</p>
+</li>
+</ol>
+<p>&#x5728;&#x524D;&#x9762;&#x4EA4;&#x4E92;&#x5F0F;&#x6559;&#x7A0B;&#x4E2D;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684; Cluster &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x4E3B;&#x673A; minikube&#xFF0C;
+&#x5B83;&#x65E2;&#x662F; Master &#x4E5F;&#x662F; Node&#x3002;</p>
+<ol>
+<li>Pod
+Pod &#x662F; Kubernetes &#x7684;&#x6700;&#x5C0F;&#x5DE5;&#x4F5C;&#x5355;&#x5143;&#x3002;&#x6BCF;&#x4E2A; Pod &#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5BB9;&#x5668;&#x3002;Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x4F1A;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6574;&#x4F53;&#x88AB; Master &#x8C03;&#x5EA6;&#x5230;&#x4E00;&#x4E2A; Node &#x4E0A;&#x8FD0;&#x884C;&#x3002;</li>
+</ol>
+<h4 id="pod&#x4ECB;&#x7ECD;">Pod&#x4ECB;&#x7ECD;</h4>
+<p>Kubernetes &#x5F15;&#x5165; Pod &#x4E3B;&#x8981;&#x57FA;&#x4E8E;&#x4E0B;&#x9762;&#x4E24;&#x4E2A;&#x76EE;&#x7684;&#xFF1A;</p>
+<ul>
+<li>&#x53EF;&#x7BA1;&#x7406;&#x6027;
+&#x6709;&#x4E9B;&#x5BB9;&#x5668;&#x5929;&#x751F;&#x5C31;&#x662F;&#x9700;&#x8981;&#x7D27;&#x5BC6;&#x8054;&#x7CFB;&#xFF0C;&#x4E00;&#x8D77;&#x5DE5;&#x4F5C;&#x3002;Pod &#x63D0;&#x4F9B;&#x4E86;&#x6BD4;&#x5BB9;&#x5668;&#x66F4;&#x9AD8;&#x5C42;&#x6B21;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x5C06;&#x5B83;&#x4EEC;&#x5C01;&#x88C5;&#x5230;&#x4E00;&#x4E2A;&#x90E8;&#x7F72;&#x5355;&#x5143;&#x4E2D;&#x3002;Kubernetes &#x4EE5; Pod &#x4E3A;&#x6700;&#x5C0F;&#x5355;&#x4F4D;&#x8FDB;&#x884C;&#x8C03;&#x5EA6;&#x3001;&#x6269;&#x5C55;&#x3001;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x3001;&#x7BA1;&#x7406;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;</li>
+<li>&#x901A;&#x4FE1;&#x548C;&#x8D44;&#x6E90;&#x5171;&#x4EAB;
+Pod &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC; namespace&#xFF0C;&#x5373;&#x76F8;&#x540C;&#x7684; IP &#x5730;&#x5740;&#x548C; Port &#x7A7A;&#x95F4;&#x3002;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7528; localhost &#x901A;&#x4FE1;&#x3002;&#x540C;&#x6837;&#x7684;&#xFF0C;&#x8FD9;&#x4E9B;&#x5BB9;&#x5668;&#x53EF;&#x4EE5;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#xFF0C;&#x5F53; Kubernetes &#x6302;&#x8F7D; volume &#x5230; Pod&#xFF0C;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x5C06; volume &#x6302;&#x8F7D;&#x5230; Pod &#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x3002;</li>
+</ul>
+<p>pods&#x6709;&#x4E24;&#x79CD;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;</p>
+<ul>
+<li><p>&#x8FD0;&#x884C;&#x5355;&#x4E2A;&#x5BB9;&#x5668;
+one-container-per-Pod &#x662F; Kubernetes &#x6700;&#x5E38;&#x89C1;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EA;&#x662F;&#x5C06;&#x5355;&#x4E2A;&#x5BB9;&#x5668;&#x7B80;&#x5355;&#x5C01;&#x88C5;&#x6210; Pod&#x3002;&#x5373;&#x4FBF;&#x662F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#xFF0C;Kubernetes &#x7BA1;&#x7406;&#x7684;&#x4E5F;&#x662F; Pod &#x800C;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x7BA1;&#x7406;&#x5BB9;&#x5668;&#x3002;</p>
+</li>
+<li><p>&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#x5BB9;&#x5668;
+&#x4F46;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#xFF1A;&#x54EA;&#x4E9B;&#x5BB9;&#x5668;&#x5E94;&#x8BE5;&#x653E;&#x5230;&#x4E00;&#x4E2A; Pod &#x4E2D;&#xFF1F; 
+&#x7B54;&#x6848;&#x662F;&#xFF1A;&#x8FD9;&#x4E9B;&#x5BB9;&#x5668;&#x8054;&#x7CFB;&#x5FC5;&#x987B; &#x975E;&#x5E38;&#x7D27;&#x5BC6;&#xFF0C;&#x800C;&#x4E14;&#x9700;&#x8981; &#x76F4;&#x63A5;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4F8B;&#x5B50;&#x3002;
+&#x4E0B;&#x9762;&#x8FD9;&#x4E2A; Pod &#x5305;&#x542B;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;&#xFF1A;&#x4E00;&#x4E2A; File Puller&#xFF0C;&#x4E00;&#x4E2A;&#x662F; Web Server&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3826" alt="99dca28578ad769a9645245efd3bc44a.png"></p>
+<p>File Puller &#x4F1A;&#x5B9A;&#x671F;&#x4ECE;&#x5916;&#x90E8;&#x7684; Content Manager &#x4E2D;&#x62C9;&#x53D6;&#x6700;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x5176;&#x5B58;&#x653E;&#x5728;&#x5171;&#x4EAB;&#x7684; volume &#x4E2D;&#x3002;Web Server &#x4ECE; volume &#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#xFF0C;&#x54CD;&#x5E94; Consumer &#x7684;&#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;&#x662F;&#x7D27;&#x5BC6;&#x534F;&#x4F5C;&#x7684;&#xFF0C;&#x5B83;&#x4EEC;&#x4E00;&#x8D77;&#x4E3A; Consumer &#x63D0;&#x4F9B;&#x6700;&#x65B0;&#x7684;&#x6570;&#x636E;&#xFF1B;&#x540C;&#x65F6;&#x5B83;&#x4EEC;&#x4E5F;&#x901A;&#x8FC7; volume &#x5171;&#x4EAB;&#x6570;&#x636E;&#x3002;&#x6240;&#x4EE5;&#x653E;&#x5230;&#x4E00;&#x4E2A; Pod &#x662F;&#x5408;&#x9002;&#x7684;&#x3002;</p>
+<p>&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x53CD;&#x4F8B;&#xFF1A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5C06; Tomcat &#x548C; MySQL &#x653E;&#x5230;&#x4E00;&#x4E2A; Pod &#x4E2D;&#xFF1F;
+Tomcat &#x4ECE; MySQL &#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x9700;&#x8981;&#x534F;&#x4F5C;&#xFF0C;&#x4F46;&#x8FD8;&#x4E0D;&#x81F3;&#x4E8E;&#x9700;&#x8981;&#x653E;&#x5230;&#x4E00;&#x4E2A; Pod &#x4E2D;&#x4E00;&#x8D77;&#x90E8;&#x7F72;&#xFF0C;&#x4E00;&#x8D77;&#x542F;&#x52A8;&#xFF0C;&#x4E00;&#x8D77;&#x505C;&#x6B62;&#x3002;&#x540C;&#x65F6;&#x5B83;&#x4EEC;&#x662F;&#x4E4B;&#x95F4;&#x901A;&#x8FC7; JDBC &#x4EA4;&#x6362;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#xFF0C;&#x6240;&#x4EE5;&#x653E;&#x5230;&#x5404;&#x81EA;&#x7684; Pod &#x4E2D;&#x66F4;&#x5408;&#x9002;&#x3002;</p>
+<h5 id="controller">Controller</h5>
+<p>Kubernetes &#x901A;&#x5E38;&#x4E0D;&#x4F1A;&#x76F4;&#x63A5;&#x521B;&#x5EFA; Pod&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7; Controller &#x6765;&#x7BA1;&#x7406; Pod &#x7684;&#x3002;Controller &#x4E2D;&#x5B9A;&#x4E49;&#x4E86; Pod &#x7684;&#x90E8;&#x7F72;&#x7279;&#x6027;&#xFF0C;&#x6BD4;&#x5982;&#x6709;&#x51E0;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x5728;&#x4EC0;&#x4E48;&#x6837;&#x7684; Node &#x4E0A;&#x8FD0;&#x884C;&#x7B49;&#x3002;&#x4E3A;&#x4E86;&#x6EE1;&#x8DB3;&#x4E0D;&#x540C;&#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#xFF0C;Kubernetes &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD; Controller&#xFF0C;&#x5305;&#x62EC; Deployment&#x3001;ReplicaSet&#x3001;DaemonSet&#x3001;StatefuleSet&#x3001;Job &#x7B49;&#xFF0C;&#x6211;&#x4EEC;&#x9010;&#x4E00;&#x8BA8;&#x8BBA;&#x3002;</p>
+<p>Kubernetes &#x901A;&#x5E38;&#x4E0D;&#x4F1A;&#x76F4;&#x63A5;&#x521B;&#x5EFA; Pod&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7; Controller &#x6765;&#x7BA1;&#x7406; Pod &#x7684;&#x3002;Controller &#x4E2D;&#x5B9A;&#x4E49;&#x4E86; Pod &#x7684;&#x90E8;&#x7F72;&#x7279;&#x6027;&#xFF0C;&#x6BD4;&#x5982;&#x6709;&#x51E0;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x5728;&#x4EC0;&#x4E48;&#x6837;&#x7684; Node &#x4E0A;&#x8FD0;&#x884C;&#x7B49;&#x3002;&#x4E3A;&#x4E86;&#x6EE1;&#x8DB3;&#x4E0D;&#x540C;&#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#xFF0C;Kubernetes &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD; Controller&#xFF0C;&#x5305;&#x62EC; Deployment&#x3001;ReplicaSet&#x3001;DaemonSet&#x3001;StatefuleSet&#x3001;Job &#x7B49;&#xFF0C;&#x6211;&#x4EEC;&#x9010;&#x4E00;&#x8BA8;&#x8BBA;&#x3002;</p>
+<p>Deployment &#x662F;&#x6700;&#x5E38;&#x7528;&#x7684; Controller&#xFF0C;&#x6BD4;&#x5982;&#x524D;&#x9762;&#x5728;&#x7EBF;&#x6559;&#x7A0B;&#x4E2D;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x521B;&#x5EFA; Deployment &#x6765;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7684;&#x3002;Deployment &#x53EF;&#x4EE5;&#x7BA1;&#x7406; Pod &#x7684;&#x591A;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x5E76;&#x786E;&#x4FDD; Pod &#x6309;&#x7167;&#x671F;&#x671B;&#x7684;&#x72B6;&#x6001;&#x8FD0;&#x884C;&#x3002;</p>
+<p>ReplicaSet &#x5B9E;&#x73B0;&#x4E86; Pod &#x7684;&#x591A;&#x526F;&#x672C;&#x7BA1;&#x7406;&#x3002;&#x4F7F;&#x7528; Deployment &#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA; ReplicaSet&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4; Deployment &#x662F;&#x901A;&#x8FC7; ReplicaSet &#x6765;&#x7BA1;&#x7406; Pod &#x7684;&#x591A;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x4E0D;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x4F7F;&#x7528; ReplicaSet&#x3002;</p>
+<p>DaemonSet &#x7528;&#x4E8E;&#x6BCF;&#x4E2A; Node &#x6700;&#x591A;&#x53EA;&#x8FD0;&#x884C;&#x4E00;&#x4E2A; Pod &#x526F;&#x672C;&#x7684;&#x573A;&#x666F;&#x3002;&#x6B63;&#x5982;&#x5176;&#x540D;&#x79F0;&#x6240;&#x63ED;&#x793A;&#x7684;&#xFF0C;DaemonSet &#x901A;&#x5E38;&#x7528;&#x4E8E;&#x8FD0;&#x884C; daemon&#x3002;</p>
+<p>StatefuleSet &#x80FD;&#x591F;&#x4FDD;&#x8BC1; Pod &#x7684;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#x5728;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x540D;&#x79F0;&#x662F;&#x4E0D;&#x53D8;&#x7684;&#x3002;&#x800C;&#x5176;&#x4ED6; Controller &#x4E0D;&#x63D0;&#x4F9B;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#xFF0C;&#x5F53;&#x67D0;&#x4E2A; Pod &#x53D1;&#x751F;&#x6545;&#x969C;&#x9700;&#x8981;&#x5220;&#x9664;&#x5E76;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x65F6;&#xFF0C;Pod &#x7684;&#x540D;&#x79F0;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x540C;&#x65F6; StatefuleSet &#x4F1A;&#x4FDD;&#x8BC1;&#x526F;&#x672C;&#x6309;&#x7167;&#x56FA;&#x5B9A;&#x7684;&#x987A;&#x5E8F;&#x542F;&#x52A8;&#x3001;&#x66F4;&#x65B0;&#x6216;&#x8005;&#x5220;&#x9664;&#x3002;</p>
+<p>Job &#x7528;&#x4E8E;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#x5C31;&#x5220;&#x9664;&#x7684;&#x5E94;&#x7528;&#x3002;&#x800C;&#x5176;&#x4ED6; Controller &#x4E2D;&#x7684; Pod &#x901A;&#x5E38;&#x662F;&#x957F;&#x671F;&#x6301;&#x7EED;&#x8FD0;&#x884C;&#x3002;</p>
+<h5 id="service">Service</h5>
+<p>Deployment &#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x591A;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x6BCF;&#x4E2A; Pod &#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684; IP&#xFF0C;&#x5916;&#x754C;&#x5982;&#x4F55;&#x8BBF;&#x95EE;&#x8FD9;&#x4E9B;&#x526F;&#x672C;&#x5462;&#xFF1F;</p>
+<p>&#x901A;&#x8FC7; Pod &#x7684; IP &#x5417;&#xFF1F;
+&#x8981;&#x77E5;&#x9053; Pod &#x5F88;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x9891;&#x7E41;&#x5730;&#x9500;&#x6BC1;&#x548C;&#x91CD;&#x542F;&#xFF0C;&#x5B83;&#x4EEC;&#x7684; IP &#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x7528; IP &#x6765;&#x8BBF;&#x95EE;&#x4E0D;&#x592A;&#x73B0;&#x5B9E;&#x3002;
+&#x7B54;&#x6848;&#x662F; Service&#x3002;
+Kubernetes Service &#x5B9A;&#x4E49;&#x4E86;&#x5916;&#x754C;&#x8BBF;&#x95EE;&#x4E00;&#x7EC4;&#x7279;&#x5B9A; Pod &#x7684;&#x65B9;&#x5F0F;&#x3002;Service &#x6709;&#x81EA;&#x5DF1;&#x7684; IP &#x548C;&#x7AEF;&#x53E3;&#xFF0C;Service &#x4E3A; Pod &#x63D0;&#x4F9B;&#x4E86;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<p>Kubernetes &#x8FD0;&#x884C;&#x5BB9;&#x5668;&#xFF08;Pod&#xFF09;&#x4E0E;&#x8BBF;&#x95EE;&#x5BB9;&#x5668;&#xFF08;Pod&#xFF09;&#x8FD9;&#x4E24;&#x9879;&#x4EFB;&#x52A1;&#x5206;&#x522B;&#x7531; Controller &#x548C; Service &#x6267;&#x884C;&#x3002;</p>
+<h5 id="namespace">Namespace</h5>
+<p>&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x7528;&#x6237;&#x6216;&#x9879;&#x76EE;&#x7EC4;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A; Kubernetes Cluster&#xFF0C;&#x5982;&#x4F55;&#x5C06;&#x4ED6;&#x4EEC;&#x521B;&#x5EFA;&#x7684; Controller&#x3001;Pod &#x7B49;&#x8D44;&#x6E90;&#x5206;&#x5F00;&#x5462;&#xFF1F;</p>
+<p>&#x7B54;&#x6848;&#x5C31;&#x662F; Namespace&#x3002;
+Namespace &#x53EF;&#x4EE5;&#x5C06;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x7684; Cluster &#x903B;&#x8F91;&#x4E0A;&#x5212;&#x5206;&#x6210;&#x591A;&#x4E2A;&#x865A;&#x62DF; Cluster&#xFF0C;&#x6BCF;&#x4E2A; Cluster &#x5C31;&#x662F;&#x4E00;&#x4E2A; Namespace&#x3002;&#x4E0D;&#x540C; Namespace &#x91CC;&#x7684;&#x8D44;&#x6E90;&#x662F;&#x5B8C;&#x5168;&#x9694;&#x79BB;&#x7684;&#x3002;</p>
+<p>Kubernetes &#x9ED8;&#x8BA4;&#x521B;&#x5EFA;&#x4E86;&#x4E09;&#x4E2A; Namespace&#x3002;</p>
+<pre><code class="lang-shell">$ kubectl get namespace
+NAME          STATUS    AGE
+default       Active    40m
+kube-public   Active    40m
+kube-system   Active    40m
+</code></pre>
+<p>default -- &#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x65F6;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5C06;&#x88AB;&#x653E;&#x5230;&#x8FD9;&#x4E2A; Namespace &#x4E2D;&#x3002;</p>
+<p>kube-system -- Kubernetes &#x81EA;&#x5DF1;&#x521B;&#x5EFA;&#x7684;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x5C06;&#x653E;&#x5230;&#x8FD9;&#x4E2A; Namespace &#x4E2D;&#x3002;</p>
+<p>kube-public --- &#x8BE5;&#x7A7A;&#x95F4;&#x7531;&#x7CFB;&#x7EDF;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x5E76;&#x4E14;&#x5BF9;&#x6240;&#x6709;&#x7528;&#x6237;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x505A;&#x4E3A;&#x96C6;&#x7FA4;&#x516C;&#x7528;&#x8D44;&#x6E90;&#x7684;&#x4FDD;&#x7559;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +1075,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"kubeadm管理工具","level":"1.7.1.2","depth":3,"next":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"path":"部署kubenetes集群.md","ref":"部署kubenetes集群.md","articles":[]},"previous":{"title":"\u001d容器生态","level":"1.7.1.1","depth":3,"path":"容器平台生态.md","ref":"容器平台生态.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"K8S概念和简单体验.md","mtime":"2019-01-20T06:16:43.882Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"kubeadm管理工具","level":"1.7.1.2","depth":3,"next":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"path":"部署kubenetes集群.md","ref":"部署kubenetes集群.md","articles":[]},"previous":{"title":"\u001d容器生态","level":"1.7.1.1","depth":3,"path":"容器平台生态.md","ref":"容器平台生态.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"K8S概念和简单体验.md","mtime":"2019-01-21T07:08:21.449Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -812,7 +812,76 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h4 id="k8s-&#x7EC4;&#x4EF6;">K8S &#x7EC4;&#x4EF6;</h4>
+<p>Kubernetes Cluster &#x7531; Master &#x548C; Node &#x7EC4;&#x6210;&#xFF0C;&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x7740;&#x82E5;&#x5E72; Kubernetes &#x670D;&#x52A1;&#x3002;</p>
+<h5 id="master-&#x8282;&#x70B9;">Master &#x8282;&#x70B9;</h5>
+<p>Master &#x662F; Kubernetes Cluster &#x7684;&#x5927;&#x8111;&#xFF0C;&#x8FD0;&#x884C;&#x7740;&#x5982;&#x4E0B; Daemon &#x670D;&#x52A1;&#xFF1A;kube-apiserver&#x3001;kube-scheduler&#x3001;kube-controller-manager&#x3001;etcd &#x548C; Pod &#x7F51;&#x7EDC;&#xFF08;&#x4F8B;&#x5982; flannel&#xFF09;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3840" alt="76ff4981789401adc0079f71f0fc6dac.png"></p>
+<ol>
+<li>API Server&#xFF08;kube-apiserver&#xFF09;</li>
+</ol>
+<hr>
+<p>API Server &#x63D0;&#x4F9B; HTTP/HTTPS RESTful API&#xFF0C;&#x5373; Kubernetes API&#x3002;API Server &#x662F; Kubernetes Cluster &#x7684;&#x524D;&#x7AEF;&#x63A5;&#x53E3;&#xFF0C;&#x5404;&#x79CD;&#x5BA2;&#x6237;&#x7AEF;&#x5DE5;&#x5177;&#xFF08;CLI &#x6216; UI&#xFF09;&#x4EE5;&#x53CA; Kubernetes &#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B83;&#x7BA1;&#x7406; Cluster &#x7684;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#x3002;</p>
+<ol>
+<li>Scheduler&#xFF08;kube-scheduler&#xFF09;</li>
+</ol>
+<hr>
+<p>Scheduler &#x8D1F;&#x8D23;&#x51B3;&#x5B9A;&#x5C06; Pod &#x653E;&#x5728;&#x54EA;&#x4E2A; Node &#x4E0A;&#x8FD0;&#x884C;&#x3002;Scheduler &#x5728;&#x8C03;&#x5EA6;&#x65F6;&#x4F1A;&#x5145;&#x5206;&#x8003;&#x8651; Cluster &#x7684;&#x62D3;&#x6251;&#x7ED3;&#x6784;&#xFF0C;&#x5F53;&#x524D;&#x5404;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x8D1F;&#x8F7D;&#xFF0C;&#x4EE5;&#x53CA;&#x5E94;&#x7528;&#x5BF9;&#x9AD8;&#x53EF;&#x7528;&#x3001;&#x6027;&#x80FD;&#x3001;&#x6570;&#x636E;&#x4EB2;&#x548C;&#x6027;&#x7684;&#x9700;&#x6C42;&#x3002;</p>
+<p>3.Controller Manager&#xFF08;kube-controller-manager&#xFF09;</p>
+<hr>
+<p>Controller Manager &#x8D1F;&#x8D23;&#x7BA1;&#x7406; Cluster &#x5404;&#x79CD;&#x8D44;&#x6E90;&#xFF0C;&#x4FDD;&#x8BC1;&#x8D44;&#x6E90;&#x5904;&#x4E8E;&#x9884;&#x671F;&#x7684;&#x72B6;&#x6001;&#x3002;Controller Manager &#x7531;&#x591A;&#x79CD; controller &#x7EC4;&#x6210;&#xFF0C;&#x5305;&#x62EC; replication controller&#x3001;endpoints controller&#x3001;namespace controller&#x3001;serviceaccounts controller &#x7B49;&#x3002;</p>
+<p>&#x4E0D;&#x540C;&#x7684; controller &#x7BA1;&#x7406;&#x4E0D;&#x540C;&#x7684;&#x8D44;&#x6E90;&#x3002;&#x4F8B;&#x5982; replication controller &#x7BA1;&#x7406; Deployment&#x3001;StatefulSet&#x3001;DaemonSet &#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;namespace controller &#x7BA1;&#x7406; Namespace &#x8D44;&#x6E90;&#x3002;</p>
+<p>4.etcd</p>
+<hr>
+<p>etcd &#x8D1F;&#x8D23;&#x4FDD;&#x5B58; Kubernetes Cluster &#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x548C;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6570;&#x636E;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;etcd &#x4F1A;&#x5FEB;&#x901F;&#x5730;&#x901A;&#x77E5; Kubernetes &#x76F8;&#x5173;&#x7EC4;&#x4EF6;&#x3002;</p>
+<p>5.Pod &#x7F51;&#x7EDC;</p>
+<hr>
+<p>Pod &#x8981;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x901A;&#x4FE1;&#xFF0C;Kubernetes Cluster &#x5FC5;&#x987B;&#x90E8;&#x7F72; Pod &#x7F51;&#x7EDC;&#xFF0C;flannel &#x662F;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x65B9;&#x6848;&#x3002;</p>
+<h5 id="node&#x8282;&#x70B9;">Node&#x8282;&#x70B9;</h5>
+<p>Node &#x662F; Pod &#x8FD0;&#x884C;&#x7684;&#x5730;&#x65B9;&#xFF0C;Kubernetes &#x652F;&#x6301; Docker&#x3001;rkt &#x7B49;&#x5BB9;&#x5668; Runtime&#x3002; Node&#x4E0A;&#x8FD0;&#x884C;&#x7684; Kubernetes &#x7EC4;&#x4EF6;&#x6709; kubelet&#x3001;kube-proxy &#x548C; Pod &#x7F51;&#x7EDC;&#xFF08;&#x4F8B;&#x5982; flannel&#xFF09;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3841" alt="daae97cf75e5fd79191bdb5811aee9d0.png"></p>
+<ol>
+<li>kubelet
+kubelet &#x662F; Node &#x7684; agent&#xFF0C;&#x5F53; Scheduler &#x786E;&#x5B9A;&#x5728;&#x67D0;&#x4E2A; Node &#x4E0A;&#x8FD0;&#x884C; Pod &#x540E;&#xFF0C;&#x4F1A;&#x5C06; Pod &#x7684;&#x5177;&#x4F53;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF08;image&#x3001;volume &#x7B49;&#xFF09;&#x53D1;&#x9001;&#x7ED9;&#x8BE5;&#x8282;&#x70B9;&#x7684; kubelet&#xFF0C;kubelet &#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x521B;&#x5EFA;&#x548C;&#x8FD0;&#x884C;&#x5BB9;&#x5668;&#xFF0C;&#x5E76;&#x5411; Master &#x62A5;&#x544A;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x3002;</li>
+<li>kube-proxy
+service &#x5728;&#x903B;&#x8F91;&#x4E0A;&#x4EE3;&#x8868;&#x4E86;&#x540E;&#x7AEF;&#x7684;&#x591A;&#x4E2A; Pod&#xFF0C;&#x5916;&#x754C;&#x901A;&#x8FC7; service &#x8BBF;&#x95EE; Pod&#x3002;service &#x63A5;&#x6536;&#x5230;&#x7684;&#x8BF7;&#x6C42;&#x662F;&#x5982;&#x4F55;&#x8F6C;&#x53D1;&#x5230; Pod &#x7684;&#x5462;&#xFF1F;&#x8FD9;&#x5C31;&#x662F; kube-proxy &#x8981;&#x5B8C;&#x6210;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</li>
+</ol>
+<p>&#x6BCF;&#x4E2A; Node &#x90FD;&#x4F1A;&#x8FD0;&#x884C; kube-proxy &#x670D;&#x52A1;&#xFF0C;&#x5B83;&#x8D1F;&#x8D23;&#x5C06;&#x8BBF;&#x95EE; service &#x7684; TCP/UPD &#x6570;&#x636E;&#x6D41;&#x8F6C;&#x53D1;&#x5230;&#x540E;&#x7AEF;&#x7684;&#x5BB9;&#x5668;&#x3002;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x526F;&#x672C;&#xFF0C;kube-proxy &#x4F1A;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<ol>
+<li>Pod &#x7F51;&#x7EDC;</li>
+</ol>
+<p>Pod &#x8981;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x901A;&#x4FE1;&#xFF0C;Kubernetes Cluster &#x5FC5;&#x987B;&#x90E8;&#x7F72; Pod &#x7F51;&#x7EDC;&#xFF0C;flannel &#x662F;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x65B9;&#x6848;&#x3002;</p>
+<h5 id="&#x5B8C;&#x6574;&#x67B6;&#x6784;&#x56FE;">&#x5B8C;&#x6574;&#x67B6;&#x6784;&#x56FE;</h5>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3842" alt="e9d53a11bc09be7b76690077ee78c3b9.png">
+&#x4E3A;&#x4EC0;&#x4E48; k8s-master &#x4E0A;&#x4E5F;&#x6709; kubelet &#x548C; kube-proxy &#x5462;&#xFF1F;</p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A; Master &#x4E0A;&#x4E5F;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x5E94;&#x7528;&#xFF0C;&#x5373; Master &#x540C;&#x65F6;&#x4E5F;&#x662F;&#x4E00;&#x4E2A; Node&#x3002;</p>
+<p>&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684; Kubernetes &#x7EC4;&#x4EF6;&#x672C;&#x8EAB;&#x4E5F;&#x8FD0;&#x884C;&#x5728; Pod &#x91CC;&#xFF0C;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl get pod --all-namespaces -o wide
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3843" alt="2387c8c0698d0eb05f44d97ecd753024.png"></p>
+<p>Kubernetes &#x7684;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;&#x90FD;&#x88AB;&#x653E;&#x5230; kube-system namespace &#x4E2D;&#x3002;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A; coredns &#x7EC4;&#x4EF6;&#xFF0C;&#x5B83;&#x4E3A; Cluster &#x63D0;&#x4F9B; DNS &#x670D;&#x52A1;
+kube-dns&#x662F;&#x5728;&#x6267;&#x884C; kubeadm init &#x65F6; ,&#x4F5C;&#x4E3A;&#x9644;&#x52A0;&#x7EC4;&#x4EF6;&#x5B89;&#x88C5;&#x7684;&#x3002;
+kubelet &#x662F;&#x552F;&#x4E00;&#x6CA1;&#x6709;&#x4EE5;&#x5BB9;&#x5668;&#x5F62;&#x5F0F;&#x8FD0;&#x884C;&#x7684; Kubernetes &#x7EC4;&#x4EF6;,&#x5728;centOS&#x4E2D;&#x901A;&#x8FC7;Systemd&#x8FD0;&#x884C;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3844" alt="76f6691a386bfb56f7a3d1e4f041fd3b.png"></p>
+<h4 id="&#x793A;&#x4F8B;&#x7406;&#x89E3;k8s&#x57FA;&#x7840;&#x67B6;&#x6784;">&#x793A;&#x4F8B;&#x7406;&#x89E3;k8s&#x57FA;&#x7840;&#x67B6;&#x6784;</h4>
+<p>&#x4E3A;&#x66F4;&#x597D;&#x5730;&#x7406;&#x89E3; Kubernetes &#x67B6;&#x6784;&#xFF0C;&#x90E8;&#x7F72;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x6765;&#x6F14;&#x793A;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x662F;&#x5982;&#x4F55;&#x534F;&#x4F5C;&#x7684;&#x3002;</p>
+<p>&#x6267;&#x884C;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-shell">kubectl run httpd-app --image=httpd --replicas=2
+</code></pre>
+<p>&#x7B49;&#x5F85;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;&#x5E94;&#x7528;&#x90E8;&#x7F72;&#x5B8C;&#x6210;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3866" alt="43371b441baa41b4efedd89107c82c5c.png">
+Kubernetes &#x90E8;&#x7F72;&#x4E86; deployment httpd-app&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x526F;&#x672C; Pod&#xFF0C;&#x8FD0;&#x884C;k8s01&#x8282;&#x70B9;.</p>
+<h5 id="&#x8BE6;&#x7EC6;&#x90E8;&#x7F72;&#x8FC7;&#x7A0B;">&#x8BE6;&#x7EC6;&#x90E8;&#x7F72;&#x8FC7;&#x7A0B;</h5>
+<p>&#x2460; kubectl &#x53D1;&#x9001;&#x90E8;&#x7F72;&#x8BF7;&#x6C42;&#x5230; API Server&#x3002;
+&#x2461; API Server &#x901A;&#x77E5; Controller Manager &#x521B;&#x5EFA;&#x4E00;&#x4E2A; deployment &#x8D44;&#x6E90;&#x3002;
+&#x2462; Scheduler &#x6267;&#x884C;&#x8C03;&#x5EA6;&#x4EFB;&#x52A1;&#xFF0C;&#x5C06;&#x4E24;&#x4E2A;&#x526F;&#x672C; Pod &#x5206;&#x53D1;&#x5230; k8s01&#x8282;&#x70B9;&#x4E0A;
+&#x2463; k8s01  &#x4E0A;&#x7684; kubelet &#x5728;&#x8282;&#x70B9;&#x4E0A;&#x521B;&#x5EFA;&#x5E76;&#x8FD0;&#x884C; Pod&#x3002;</p>
+<p>&#x8865;&#x5145;&#x4E24;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x5E94;&#x7528;&#x7684;&#x914D;&#x7F6E;&#x548C;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x5728; etcd &#x4E2D;&#xFF0C;&#x6267;&#x884C; kubectl get pod &#x65F6; API Server &#x4F1A;&#x4ECE; etcd &#x4E2D;&#x8BFB;&#x53D6;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x3002;</li>
+<li>flannel &#x4F1A;&#x4E3A;&#x6BCF;&#x4E2A; Pod &#x90FD;&#x5206;&#x914D; IP&#x3002;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x521B;&#x5EFA; service&#xFF0C;&#x76EE;&#x524D; kube-proxy &#x8FD8;&#x6CA1;&#x53C2;&#x4E0E;&#x8FDB;&#x6765;&#x3002;</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -855,7 +924,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"next":{"title":"Deployment管理","level":"1.7.1.5","depth":3,"path":"deployment.md","ref":"deployment.md","articles":[]},"previous":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"path":"部署kubenetes集群.md","ref":"部署kubenetes集群.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"k8s架构原理.md","mtime":"2019-01-20T06:07:50.598Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"next":{"title":"Deployment管理","level":"1.7.1.5","depth":3,"path":"deployment.md","ref":"deployment.md","articles":[]},"previous":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"path":"部署kubenetes集群.md","ref":"部署kubenetes集群.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"k8s架构原理.md","mtime":"2019-01-21T07:09:51.228Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

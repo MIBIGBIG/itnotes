@@ -813,6 +813,200 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="service&#x7BA1;&#x7406;">Service&#x7BA1;&#x7406;</h1>
+<h4 id="&#x901A;&#x8FC7;service&#x8BBF;&#x95EE;pod">&#x901A;&#x8FC7;service&#x8BBF;&#x95EE;POD</h4>
+<p>&#x901A;&#x5E38;&#x4E0D;&#x5E94;&#x8BE5;&#x671F;&#x671B; Kubernetes Pod &#x662F;&#x5065;&#x58EE;&#x7684;&#xFF0C;&#x800C;&#x662F;&#x8981;&#x5047;&#x8BBE; Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x5F88;&#x53EF;&#x80FD;&#x56E0;&#x4E3A;&#x5404;&#x79CD;&#x539F;&#x56E0;&#x53D1;&#x751F;&#x6545;&#x969C;&#x800C;&#x6B7B;&#x6389;&#x3002;Deployment &#x7B49; controller &#x4F1A;&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x548C;&#x9500;&#x6BC1; Pod &#x6765;&#x4FDD;&#x8BC1;&#x5E94;&#x7528;&#x6574;&#x4F53;&#x7684;&#x5065;&#x58EE;&#x6027;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;Pod &#x662F;&#x8106;&#x5F31;&#x7684;&#xFF0C;&#x4F46;&#x5E94;&#x7528;&#x662F;&#x5065;&#x58EE;&#x7684;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A; Pod &#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684; IP &#x5730;&#x5740;&#x3002;&#x5F53; controller &#x7528;&#x65B0; Pod &#x66FF;&#x4EE3;&#x53D1;&#x751F;&#x6545;&#x969C;&#x7684; Pod &#x65F6;&#xFF0C;&#x65B0; Pod &#x4F1A;&#x5206;&#x914D;&#x5230;&#x65B0;&#x7684; IP &#x5730;&#x5740;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x4EA7;&#x751F;&#x4E86;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x7EC4; Pod &#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF08;&#x6BD4;&#x5982; HTTP&#xFF09;&#xFF0C;&#x5B83;&#x4EEC;&#x7684; IP &#x5F88;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x90A3;&#x4E48;&#x5BA2;&#x6237;&#x7AEF;&#x5982;&#x4F55;&#x627E;&#x5230;&#x5E76;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x5462;&#xFF1F;</p>
+<p>Kubernetes &#x7ED9;&#x51FA;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E5F;&#x662F; Service&#x3002;</p>
+<h5 id="&#x521B;&#x5EFA;service">&#x521B;&#x5EFA;service</h5>
+<p>Kubernetes Service &#x4ECE;&#x903B;&#x8F91;&#x4E0A;&#x4EE3;&#x8868;&#x4E86;&#x4E00;&#x7EC4; Pod&#xFF0C;&#x5177;&#x4F53;&#x662F;&#x54EA;&#x4E9B; Pod &#x5219;&#x662F;&#x7531; label &#x6765;&#x6311;&#x9009;&#x3002;Service &#x6709;&#x81EA;&#x5DF1; IP&#xFF0C;&#x800C;&#x4E14;&#x8FD9;&#x4E2A; IP &#x662F;&#x4E0D;&#x53D8;&#x7684;&#x3002;&#x5BA2;&#x6237;&#x7AEF;&#x53EA;&#x9700;&#x8981;&#x8BBF;&#x95EE; Service &#x7684; IP&#xFF0C;Kubernetes &#x5219;&#x8D1F;&#x8D23;&#x5EFA;&#x7ACB;&#x548C;&#x7EF4;&#x62A4; Service &#x4E0E; Pod &#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x3002;&#x65E0;&#x8BBA;&#x540E;&#x7AEF; Pod &#x5982;&#x4F55;&#x53D8;&#x5316;&#xFF0C;&#x5BF9;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x5F71;&#x54CD;&#xFF0C;&#x56E0;&#x4E3A; Service &#x6CA1;&#x6709;&#x53D8;&#x3002;</p>
+<p>&#x6765;&#x770B;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x521B;&#x5EFA;&#x4E0B;&#x9762;&#x7684;&#x8FD9;&#x4E2A; Deployment&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> apps/v1beta1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> httpd
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        run:</span> httpd
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - name:</span> httpd
+<span class="hljs-attr">        image:</span> httpd
+<span class="hljs-attr">        ports:</span>
+<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">80</span>
+</code></pre>
+<p>&#x542F;&#x52A8;&#x4E86;&#x4E09;&#x4E2A; Pod&#xFF0C;&#x8FD0;&#x884C; httpd &#x955C;&#x50CF;&#xFF0C;label &#x662F; run: httpd&#xFF0C;Service &#x5C06;&#x4F1A;&#x7528;&#x8FD9;&#x4E2A; label &#x6765;&#x6311;&#x9009; Pod&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3911" alt="c6f012ff20521c85ba113f685962b8ba.png">
+Pod &#x5206;&#x914D;&#x4E86;&#x5404;&#x81EA;&#x7684; IP&#xFF0C;&#x8FD9;&#x4E9B; IP &#x53EA;&#x80FD;&#x88AB; Kubernetes Cluster &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x548C;&#x8282;&#x70B9;&#x8BBF;&#x95EE;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x521B;&#x5EFA;Service,&#x5176;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> httpd-svc
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    run:</span> httpd
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - protocol:</span> TCP
+<span class="hljs-attr">    port:</span> <span class="hljs-number">8080</span>
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">80</span>
+</code></pre>
+<p>&#x2460; v1 &#x662F; Service &#x7684; apiVersion&#x3002;
+&#x2461; &#x6307;&#x660E;&#x5F53;&#x524D;&#x8D44;&#x6E90;&#x7684;&#x7C7B;&#x578B;&#x4E3A; Service&#x3002;
+&#x2462; Service &#x7684;&#x540D;&#x5B57;&#x4E3A; httpd-svc&#x3002;
+&#x2463; selector &#x6307;&#x660E;&#x6311;&#x9009;&#x90A3;&#x4E9B; label &#x4E3A; run: httpd &#x7684; Pod &#x4F5C;&#x4E3A; Service &#x7684;&#x540E;&#x7AEF;&#x3002;
+&#x2464; &#x5C06; Service &#x7684; 8080 &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230; Pod &#x7684; 80 &#x7AEF;&#x53E3;&#xFF0C;&#x4F7F;&#x7528; TCP &#x534F;&#x8BAE;&#x3002;</p>
+<p>&#x6267;&#x884C; kubectl apply &#x521B;&#x5EFA; Service httpd-svc&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3912" alt="6ef4b4e7096ae969c43542a92b06bb9c.png"></p>
+<p>httpd-svc &#x5206;&#x914D;&#x5230;&#x4E00;&#x4E2A; CLUSTER-IP 10.102.120.255&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BE5; IP &#x8BBF;&#x95EE;&#x540E;&#x7AEF;&#x7684; httpd Pod&#x3002;</p>
+<pre><code class="lang-shell">curl 10.102.120.255:8080
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3913" alt="d7d1a5f6f842deabd06382f7efd69c5e.png"></p>
+<p>&#x6839;&#x636E;&#x524D;&#x9762;&#x7684;&#x7AEF;&#x53E3;&#x6620;&#x5C04;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x4F7F;&#x7528; 8080 &#x7AEF;&#x53E3;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x9664;&#x4E86;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684; httpd-svc&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A; Service kubernetes&#xFF0C;Cluster &#x5185;&#x90E8;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A; Service &#x8BBF;&#x95EE; kubernetes API Server&#x3002;</p>
+<p>&#x901A;&#x8FC7; kubectl describe &#x53EF;&#x4EE5;&#x67E5;&#x770B; httpd-svc &#x4E0E; Pod &#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x3002;</p>
+<pre><code class="lang-shell">kubectl describe service httpd-service
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3914" alt="674ea4093c13f89ee61ef7cde47a418a.png"></p>
+<p>Endpoints &#x7F57;&#x5217;&#x4E86;&#x4E09;&#x4E2A; Pod &#x7684; IP &#x548C;&#x7AEF;&#x53E3;&#x3002;&#x6211;&#x4EEC;&#x77E5;&#x9053; Pod &#x7684; IP &#x662F;&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#x914D;&#x7F6E;&#x7684;&#xFF0C;&#x90A3;&#x4E48; Service &#x7684; Cluster IP &#x53C8;&#x662F;&#x914D;&#x7F6E;&#x5728;&#x54EA;&#x91CC;&#x7684;&#x5462;&#xFF1F;CLUSTER-IP &#x53C8;&#x662F;&#x5982;&#x4F55;&#x6620;&#x5C04;&#x5230; Pod IP &#x7684;&#x5462;&#xFF1F;
+&#x7B54;&#x6848;&#x662F;iptables</p>
+<h4 id="service-ip-&#x539F;&#x7406;">service IP &#x539F;&#x7406;</h4>
+<p>Service Cluster IP &#x662F;&#x4E00;&#x4E2A;&#x865A;&#x62DF; IP&#xFF0C;&#x662F;&#x7531; Kubernetes &#x8282;&#x70B9;&#x4E0A;&#x7684; iptables &#x89C4;&#x5219;&#x7BA1;&#x7406;&#x7684;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7; iptables-save &#x547D;&#x4EE4;&#x6253;&#x5370;&#x51FA;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684; iptables &#x89C4;&#x5219;&#xFF0C;&#x56E0;&#x4E3A;&#x8F93;&#x51FA;&#x8F83;&#x591A;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x622A;&#x53D6;&#x4E0E; httpd-svc Cluster IP 10.102.120.255 &#x76F8;&#x5173;&#x7684;&#x4FE1;&#x606F;&#xFF1A;</p>
+<pre><code class="lang-shell">-A KUBE-SERVICES ! -s 10.244.0.0/16 -d 10.102.120.255/32 -p tcp -m comment --comment &quot;default/httpd-svc: cluster IP&quot; -m tcp --dport 8080 -j KUBE-MARK-MASQ
+-A KUBE-SERVICES -d 10.102.120.255/32 -p tcp -m comment --comment &quot;default/httpd-svc: cluster IP&quot; -m tcp --dport 8080 -j KUBE-SVC-RL3JAE4GN7VOGDGP
+</code></pre>
+<p>&#x8FD9;&#x4E24;&#x6761;&#x89C4;&#x5219;&#x7684;&#x542B;&#x4E49;&#x662F;&#xFF1A;</p>
+<p>&#x5982;&#x679C; Cluster &#x5185;&#x7684; Pod&#xFF08;&#x6E90;&#x5730;&#x5740;&#x6765;&#x81EA; 10.244.0.0/16&#xFF09;&#x8981;&#x8BBF;&#x95EE; httpd-svc&#xFF0C;&#x5219;&#x5141;&#x8BB8;&#x3002;</p>
+<p>&#x5176;&#x4ED6;&#x6E90;&#x5730;&#x5740;&#x8BBF;&#x95EE; httpd-svc&#xFF0C;&#x8DF3;&#x8F6C;&#x5230;&#x89C4;&#x5219; KUBE-SVC-RL3JAE4GN7VOGDGP&#x3002;</p>
+<p>KUBE-SVC-RL3JAE4GN7VOGDGP &#x89C4;&#x5219;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3915" alt="f4bcade15db471a855bbbd3afc6304a8.png"></p>
+<ul>
+<li><p>1/3 &#x7684;&#x6982;&#x7387;&#x8DF3;&#x8F6C;&#x5230;&#x89C4;&#x5219; KUBE-SEP-4DQNMIHOZ4LIT6QF&#x3002;</p>
+</li>
+<li><p>1/3 &#x7684;&#x6982;&#x7387;&#xFF08;&#x5269;&#x4E0B; 2/3 &#x7684;&#x4E00;&#x534A;&#xFF09;&#x8DF3;&#x8F6C;&#x5230;&#x89C4;&#x5219; KUBE-SEP-KCBI42HJSRG3Z4WD</p>
+</li>
+<li><p>1/3 &#x7684;&#x6982;&#x7387;&#x8DF3;&#x8F6C;&#x5230;&#x89C4;&#x5219; KUBE-SEP-X5UEIL7VSMT4VZUN&#x3002;</p>
+</li>
+</ul>
+<p>&#x5373;&#x5C06;&#x8BF7;&#x6C42;&#x5206;&#x522B;&#x8F6C;&#x53D1;&#x5230;&#x540E;&#x7AEF;&#x7684;&#x4E09;&#x4E2A; Pod&#x3002;&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x5206;&#x6790;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x5982;&#x4E0B;&#x7ED3;&#x8BBA;&#xFF1A;</p>
+<p>iptables &#x5C06;&#x8BBF;&#x95EE; Service &#x7684;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x5230;&#x540E;&#x7AEF; Pod&#xFF0C;&#x800C;&#x4E14;&#x4F7F;&#x7528;&#x7C7B;&#x4F3C;&#x8F6E;&#x8BE2;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B56;&#x7565;&#x3002;</p>
+<p>&#x53E6;&#x5916;&#x9700;&#x8981;&#x8865;&#x5145;&#x4E00;&#x70B9;&#xFF1A;Cluster &#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x914D;&#x7F6E;&#x4E86;&#x76F8;&#x540C;&#x7684; iptables &#x89C4;&#x5219;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x786E;&#x4FDD;&#x4E86;&#x6574;&#x4E2A; Cluster &#x90FD;&#x80FD;&#x591F;&#x901A;&#x8FC7; Service &#x7684; Cluster IP &#x8BBF;&#x95EE; Service&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3916" alt="57f1046e49d919dccd6a8cec93539208.png"></p>
+<p>&#x9664;&#x4E86;&#x76F4;&#x63A5;&#x901A;&#x8FC7; Cluster IP &#x8BBF;&#x95EE;&#x5230; Service&#xFF0C;DNS &#x662F;&#x66F4;&#x52A0;&#x4FBF;&#x6377;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;</p>
+<h4 id="&#x63A8;&#x8350;&#x65B9;&#x5F0F;-dns&#x8BBF;&#x95EE;service">&#x63A8;&#x8350;&#x65B9;&#x5F0F;: DNS&#x8BBF;&#x95EE;Service</h4>
+<p>&#x5728; Cluster &#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; Cluster IP &#x8BBF;&#x95EE; Service&#xFF0C;Kubernetes &#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x4E3A;&#x65B9;&#x4FBF;&#x7684; DNS &#x8BBF;&#x95EE;&#x3002;</p>
+<p>CoreDNS &#x6210;&#x4E3A; Kubernetes &#x7684;&#x9ED8;&#x8BA4; DNS &#x670D;&#x52A1;&#x5668;</p>
+<p>&#x5728; 1.11 &#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x5BA3;&#x5E03; CoreDNS &#x5DF2;&#x5B9E;&#x73B0;&#x57FA;&#x4E8E; DNS &#x670D;&#x52A1;&#x53D1;&#x73B0;&#x7684;&#x666E;&#x904D;&#x53EF;&#x7528;&#x6027;&#x3002;&#x5728;&#x6700;&#x65B0;&#x7684; 1.13 &#x7248;&#x672C;&#x4E2D;&#xFF0C;CoreDNS &#x6B63;&#x5F0F;&#x53D6;&#x4EE3; kuber-dns &#x6210;&#x4E3A; Kubernetes &#x4E2D;&#x7684;&#x9ED8;&#x8BA4; DNS &#x670D;&#x52A1;&#x5668;&#x3002;CoreDNS &#x662F;&#x4E00;&#x79CD;&#x901A;&#x7528;&#x7684;&#x3001;&#x6743;&#x5A01;&#x7684; DNS &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x80FD;&#x591F;&#x63D0;&#x4F9B;&#x4E0E; Kubernetes &#x5411;&#x4E0B;&#x517C;&#x5BB9;&#x4E14;&#x5177;&#x5907;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x7684;&#x96C6;&#x6210;&#x80FD;&#x529B;&#x3002;&#x7531;&#x4E8E; CoreDNS &#x81EA;&#x8EAB;&#x5355;&#x4E00;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E0E;&#x5355;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x56E0;&#x6B64; CoreDNS &#x7684;&#x6D3B;&#x52A8;&#x90E8;&#x4EF6;&#x6570;&#x91CF;&#x4F1A;&#x5C11;&#x4E8E;&#x4E4B;&#x524D;&#x7684; DNS &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4E14;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49; DNS &#x6761;&#x76EE;&#x6765;&#x652F;&#x6301;&#x5404;&#x7C7B;&#x7075;&#x6D3B;&#x7684;&#x7528;&#x4F8B;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x7531;&#x4E8E; CoreDNS &#x91C7;&#x7528; Go &#x8BED;&#x8A00;&#x7F16;&#x5199;&#xFF0C;&#x5B83;&#x5177;&#x6709;&#x5F3A;&#x5927;&#x7684;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<p>CoreDNS &#x73B0;&#x5728;&#x662F; Kubernetes 1.13 &#x53CA;&#x540E;&#x7EED;&#x7248;&#x672C;&#x63A8;&#x8350;&#x7684; DNS &#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;Kubernetes &#x5DF2;&#x5C06;&#x5E38;&#x7528;&#x6D4B;&#x8BD5;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x67B6;&#x6784;&#x5207;&#x6362;&#x4E3A;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528; CoreDNS &#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x5EFA;&#x8BAE;&#x7528;&#x6237;&#x4E5F;&#x5C3D;&#x5FEB;&#x5B8C;&#x6210;&#x5207;&#x6362;&#x3002;KubeDNS &#x4ECD;&#x5C06;&#x81F3;&#x5C11;&#x652F;&#x6301;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x4F46;&#x73B0;&#x5728;&#x662F;&#x65F6;&#x5019;&#x5F00;&#x59CB;&#x89C4;&#x5212;&#x8FC1;&#x79FB;&#x4E86;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5305;&#x62EC; 1.11 &#x4E2D; Kubeadm &#x5728;&#x5185;&#x7684;&#x8BB8;&#x591A; OSS &#x5B89;&#x88C5;&#x5DE5;&#x5177;&#x4E5F;&#x5DF2;&#x7ECF;&#x8FDB;&#x884C;&#x4E86;&#x5207;&#x6362;&#x3002;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl get deployment --namespace=kube-system
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+coredns   2/2     2            2           3d19h
+</code></pre>
+<p>coredns &#x662F;&#x4E00;&#x4E2A; DNS &#x670D;&#x52A1;&#x5668;&#x3002;&#x6BCF;&#x5F53;&#x6709;&#x65B0;&#x7684; Service &#x88AB;&#x521B;&#x5EFA;&#xFF0C;coredns &#x4F1A;&#x6DFB;&#x52A0;&#x8BE5; Service &#x7684; DNS &#x8BB0;&#x5F55;&#x3002;Cluster &#x4E2D;&#x7684; Pod &#x53EF;&#x4EE5;&#x901A;&#x8FC7; <service_name>.<namespace_name> &#x8BBF;&#x95EE; Service&#x3002;</namespace_name></service_name></p>
+<p>&#x6BD4;&#x5982;&#x53EF;&#x4EE5;&#x7528; httpd-svc &#x8BBF;&#x95EE; Service httpd-svc&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3917" alt="d1b58f7c0875491c376d634ef66c44a7.png"></p>
+<p>DNS &#x670D;&#x52A1;&#x5668;&#x662F; coredns&#x5B83;&#x672C;&#x8EAB;&#x662F;&#x90E8;&#x7F72;&#x5728; kube-system namespace &#x4E2D;&#x7684;&#x4E00;&#x4E2A; Service&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x8BBF;&#x95EE;&#x5176;&#x4ED6; namespace &#x4E2D;&#x7684; Service&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x5E26;&#x4E0A; namesapce &#x4E86;&#x3002;kubectl get namespace &#x67E5;&#x770B;&#x5DF2;&#x6709;&#x7684; namespace&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3918" alt="c8650a6e7a6d72fd7b50a440e42582d5.png"></p>
+<p>&#x5728; kube-public &#x4E2D;&#x90E8;&#x7F72; Service httpd2-svc&#xFF0C;&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-shell">apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: httpd2
+  namespace: kube-public
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: httpd2
+    spec:
+      containers:
+      - name: httpd2
+        image: httpd
+        port:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd2-svc
+  namespace: kube-public
+spec:
+  selector:
+    run: httpd2
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+</code></pre>
+<p>&#x901A;&#x8FC7; namespace: kube-public &#x6307;&#x5B9A;&#x8D44;&#x6E90;&#x6240;&#x5C5E;&#x7684; namespace&#x3002;&#x591A;&#x4E2A;&#x8D44;&#x6E90;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A; YAML &#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#xFF0C;&#x7528; --- &#x5206;&#x5272;&#x3002;&#x6267;&#x884C; kubectl apply &#x521B;&#x5EFA;&#x8D44;&#x6E90;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl apply -f httpd2.yml
+</code></pre>
+<p>&#x67E5;&#x770B; kube-public &#x7684; Service&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3919" alt="018e0f2ff56b8e6947ea43d930c69db7.png"></p>
+<p>&#x5728; busybox Pod &#x4E2D;&#x8BBF;&#x95EE; httpd2-svc&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl run busybox --rm -it --image=busybox
+</code></pre>
+<p>&#x901A;&#x8FC7;namespace A&#x8BB0;&#x5F55;&#x8BBF;&#x95EE;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3921" alt="bf368eabb87c4ed52f9bf55d9b49b086.png">
+&#x5B98;&#x65B9;&#x89E3;&#x91CA;</p>
+<blockquote>
+<p>service .A records</p>
+<p>&#x201C;Normal&#x201D; (not headless) Services are assigned a DNS A record for a name of the form my-svc.my-namespace.svc.cluster.local. This resolves to the cluster IP of the Service.
+&#x201C;Headless&#x201D; (without a cluster IP) Services are also assigned a DNS A record for a name of the form my-svc.my-namespace.svc.cluster.local. Unlike normal Services, this resolves to the set of IPs of the pods selected by the Service. Clients are expected to consume the set or else use standard round-robin selection from the set.</p>
+</blockquote>
+<p>&#x56E0;&#x4E3A;&#x5C5E;&#x4E8E;&#x4E0D;&#x540C;&#x7684; namespace&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528; httpd2-svc.kube-public &#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x5230;&#x3002;</p>
+<p>Kubernetes &#x96C6;&#x7FA4;&#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; Cluster IP &#x548C; DNS &#x8BBF;&#x95EE; Service&#xFF0C;&#x90A3;&#x4E48;&#x96C6;&#x7FA4;&#x5916;&#x90E8;&#x5982;&#x4F55;&#x8BBF;&#x95EE;&#x5462;&#xFF1F;</p>
+<h4 id="&#x5916;&#x7F51;&#x8BBF;&#x95EE;service">&#x5916;&#x7F51;&#x8BBF;&#x95EE;service</h4>
+<p>&#x9664;&#x4E86; Cluster &#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; Service&#xFF0C;&#x5F88;&#x591A;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x4E5F;&#x5E0C;&#x671B;&#x5E94;&#x7528;&#x7684; Service &#x80FD;&#x591F;&#x66B4;&#x9732;&#x7ED9; Cluster &#x5916;&#x90E8;&#x3002;Kubernetes &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD;&#x7C7B;&#x578B;&#x7684; Service&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; ClusterIP&#x3002;</p>
+<ul>
+<li><p>ClusterIP 
+Service &#x901A;&#x8FC7; Cluster &#x5185;&#x90E8;&#x7684; IP &#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x53EA;&#x6709; Cluster &#x5185;&#x7684;&#x8282;&#x70B9;&#x548C; Pod &#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x8FD9;&#x662F;&#x9ED8;&#x8BA4;&#x7684; Service &#x7C7B;&#x578B;.</p>
+</li>
+<li><p>NodePort 
+Service &#x901A;&#x8FC7; Cluster &#x8282;&#x70B9;&#x7684;&#x9759;&#x6001;&#x7AEF;&#x53E3;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x3002;Cluster &#x5916;&#x90E8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <nodeip>:<nodeport> &#x8BBF;&#x95EE; Service&#x3002;</nodeport></nodeip></p>
+</li>
+<li><p>LoadBalancer 
+Service &#x5229;&#x7528; cloud provider &#x7279;&#x6709;&#x7684; load balancer &#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;cloud provider &#x8D1F;&#x8D23;&#x5C06; load balancer &#x7684;&#x6D41;&#x91CF;&#x5BFC;&#x5411; Service&#x3002;&#x76EE;&#x524D;&#x652F;&#x6301;&#x7684; cloud provider &#x6709; GCP&#x3001;AWS&#x3001;Azure &#x7B49;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5B9E;&#x8DF5;NodePort,Service httpd-svc&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4FEE;&#x6539;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3923" alt="ff50bad933d87ef2a43db8015718c9a4.png">
+&#x6DFB;&#x52A0; type: NodePort&#xFF0C;&#x91CD;&#x65B0;&#x521B;&#x5EFA; httpd-svc&#x3002;</p>
+<pre><code class="lang-shell">kubectl apply -f httpd-service
+kubectl get service httpd-svc
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3924" alt="f88808b1c454c37aca25fa691528d116.png"></p>
+<p>Kubernetes &#x4F9D;&#x7136;&#x4F1A;&#x4E3A; httpd-svc &#x5206;&#x914D;&#x4E00;&#x4E2A; ClusterIP&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF1A;</p>
+<p>EXTERNAL-IP &#x4E3A; none&#xFF0C;&#x8868;&#x793A;&#x53EF;&#x901A;&#x8FC7; Cluster &#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x81EA;&#x8EAB;&#x7684; IP &#x8BBF;&#x95EE; Service&#x3002;</p>
+<p>PORT(S) &#x4E3A; 8080:32312&#x3002;8080 &#x662F; ClusterIP &#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#xFF0C;32312 &#x5219;&#x662F;&#x8282;&#x70B9;&#x4E0A;&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x3002;Kubernetes &#x4F1A;&#x4ECE; 30000-32767 &#x4E2D;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7684;&#x7AEF;&#x53E3;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x4F1A;&#x76D1;&#x542C;&#x6B64;&#x7AEF;&#x53E3;&#x5E76;&#x5C06;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7ED9; Service&#x3002;
+&#x4E0B;&#x9762;&#x6D4B;&#x8BD5; NodePort &#x662F;&#x5426;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3925" alt="1f1da4bf7e73655314a2f2c907e92584.png"></p>
+<p>&#x901A;&#x8FC7;&#x4E09;&#x4E2A;&#x8282;&#x70B9; IP + 32312 &#x7AEF;&#x53E3;&#x90FD;&#x80FD;&#x591F;&#x8BBF;&#x95EE; httpd-svc&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x63A2;&#x8BA8;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;Kubernetes &#x662F;&#x5982;&#x4F55;&#x5C06; <nodeip>:<nodeport> &#x6620;&#x5C04;&#x5230; Pod &#x7684;&#x5462;&#xFF1F;
+&#x4E0E; ClusterIP &#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x662F;&#x501F;&#x52A9;&#x4E86; iptables&#x3002;&#x4E0E; ClusterIP &#x76F8;&#x6BD4;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684; iptables &#x4E2D;&#x90FD;&#x589E;&#x52A0;&#x4E86;&#x4E0B;&#x9762;&#x4E24;&#x6761;&#x89C4;&#x5219;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3926" alt="1ddd10c44ec50753ff78f5336759beaf.png">
+&#x89C4;&#x5219;&#x7684;&#x542B;&#x4E49;&#x662F;&#xFF1A;&#x8BBF;&#x95EE;&#x5F53;&#x524D;&#x8282;&#x70B9; 32312 &#x7AEF;&#x53E3;&#x7684;&#x8BF7;&#x6C42;&#x4F1A;&#x5E94;&#x7528;&#x89C4;&#x5219; KUBE-SVC-RL3JAE4GN7VOGDGP&#xFF0C;&#x5185;&#x5BB9;&#x4E3A;&#xFF1A;</nodeport></nodeip></p>
+<pre><code class="lang-shell">-A KUBE-SVC-RL3JAE4GN7VOGDGP -m statistic --mode random --probability 0.33332999982 -j KUBE-SEP-X5UEIL7VSMT4VZUN
+-A KUBE-SVC-RL3JAE4GN7VOGDGP -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-KCBI42HJSRG3Z4WD
+-A KUBE-SVC-RL3JAE4GN7VOGDGP -j KUBE-SEP-4DQNMIHOZ4LIT6QF
+</code></pre>
+<p>&#x5176;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5230;&#x6BCF;&#x4E00;&#x4E2A; Pod&#x3002;</p>
+<p>NodePort &#x9ED8;&#x8BA4;&#x662F;&#x7684;&#x968F;&#x673A;&#x9009;&#x62E9;&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528; nodePort &#x6307;&#x5B9A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7AEF;&#x53E3;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3929" alt="d89c0c83b740f76ea2ccb630ae179de9.png"></p>
+<p>&#x73B0;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x5C31;&#x6709;&#x4E09;&#x4E2A; Port &#x4E86;&#xFF1A;
+nodePort &#x662F;&#x8282;&#x70B9;&#x4E0A;&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x3002;
+port &#x662F; ClusterIP &#x4E0A;&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x3002;
+targetPort &#x662F; Pod &#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x3002;</p>
+<p>&#x6700;&#x7EC8;&#xFF0C;Node &#x548C; ClusterIP &#x5728;&#x5404;&#x81EA;&#x7AEF;&#x53E3;&#x4E0A;&#x63A5;&#x6536;&#x5230;&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x901A;&#x8FC7; iptables &#x8F6C;&#x53D1;&#x5230; Pod &#x7684; targetPort&#x3002;
+&#x5E94;&#x7528;&#x65B0;&#x7684; nodePort &#x5E76;&#x9A8C;&#x8BC1;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3928" alt="04e2256e65daecd10bbfe6388d9da9f7.png"></p>
+<p>nodePort: 31000 &#x5DF2;&#x7ECF;&#x751F;&#x6548;&#x4E86;&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +1050,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Service管理","level":"1.7.1.8","depth":3,"next":{"title":"健康检查","level":"1.7.1.9","depth":3,"path":"健康检查.md","ref":"健康检查.md","articles":[]},"previous":{"title":"Job管理","level":"1.7.1.7","depth":3,"path":"Job.md","ref":"Job.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Service.md","mtime":"2019-01-20T06:16:43.889Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Service管理","level":"1.7.1.8","depth":3,"next":{"title":"健康检查","level":"1.7.1.9","depth":3,"path":"健康检查.md","ref":"健康检查.md","articles":[]},"previous":{"title":"Job管理","level":"1.7.1.7","depth":3,"path":"Job.md","ref":"Job.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Service.md","mtime":"2019-01-21T07:12:55.760Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

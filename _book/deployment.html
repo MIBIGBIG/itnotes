@@ -813,6 +813,176 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="deployment&#x7BA1;&#x7406;">Deployment&#x7BA1;&#x7406;</h1>
+<h4 id="deployment">deployment</h4>
+<p>Kubernetes &#x901A;&#x8FC7;&#x5404;&#x79CD; Controller &#x6765;&#x7BA1;&#x7406; Pod &#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;&#x4E3A;&#x4E86;&#x6EE1;&#x8DB3;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#xFF0C;Kubernetes &#x5F00;&#x53D1;&#x4E86; Deployment&#x3001;ReplicaSet&#x3001;DaemonSet&#x3001;StatefuleSet&#x3001;Job &#x7B49;&#x591A;&#x79CD; Controller&#x3002;</p>
+<p>&#x5148;&#x4ECE;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;&#xFF0C;&#x8FD0;&#x884C;&#x4E00;&#x4E2A; Deployment&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl run nginx-pod --image=nginx:1.12 --replicas=2
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x5C06;&#x90E8;&#x7F72;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x526F;&#x672C;&#x7684; pod nginx-pod&#xFF0C;&#x5BB9;&#x5668;&#x7684; image &#x4E3A; nginx:1.12</p>
+<p>&#x4E0B;&#x9762;&#x8BE6;&#x7EC6;&#x5206;&#x6790; Kubernetes &#x90FD;&#x505A;&#x4E86;&#x4E9B;&#x4EC0;&#x4E48;&#x5DE5;&#x4F5C;&#x3002;</p>
+<pre><code class="lang-shell">[root@k8s03 ~]# kubectl get deployment nginx-pod
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-pod   2/2     2            2           3m12s
+</code></pre>
+<p>&#x7136;&#x540E;&#x7528;kubectl describe pod nginx-pod &#x6765;&#x5206;&#x6790;Kubelet&#x505A;&#x4E86;&#x4EC0;&#x4E48;</p>
+<pre><code class="lang-shell"> kubectl describe pod nginx-pod
+ kubectl describe deployment nginx-pod
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3867" alt="614171ad0d686457f0e77910b59fc11b.png">
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3868" alt="935b0ac2fe40d2c756510f0788b54d02.png"></p>
+<p>&#x5927;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x90FD;&#x662F;&#x81EA;&#x89E3;&#x91CA;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x91CD;&#x70B9;&#x770B;&#x6700;&#x4E0B;&#x9762;&#x90E8;&#x5206;&#x3002;&#x8FD9;&#x91CC;&#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A; replica set nginx-pod-5f67d755b9 to 2&#xFF0C;Events &#x662F; Deployment &#x7684;&#x65E5;&#x5FD7;&#xFF0C;&#x8BB0;&#x5F55;&#x4E86; ReplicaSet &#x7684;&#x542F;&#x52A8;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x5206;&#x6790;&#xFF0C;&#x4E5F;&#x9A8C;&#x8BC1;&#x4E86; Deployment &#x901A;&#x8FC7; ReplicaSet &#x6765;&#x7BA1;&#x7406; Pod &#x7684;&#x4E8B;&#x5B9E;&#x3002;&#x63A5;&#x7740;&#x6211;&#x4EEC;&#x5C06;&#x6CE8;&#x610F;&#x529B;&#x5207;&#x6362;&#x5230; nginx-pod&#x4E0A;&#xFF0C;&#x6267;&#x884C; kubectl describe replicaset&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl get replicaset
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3869" alt="3220753ba011b99471ba4ef59919c50c.png">
+Controlled By &#x6307;&#x660E;&#x6B64; ReplicaSet &#x662F;&#x7531; Deployment nginx-deployment &#x521B;&#x5EFA;&#x3002;Events &#x8BB0;&#x5F55;&#x4E86;&#x4E24;&#x4E2A;&#x526F;&#x672C; Pod &#x7684;&#x521B;&#x5EFA;&#x3002;&#x63A5;&#x7740;&#x6211;&#x4EEC;&#x6765;&#x770B; Pod&#xFF0C;&#x6267;&#x884C; kubectl get pod&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl get pod
+kubectl describe pod [pod-name]
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3870" alt="f9fa705fd950f9c99fade9fe5c674d07.png"></p>
+<p>Controlled By &#x6307;&#x660E;&#x6B64; Pod &#x662F;&#x7531; ReplicaSet/nginx-pod-5f67d755b9 &#x521B;&#x5EFA;&#x3002;Events &#x8BB0;&#x5F55;&#x4E86; Pod &#x7684;&#x542F;&#x52A8;&#x8FC7;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x64CD;&#x4F5C;&#x5931;&#x8D25;&#xFF08;&#x6BD4;&#x5982; image &#x4E0D;&#x5B58;&#x5728;&#xFF09;&#xFF0C;&#x4E5F;&#x80FD;&#x5728;&#x8FD9;&#x91CC;&#x67E5;&#x770B;&#x5230;&#x539F;&#x56E0;&#x3002;</p>
+<h5 id="&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#x5206;&#x6790;">&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#x5206;&#x6790;</h5>
+<ul>
+<li>&#x7528;&#x6237;&#x901A;&#x8FC7; kubectl &#x521B;&#x5EFA; Deployment&#x3002;</li>
+<li>Deployment &#x521B;&#x5EFA; ReplicaSet&#x3002;</li>
+<li>ReplicaSet &#x521B;&#x5EFA; Pod&#x3002;</li>
+</ul>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3871" alt="497978c5a5a3f271b2047bf68149a272.png"></p>
+<p>&#x4ECE;&#x4E0A;&#x56FE;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5BF9;&#x8C61;&#x7684;&#x547D;&#x540D;&#x65B9;&#x5F0F;&#x662F;&#xFF1A;&#x5B50;&#x5BF9;&#x8C61;&#x7684;&#x540D;&#x5B57; = &#x7236;&#x5BF9;&#x8C61;&#x540D;&#x5B57; + &#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x6570;&#x5B57;&#x3002;</p>
+<h4 id="kubernetes&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;">kubernetes&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;</h4>
+<p>&#x547D;&#x4EE4; vs &#x914D;&#x7F6E;&#x6587;&#x4EF6;
+Kubernetes &#x652F;&#x6301;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#xFF1A;</p>
+<ol>
+<li><p>&#x7528; kubectl &#x547D;&#x4EE4;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl run nginx-pod --image=nginx:1.12 --replicas=2
+</code></pre>
+<p>&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x8D44;&#x6E90;&#x7684;&#x5C5E;&#x6027;&#x3002;</p>
+</li>
+<li><p>&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x548C; kubectl apply &#x521B;&#x5EFA;&#xFF0C;&#x8981;&#x5B8C;&#x6210;&#x524D;&#x9762;&#x540C;&#x6837;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x53EF;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF1A;</p>
+</li>
+</ol>
+<p>kubectl apply -f nginx.yml
+nginx.yml &#x7684;&#x5185;&#x5BB9;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-yml"><span class="hljs-attr">apiVersion:</span> extensions/v1<span class="hljs-number">.1</span>
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> nginx-pod
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      label:</span>
+<span class="hljs-attr">        app:</span> web_server
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - name:</span> nginx
+<span class="hljs-attr">        image:</span> nginx:<span class="hljs-number">1.12</span>
+</code></pre>
+<p>&#x8D44;&#x6E90;&#x7684;&#x5C5E;&#x6027;&#x5199;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A; YAML&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5BF9;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x3002;</p>
+<hr>
+<ul>
+<li>&#x57FA;&#x4E8E;&#x547D;&#x4EE4;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;
+&#x7B80;&#x5355;&#x76F4;&#x89C2;&#x5FEB;&#x6377;&#xFF0C;&#x4E0A;&#x624B;&#x5FEB;&#x3002;
+&#x9002;&#x5408;&#x4E34;&#x65F6;&#x6D4B;&#x8BD5;&#x6216;&#x5B9E;&#x9A8C;&#x3002;</li>
+</ul>
+<hr>
+<ul>
+<li>&#x57FA;&#x4E8E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;
+1.&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x4E86; What&#xFF0C;&#x5373;&#x5E94;&#x7528;&#x6700;&#x7EC8;&#x8981;&#x8FBE;&#x5230;&#x7684;&#x72B6;&#x6001;&#x3002;
+2.&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x63D0;&#x4F9B;&#x4E86;&#x521B;&#x5EFA;&#x8D44;&#x6E90;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x80FD;&#x591F;&#x91CD;&#x590D;&#x90E8;&#x7F72;&#x3002;
+3.&#x53EF;&#x4EE5;&#x50CF;&#x7BA1;&#x7406;&#x4EE3;&#x7801;&#x4E00;&#x6837;&#x7BA1;&#x7406;&#x90E8;&#x7F72;&#x3002;
+4.&#x9002;&#x5408;&#x6B63;&#x5F0F;&#x7684;&#x3001;&#x8DE8;&#x73AF;&#x5883;&#x7684;&#x3001;&#x89C4;&#x6A21;&#x5316;&#x90E8;&#x7F72;&#x3002;
+5.&#x8981;&#x6C42;&#x719F;&#x6089;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x6709;&#x4E00;&#x5B9A;&#x96BE;&#x5EA6;&#x3002;</li>
+</ul>
+<p>kubectl apply &#x4E0D;&#x4F46;&#x80FD;&#x591F;&#x521B;&#x5EFA; Kubernetes &#x8D44;&#x6E90;&#xFF0C;&#x4E5F;&#x80FD;&#x5BF9;&#x8D44;&#x6E90;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x3002;&#x4E0D;&#x8FC7; Kubernets &#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E2A;&#x7C7B;&#x4F3C;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F8B;&#x5982; kubectl create&#x3001;kubectl replace&#x3001;kubectl edit &#x548C; kubectl patch&#x3002;</p>
+<p>&#x4E3A;&#x907F;&#x514D;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x56F0;&#x6270;&#xFF0C;&#x5C3D;&#x91CF;&#x53EA;&#x4F7F;&#x7528; kubectl apply&#xFF0C;
+&#x6B64;&#x547D;&#x4EE4;&#x5DF2;&#x7ECF;&#x80FD;&#x591F;&#x5E94;&#x5BF9;&#x8D85;&#x8FC7; 90% &#x7684;&#x573A;&#x666F;&#xFF0C;&#x4E8B;&#x534A;&#x529F;&#x500D;&#x3002;</p>
+<h4 id="&#x5982;&#x4F55;&#x8BFB;&#x61C2;deployment-yaml">&#x5982;&#x4F55;&#x8BFB;&#x61C2;Deployment YAML</h4>
+<p>&#x65E2;&#x7136;&#x8981;&#x7528; YAML &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#xFF0C;&#x73B0;&#x5728;&#x5C31;&#x5F88;&#x6709;&#x5FC5;&#x8981;&#x4E86;&#x89E3;&#x4E00;&#x4E0B; Deployment &#x7684;&#x914D;&#x7F6E;&#x683C;&#x5F0F;&#xFF0C;&#x5176;&#x4ED6; Controller&#xFF08;&#x6BD4;&#x5982; DaemonSet&#xFF09;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#x3002;</p>
+<p>&#x4ECD;&#x7136;&#x4EE5;nginx-pod&#x4E3A;&#x4F8B;&#x5B50;,&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#x6240;&#x793A;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3872" alt="f31b5934daa90aa3dfb799b1dfa1c52d.png"></p>
+<p>&#x2460; apiVersion &#x662F;&#x5F53;&#x524D;&#x914D;&#x7F6E;&#x683C;&#x5F0F;&#x7684;&#x7248;&#x672C;&#x3002;
+&#x2461; kind &#x662F;&#x8981;&#x521B;&#x5EFA;&#x7684;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x91CC;&#x662F; Deployment&#x3002;
+&#x2462; metadata &#x662F;&#x8BE5;&#x8D44;&#x6E90;&#x7684;&#x5143;&#x6570;&#x636E;&#xFF0C;name &#x662F;&#x5FC5;&#x9700;&#x7684;&#x5143;&#x6570;&#x636E;&#x9879;&#x3002;
+&#x2463; spec &#x90E8;&#x5206;&#x662F;&#x8BE5; Deployment &#x7684;&#x89C4;&#x683C;&#x8BF4;&#x660E;&#x3002;
+&#x2464; replicas &#x6307;&#x660E;&#x526F;&#x672C;&#x6570;&#x91CF;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; 1&#x3002;
+&#x2465; template &#x5B9A;&#x4E49; Pod &#x7684;&#x6A21;&#x677F;&#xFF0C;&#x8FD9;&#x662F;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x91CD;&#x8981;&#x90E8;&#x5206;&#x3002;
+&#x2466; metadata &#x5B9A;&#x4E49; Pod &#x7684;&#x5143;&#x6570;&#x636E;&#xFF0C;&#x81F3;&#x5C11;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; label&#x3002;label &#x7684; key &#x548C; value &#x53EF;&#x4EE5;&#x4EFB;&#x610F;&#x6307;&#x5B9A;&#x3002;
+&#x2467; spec &#x63CF;&#x8FF0; Pod &#x7684;&#x89C4;&#x683C;&#xFF0C;&#x6B64;&#x90E8;&#x5206;&#x5B9A;&#x4E49; Pod &#x4E2D;&#x6BCF;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x5C5E;&#x6027;&#xFF0C;name &#x548C; image &#x662F;&#x5FC5;&#x9700;&#x7684;&#x3002;</p>
+<p>&#x6B64; nginx.yml &#x662F;&#x4E00;&#x4E2A;&#x6700;&#x7B80;&#x5355;&#x7684; Deployment &#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<p>&#x6267;&#x884C; kubectl apply -f nginx.yml&#xFF1A;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl apply -f nginx.yml
+deployment.extensions/nginx-pod created
+</code></pre>
+<p>&#x90E8;&#x7F72;&#x6210;&#x529F;&#x3002;&#x540C;&#x6837;&#x5730;&#xFF0C;&#x901A;&#x8FC7; kubectl get &#x67E5;&#x770B; nginx-pod &#x7684;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl get deployment
+kubectl get replicaset
+kubectl get pod -o wide
+</code></pre>
+<p>Deployment&#x3001;ReplicaSet&#x3001;Pod &#x90FD;&#x5DF2;&#x7ECF;&#x5C31;&#x7EEA;&#x3002;&#x5982;&#x679C;&#x8981;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#xFF0C;&#x6267;&#x884C; kubectl delete deployment nginx-deployment &#x6216;&#x8005; kubectl delete -f nginx.yml&#x3002;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl delete -f nginx.yml
+
+deployment.extensions &quot;nginx-pod&quot; deleted
+</code></pre>
+<h4 id="deployment&#x6269;&#x5C55;&#x548C;&#x7F29;&#x51CF;">deployment&#x6269;&#x5C55;&#x548C;&#x7F29;&#x51CF;</h4>
+<p>&#x4F38;&#x7F29;&#xFF08;Scale Up/Down&#xFF09;&#x662F;&#x6307;&#x5728;&#x7EBF;&#x589E;&#x52A0;&#x6216;&#x51CF;&#x5C11; Pod &#x7684;&#x526F;&#x672C;&#x6570;&#x3002;
+Deployment nginx-pod &#x521D;&#x59CB;&#x662F;&#x4E24;&#x4E2A;&#x526F;&#x672C;&#x3002;
+39e8e6b49f28337cd8b07008bd33970d.png
+k8s01 &#x548C;k8s05&#x4E0A;&#x5404;&#x8DD1; &#x4E86;&#x4E00;&#x4E2A;&#x526F;&#x672C;.&#x73B0;&#x5728;&#x4FEE;&#x6539;nginx.yml,&#x5C06;&#x526F;&#x672C;&#x6539;&#x6210;5&#x4E2A;
+3ff9a199487003d8bbf94b3835e642eb.png
+&#x518D;&#x6B21;&#x6267;&#x884C; kubectl apply&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl apply -f nginx.yml
+</code></pre>
+<p>&#x4E09;&#x4E2A;&#x65B0;&#x526F;&#x672C;&#x88AB;&#x521B;&#x5EFA;&#x5E76;&#x8C03;&#x5EA6;&#x5230; k8s01&#x548C;k8s05 &#x4E0A;&#x3002;</p>
+<p>&#x51FA;&#x4E8E;&#x5B89;&#x5168;&#x8003;&#x8651;&#xFF0C;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E0B; Kubernetes &#x4E0D;&#x4F1A;&#x5C06; Pod &#x8C03;&#x5EA6;&#x5230; Master &#x8282;&#x70B9;&#x3002;&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5C06; k8s-master &#x4E5F;&#x5F53;&#x4F5C; Node &#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl taint node [k8s03] node-role.kubernetes.io/master-
+</code></pre>
+<p>&#x5982;&#x679C;&#x8981;&#x6062;&#x590D;master only &#x72B6;&#x6001;,&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;:</p>
+<pre><code class="lang-shell">kubectl taint node k8s03 node-role.kubernetes.io/master=&quot;&quot;:NoSchedule
+</code></pre>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x526F;&#x672C;&#x6570;&#x51CF;&#x5C11;&#x4E3A; 3 &#x4E2A;&#xFF0C;&#x91CD;&#x65B0;&#x6267;&#x884C; kubectl apply&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3875" alt="519f7e70064e0ec2e3254136d2d8c0be.png"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E24;&#x4E2A;&#x526F;&#x672C;&#x88AB;&#x5220;&#x9664;&#xFF0C;&#x6700;&#x7EC8;&#x4FDD;&#x7559;&#x4E86; 3 &#x4E2A;&#x526F;&#x672C;&#x3002;</p>
+<h4 id="k8s&#x5982;&#x4F55;failover">k8s&#x5982;&#x4F55;failover?</h4>
+<p>&#x6709; 3 &#x4E2A; nginx &#x526F;&#x672C;&#x5206;&#x522B;&#x8FD0;&#x884C;&#x5728; k8s01 &#x548C; k8s05 &#x4E0A;&#x3002;&#x73B0;&#x5728;&#x6A21;&#x62DF; k8s01 &#x6545;&#x969C;&#xFF0C;&#x5173;&#x95ED;&#x8BE5;&#x8282;&#x70B9;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3877" alt="1c52494405df96fc365054b3401aa66f.png"></p>
+<p>&#x7B49;&#x5F85;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;Kubernetes &#x4F1A;&#x68C0;&#x67E5;&#x5230; k8s01 &#x4E0D;&#x53EF;&#x7528;&#xFF0C;&#x5C06; k8s01 &#x4E0A;&#x7684; Pod &#x6807;&#x8BB0;&#x4E3A; Unknown &#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x5728; k8s05 &#x4E0A;&#x65B0;&#x521B;&#x5EFA;&#x4E24;&#x4E2A; Pod&#xFF0C;&#x7EF4;&#x6301;&#x603B;&#x526F;&#x672C;&#x6570;&#x4E3A; 3&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3878" alt="e13eb444f190853fba9e1040a290ad7d.png">
+&#x5F53; k8s01 &#x6062;&#x590D;&#x540E;&#xFF0C;Unknown &#x7684; Pod &#x4F1A;&#x88AB;&#x5220;&#x9664;&#xFF0C;&#x4E0D;&#x8FC7;&#x5DF2;&#x7ECF;&#x8FD0;&#x884C;&#x7684; Pod &#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x8C03;&#x5EA6;&#x56DE; k8s01&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3879" alt="8d56836dc10da14606e9bcc87a536ecc.png"></p>
+<p>&#x5220;&#x9664;nginx-pod</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl delete deployment nginx-pod
+deployment.extensions &quot;nginx-pod&quot; deleted
+</code></pre>
+<h4 id="k8s&#x5982;&#x4F55;&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;">k8s&#x5982;&#x4F55;&#x63A7;&#x5236;pod&#x4F4D;&#x7F6E;</h4>
+<p>&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E0B;&#xFF0C;Scheduler &#x4F1A;&#x5C06; Pod &#x8C03;&#x5EA6;&#x5230;&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684; Node&#x3002;&#x4E0D;&#x8FC7;&#x6709;&#x4E9B;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x5C06; Pod &#x90E8;&#x7F72;&#x5230;&#x6307;&#x5B9A;&#x7684; Node&#xFF0C;&#x6BD4;&#x5982;&#x5C06;&#x6709;&#x5927;&#x91CF;&#x78C1;&#x76D8; I/O &#x7684; Pod &#x90E8;&#x7F72;&#x5230;&#x914D;&#x7F6E;&#x4E86; SSD &#x7684; Node&#xFF1B;&#x6216;&#x8005; Pod &#x9700;&#x8981; GPU&#xFF0C;&#x9700;&#x8981;&#x8FD0;&#x884C;&#x5728;&#x914D;&#x7F6E;&#x4E86; GPU &#x7684;&#x8282;&#x70B9;&#x4E0A;&#x3002;</p>
+<p>Kubernetes &#x662F;&#x901A;&#x8FC7; label &#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x7684;&#x3002;</p>
+<p>label &#x662F; key-value &#x5BF9;&#xFF0C;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#x90FD;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; label&#xFF0C;&#x7075;&#x6D3B;&#x6DFB;&#x52A0;&#x5404;&#x79CD;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#x3002;&#x6BD4;&#x5982;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x6807;&#x6CE8; k8s01 &#x662F;&#x914D;&#x7F6E;&#x4E86; SSD &#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<pre><code class="lang-shell">kubectl label node k8s01 disktype=ssd
+</code></pre>
+<p>&#x7136;&#x540E;&#x901A;&#x8FC7; kubectl get node --show-labels &#x67E5;&#x770B;&#x8282;&#x70B9;&#x7684; label&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3880" alt="0e0d844d728e583da92720a182cea5f4.png"></p>
+<p>disktype=ssd &#x5DF2;&#x7ECF;&#x6210;&#x529F;&#x6DFB;&#x52A0;&#x5230; k8s01&#xFF0C;&#x9664;&#x4E86; disktype&#xFF0C;Node &#x8FD8;&#x6709;&#x51E0;&#x4E2A; Kubernetes &#x81EA;&#x5DF1;&#x7EF4;&#x62A4;&#x7684; label&#x3002;</p>
+<p>&#x6709;&#x4E86; disktype &#x8FD9;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49; label&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5C06; Pod &#x90E8;&#x7F72;&#x5230; k8s01&#x3002;&#x7F16;&#x8F91; nginx.yml&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3881" alt="3c55115a06a1890cd29aba770893bbed.png"></p>
+<p>&#x5728; Pod &#x6A21;&#x677F;&#x7684; spec &#x91CC;&#x901A;&#x8FC7; nodeSelector &#x6307;&#x5B9A;&#x5C06;&#x6B64; Pod &#x90E8;&#x7F72;&#x5230;&#x5177;&#x6709; label disktype=ssd &#x7684; Node &#x4E0A;&#x3002;</p>
+<p>&#x90E8;&#x7F72; Deployment &#x5E76;&#x67E5;&#x770B; Pod &#x7684;&#x8FD0;&#x884C;&#x8282;&#x70B9;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3882" alt="3de41fb8dc08ebf537d09a6bd774ac26.png"></p>
+<pre><code class="lang-shell">kubectl apply -f nginx.yml
+kubectl get pod -o wide
+</code></pre>
+<p>&#x5168;&#x90E8;4&#x4E2A;&#x526F;&#x672C;&#x90FD;&#x8FD0;&#x884C;&#x5728;k8s01&#x4E0A;,&#x7B26;&#x5408;&#x9884;&#x671F;
+&#x8981;&#x5220;&#x9664;label disktype,&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-shell">kubectl label node k8s01 disktype-
+</code></pre>
+<p>-&#x5373;&#x5220;&#x9664;.</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3883" alt="06e0cf3af4924a833ee8e186a19e3bcc.png">
+&#x4E0D;&#x8FC7;&#x6B64;&#x65F6; Pod &#x5E76;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x90E8;&#x7F72;&#xFF0C;&#x4F9D;&#x7136;&#x5728; k8s01 &#x4E0A;&#x8FD0;&#x884C;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3884" alt="bcdfda6a58e34d97e3183b15fa570a97.png"></p>
+<p>&#x9664;&#x975E;&#x5728; nginx.yml &#x4E2D;&#x5220;&#x9664; nodeSelector &#x8BBE;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7; kubectl apply &#x91CD;&#x65B0;&#x90E8;&#x7F72;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3885" alt="95746f20ba109f8b9c0eafe492cc9d2f.png">
+Kubernetes &#x4F1A;&#x5220;&#x9664;&#x4E4B;&#x524D;&#x7684; Pod &#x5E76;&#x8C03;&#x5EA6;&#x548C;&#x8FD0;&#x884C;&#x65B0;&#x7684; Pod&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +1026,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deployment管理","level":"1.7.1.5","depth":3,"next":{"title":"DaemonSet管理","level":"1.7.1.6","depth":3,"path":"DaemonSet.md","ref":"DaemonSet.md","articles":[]},"previous":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"path":"k8s架构原理.md","ref":"k8s架构原理.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment.md","mtime":"2019-01-20T06:16:43.885Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deployment管理","level":"1.7.1.5","depth":3,"next":{"title":"DaemonSet管理","level":"1.7.1.6","depth":3,"path":"DaemonSet.md","ref":"DaemonSet.md","articles":[]},"previous":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"path":"k8s架构原理.md","ref":"k8s架构原理.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment.md","mtime":"2019-01-21T07:10:58.478Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

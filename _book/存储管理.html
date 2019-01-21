@@ -813,6 +813,353 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x5B58;&#x50A8;&#x7BA1;&#x7406;">&#x5B58;&#x50A8;&#x7BA1;&#x7406;</h1>
+<p>&#x9996;&#x5148;&#x662F; Volume&#xFF0C;&#x4EE5;&#x53CA; Kubernetes &#x5982;&#x4F55;&#x901A;&#x8FC7; Volume &#x4E3A;&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x63D0;&#x4F9B;&#x5B58;&#x50A8;&#xFF1B;&#x7136;&#x540E;&#x5B9E;&#x8DF5;&#x51E0;&#x79CD;&#x5E38;&#x7528;&#x7684; Volume &#x7C7B;&#x578B;&#x5E76;&#x7406;&#x89E3;&#x5B83;&#x4EEC;&#x5404;&#x81EA;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF1B;&#x6700;&#x540E;&#xFF0C;&#x8BA8;&#x8BBA; Kubernetes &#x5982;&#x4F55;&#x901A;&#x8FC7; Persistent Volume &#x548C; Persistent Volume Claim &#x5206;&#x79BB;&#x96C6;&#x7FA4;&#x7BA1;&#x7406;&#x5458;&#x4E0E;&#x96C6;&#x7FA4;&#x7528;&#x6237;&#x7684;&#x804C;&#x8D23;&#xFF0C;&#x5E76;&#x5B9E;&#x8DF5; Volume &#x7684;&#x9759;&#x6001;&#x4F9B;&#x7ED9;&#x548C;&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x3002;</p>
+<h3 id="volume">Volume</h3>
+<p>Kubernetes &#x7684;&#x5B58;&#x50A8;&#x6A21;&#x578B; Volume,&#x770B;&#x770B;K8S&#x5982;&#x4F55;&#x6301;&#x4E45;&#x5316;&#x5B58;&#x50A8;&#x6620;&#x5C04;&#x5230;&#x5BB9;&#x5668;</p>
+<p>&#x4EBA;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x8BF4;&#xFF1A;&#x5BB9;&#x5668;&#x548C; Pod &#x662F;&#x77ED;&#x6682;&#x7684;&#x3002;
+&#x5176;&#x542B;&#x4E49;&#x662F;&#x5B83;&#x4EEC;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x53EF;&#x80FD;&#x5F88;&#x77ED;&#xFF0C;&#x4F1A;&#x88AB;&#x9891;&#x7E41;&#x5730;&#x9500;&#x6BC1;&#x548C;&#x521B;&#x5EFA;&#x3002;&#x5BB9;&#x5668;&#x9500;&#x6BC1;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x5BB9;&#x5668;&#x5185;&#x90E8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x90FD;&#x4F1A;&#x88AB;&#x6E05;&#x9664;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x6301;&#x4E45;&#x5316;&#x4FDD;&#x5B58;&#x5BB9;&#x5668;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Kubernetes Volume&#x3002;
+Volume &#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x72EC;&#x7ACB;&#x4E8E;&#x5BB9;&#x5668;&#xFF0C;Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x53EF;&#x80FD;&#x88AB;&#x9500;&#x6BC1;&#x548C;&#x91CD;&#x5EFA;&#xFF0C;&#x4F46; Volume &#x4F1A;&#x88AB;&#x4FDD;&#x7559;&#x3002;</p>
+<p>&#x672C;&#x8D28;&#x4E0A;&#xFF0C;Kubernetes Volume &#x662F;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x4E0E; Docker Volume &#x7C7B;&#x4F3C;&#x3002;&#x5F53; Volume &#x88AB; mount &#x5230; Pod&#xFF0C;Pod &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A; Volume&#x3002;Kubernetes Volume &#x4E5F;&#x652F;&#x6301;&#x591A;&#x79CD; backend &#x7C7B;&#x578B;&#xFF0C;&#x5305;&#x62EC; emptyDir&#x3001;hostPath&#x3001;GCE Persistent Disk&#x3001;AWS Elastic Block Store&#x3001;NFS&#x3001;Ceph &#x7B49;&#xFF0C;&#x5B8C;&#x6574;&#x5217;&#x8868;&#x53EF;&#x53C2;&#x8003; <a href="https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes" target="_blank">Types of Volumes</a>
+Volumes &#x63D0;&#x4F9B;&#x4E86;&#x5BF9;&#x5404;&#x79CD; backend &#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x5BB9;&#x5668;&#x5728;&#x4F7F;&#x7528; Volume &#x8BFB;&#x5199;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x6570;&#x636E;&#x5230;&#x5E95;&#x662F;&#x5B58;&#x653E;&#x5728;&#x672C;&#x5730;&#x8282;&#x70B9;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x5462;&#x8FD8;&#x662F;&#x4E91;&#x786C;&#x76D8;&#x4E0A;&#x3002;&#x5BF9;&#x5B83;&#x6765;&#x8BF4;&#xFF0C;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x7684; Volume &#x90FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x3002;</p>
+<p>&#x4ECE;&#x6700;&#x7B80;&#x5355;&#x7684; emptyDir &#x5F00;&#x59CB;&#x5165;&#x624B; Kubernetes Volumes</p>
+<h5 id="emptydir">emptyDir</h5>
+<p>emptyDir &#x662F;&#x6700;&#x57FA;&#x7840;&#x7684; Volume &#x7C7B;&#x578B;&#x3002;&#x6B63;&#x5982;&#x5176;&#x540D;&#x5B57;&#x6240;&#x793A;&#xFF0C;&#x4E00;&#x4E2A; emptyDir Volume &#x662F; Host &#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x7A7A;&#x76EE;&#x5F55;&#x3002;</p>
+<p>emptyDir Volume &#x5BF9;&#x4E8E;&#x5BB9;&#x5668;&#x6765;&#x8BF4;&#x662F;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5BF9;&#x4E8E; Pod &#x5219;&#x4E0D;&#x662F;&#x3002;&#x5F53; Pod &#x4ECE;&#x8282;&#x70B9;&#x5220;&#x9664;&#x65F6;&#xFF0C;Volume &#x7684;&#x5185;&#x5BB9;&#x4E5F;&#x4F1A;&#x88AB;&#x5220;&#x9664;&#x3002;&#x4F46;&#x5982;&#x679C;&#x53EA;&#x662F;&#x5BB9;&#x5668;&#x88AB;&#x9500;&#x6BC1;&#x800C; Pod &#x8FD8;&#x5728;&#xFF0C;&#x5219; Volume &#x4E0D;&#x53D7;&#x5F71;&#x54CD;&#x3002;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF1A;<u><strong>emptyDir Volume &#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E0E; Pod &#x4E00;&#x81F4;&#x3002;</strong></u></p>
+<p>Pod &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x90FD;&#x53EF;&#x4EE5;&#x5171;&#x4EAB; Volume&#xFF0C;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5404;&#x81EA;&#x7684; mount &#x8DEF;&#x5F84;&#x3002;&#x4E0B;&#x9762;&#x901A;&#x8FC7;&#x4F8B;&#x5B50;&#x6765;&#x5B9E;&#x8DF5; emptyDir&#xFF0C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> test-pd
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - image:</span> busybox
+<span class="hljs-attr">    name:</span> test-conta
+<span class="hljs-attr">    volumeMounts:</span>
+<span class="hljs-attr">    - mountPath:</span> /cache
+<span class="hljs-attr">      name:</span> cache-volume
+<span class="hljs-attr">    args:</span>
+<span class="hljs-bullet">    -</span> /bin/sh
+<span class="hljs-bullet">    -</span> -c
+<span class="hljs-bullet">    -</span> echo <span class="hljs-string">&quot;hello world&quot;</span> &gt; /cache/hello ; sleep <span class="hljs-number">3000</span>
+
+<span class="hljs-attr">  - image:</span> busybox
+<span class="hljs-attr">    name:</span> read-conta
+<span class="hljs-attr">    volumeMounts:</span>
+<span class="hljs-attr">    - mountPath:</span> /cache
+<span class="hljs-attr">      name:</span> cache-volume
+<span class="hljs-attr">    args:</span>
+<span class="hljs-bullet">    -</span> /bin/sh
+<span class="hljs-bullet">    -</span> -c 
+<span class="hljs-bullet">    -</span> cat /cache/hello; sleep <span class="hljs-number">3000</span>
+<span class="hljs-attr">  volumes:</span>
+<span class="hljs-attr">  - name:</span> cache-volume
+<span class="hljs-attr">    emptyDir:</span> {}
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4012" alt="880c38f5aea7b70fd66e4866b6a88130.png">
+&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x6A21;&#x62DF;&#x4E86;&#x4E00;&#x4E2A; &#x8BFB;-&#x5199; &#x573A;&#x666F;&#x3002;Pod &#x6709;&#x4E24;&#x4E2A;&#x5BB9;&#x5668; write&#x548C; read&#xFF0C;&#x5B83;&#x4EEC;&#x5171;&#x4EAB;&#x4E00;&#x4E2A; Volume&#x3002;write &#x8D1F;&#x8D23;&#x5F80; Volume &#x4E2D;&#x5199;&#x6570;&#x636E;&#xFF0C;read &#x5219;&#x662F;&#x4ECE; Volume &#x8BFB;&#x53D6;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x2460; &#x6587;&#x4EF6;&#x6700;&#x5E95;&#x90E8; volumes &#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A; emptyDir &#x7C7B;&#x578B;&#x7684; Volume cache-volume&#x3002;</p>
+<p>&#x2461; test-conta &#x5BB9;&#x5668;&#x5C06; cache-volume mount &#x5230; /cache &#x76EE;&#x5F55;&#x3002;</p>
+<p>&#x2462; test-conta &#x901A;&#x8FC7; echo &#x5C06;&#x6570;&#x636E;&#x5199;&#x5230;&#x6587;&#x4EF6; hello &#x91CC;&#x3002;</p>
+<p>&#x2463; read-conta &#x5BB9;&#x5668;&#x5C06; cache-volume mount &#x5230; /cache2 &#x76EE;&#x5F55;&#x3002;</p>
+<p>&#x2464; consumer &#x901A;&#x8FC7; cat &#x4ECE;&#x6587;&#x4EF6; hello &#x8BFB;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x6267;&#x884C;&#x547D;&#x4EE4;&#x521B;&#x5EFA;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4013" alt="06b3fdfe6d2e9f7c3bb87a72e3052d3c.png"></p>
+<p>kubectl logs &#x663E;&#x793A;&#x5BB9;&#x5668; read-conta&#x6210;&#x529F;&#x8BFB;&#x5230;&#x4E86; test-pd &#x5199;&#x5165;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x9A8C;&#x8BC1;&#x4E86;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;&#x5171;&#x4EAB; emptyDir Volume&#x3002;</p>
+<p>&#x56E0;&#x4E3A; emptyDir &#x662F; Docker Host &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x91CC;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x5176;&#x6548;&#x679C;&#x76F8;&#x5F53;&#x4E8E;&#x6267;&#x884C;&#x4E86; docker run -v /cache &#x548C; docker run -v /cache1&#x3002;&#x901A;&#x8FC7; docker inspect &#x67E5;&#x770B;&#x5BB9;&#x5668;&#x7684;&#x8BE6;&#x7EC6;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x4E24;&#x4E2A;&#x5BB9;&#x5668;&#x90FD; mount &#x4E86;&#x540C;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4014" alt="03b5d3fea293abd9a19babdbdaed9892.png">
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4015" alt="36c19e7b04358110eae4e53de68228b1.png"></p>
+<p>&#x8FD9;&#x91CC;: /var/lib/kubelet/pods/07e76514-1182-11e9-96b0-000c29243719/volumes/kubernetes.io~empty-dir/cache-volume&#x5C31;&#x662F;emptyDir&#x5728;host&#x4E2D;&#x7684;&#x771F;&#x6B63;&#x8DEF;&#x5F84;</p>
+<p>emptyDir &#x662F; Host &#x4E0A;&#x521B;&#x5EFA;&#x7684;&#x4E34;&#x65F6;&#x76EE;&#x5F55;&#xFF0C;&#x5176;&#x4F18;&#x70B9;&#x662F;&#x80FD;&#x591F;&#x65B9;&#x4FBF;&#x5730;&#x4E3A; Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x63D0;&#x4F9B;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x4F46;&#x5B83;&#x4E0D;&#x5177;&#x5907;&#x6301;&#x4E45;&#x6027;&#xFF0C;&#x5982;&#x679C; Pod &#x4E0D;&#x5B58;&#x5728;&#x4E86;&#xFF0C;emptyDir &#x4E5F;&#x5C31;&#x6CA1;&#x6709;&#x4E86;&#x3002;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#xFF0C;emptyDir &#x7279;&#x522B;&#x9002;&#x5408; Pod &#x4E2D;&#x7684;&#x5BB9;&#x5668;&#x9700;&#x8981;&#x4E34;&#x65F6;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x7684;&#x573A;&#x666F;.</p>
+<h5 id="emtydir&#x9002;&#x7528;&#x573A;&#x666F;">emtyDir&#x9002;&#x7528;&#x573A;&#x666F;</h5>
+<ul>
+<li>scratch space, such as for a disk-based merge sort</li>
+<li>checkpointing a long computation for recovery from crashes</li>
+<li>holding files that a content-manager Container fetches while a webserver Container serves the data</li>
+</ul>
+<p>&#x53E6;&#x5916;,&#x4E5F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;emptyDir.medium &#x4E3A;Memory</p>
+<h4 id="hostpath-volume">hostPath Volume</h4>
+<p>hostPath Volume &#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06; Docker Host &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x76EE;&#x5F55; mount &#x7ED9; Pod &#x7684;&#x5BB9;&#x5668;&#x3002;&#x5927;&#x90E8;&#x5206;&#x5E94;&#x7528;&#x90FD;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528; hostPath Volume&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x5B9E;&#x9645;&#x4E0A;&#x589E;&#x52A0;&#x4E86; Pod &#x4E0E;&#x8282;&#x70B9;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x9650;&#x5236;&#x4E86; Pod &#x7684;&#x4F7F;&#x7528;&#x3002;&#x4E0D;&#x8FC7;&#x90A3;&#x4E9B;&#x9700;&#x8981;&#x8BBF;&#x95EE; Kubernetes &#x6216; Docker &#x5185;&#x90E8;&#x6570;&#x636E;&#xFF08;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x548C;&#x4E8C;&#x8FDB;&#x5236;&#x5E93;&#xFF09;&#x7684;&#x5E94;&#x7528;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528; hostPath&#x3002;</p>
+<p>&#x6BD4;&#x5982; kube-apiserver &#x548C; kube-controller-manager &#x5C31;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x901A;&#x8FC7;</p>
+<p>kubectl edit --namespace=kube-system pod kube-apiserver-k8s-master
+&#x67E5;&#x770B; kube-apiserver Pod &#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4E0B;&#x9762;&#x662F; Volume &#x7684;&#x76F8;&#x5173;&#x90E8;&#x5206;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4016" alt="9e8f22be53ce339652253b2779f0d96e.png"></p>
+<p>&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x4E09;&#x4E2A; hostPath volume k8s&#x3001;certs &#x548C; pki&#xFF0C;&#x5206;&#x522B;&#x5BF9;&#x5E94; Host &#x76EE;&#x5F55; /etc/kubernetes&#x3001;/etc/ssl/certs &#x548C; /etc/pki&#x3002;</p>
+<p>&#x5982;&#x679C; Pod &#x88AB;&#x9500;&#x6BC1;&#x4E86;&#xFF0C;hostPath &#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x4E5F;&#x8FD8;&#x4F1A;&#x88AB;&#x4FDD;&#x7559;&#xFF0C;&#x4ECE;&#x8FD9;&#x70B9;&#x770B;&#xFF0C;hostPath &#x7684;&#x6301;&#x4E45;&#x6027;&#x6BD4; emptyDir &#x5F3A;&#x3002;&#x4E0D;&#x8FC7;&#x4E00;&#x65E6; Host &#x5D29;&#x6E83;&#xFF0C;hostPath &#x4E5F;&#x5C31;&#x6CA1;&#x6CD5;&#x8BBF;&#x95EE;&#x4E86;&#x3002;</p>
+<h4 id="&#x5916;&#x90E8;&#x5B58;&#x50A8;provider">&#x5916;&#x90E8;&#x5B58;&#x50A8;provider</h4>
+<p>&#x5982;&#x679C; Kubernetes &#x90E8;&#x7F72;&#x5728;&#x8BF8;&#x5982; Aliyun&#x3001;AWS&#x3001;GCE&#x3001;Azure &#x7B49;&#x516C;&#x6709;&#x4E91;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E91;&#x786C;&#x76D8;&#x4F5C;&#x4E3A; Volume&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x963F;&#x91CC;&#x4E91;oss&#x7684;&#x4F8B;&#x5B50;
+&#x8BF4;&#x660E;: </p>
+<ul>
+<li>OSS &#x4E3A;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#xFF0C;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x4E3A;&#x591A;&#x4E2A; Pod &#x63D0;&#x4F9B;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x670D;&#x52A1;&#x3002;</li>
+<li>bucket&#xFF1A;&#x76EE;&#x524D;&#x53EA;&#x652F;&#x6301;&#x6302;&#x8F7D; Bucket&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x6302;&#x8F7D; Bucket &#x4E0B;&#x9762;&#x7684;&#x5B50;&#x76EE;&#x5F55;&#x6216;&#x6587;&#x4EF6;&#x3002;</li>
+<li>url: OSS endpoint&#xFF0C;&#x6302;&#x8F7D; OSS &#x7684;&#x63A5;&#x5165;&#x57DF;&#x540D;&#x3002;</li>
+<li>akId: &#x7528;&#x6237;&#x7684; access id &#x503C;&#x3002;</li>
+<li>akSecret&#xFF1A;&#x7528;&#x6237;&#x7684; access secret &#x503C;&#x3002;</li>
+<li>otherOpts: &#x6302;&#x8F7D; OSS &#x65F6;&#x652F;&#x6301;&#x5B9A;&#x5236;&#x5316;&#x53C2;&#x6570;&#x8F93;&#x5165;&#xFF0C;&#x683C;&#x5F0F;&#x4E3A;: -o <strong><em> -o </em></strong>&#x3002;</li>
+</ul>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> extensions/v1beta1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> nginx-oss-deploy
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> nginx
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - name:</span> nginx-flexvolume-oss
+<span class="hljs-attr">        image:</span> nginx
+<span class="hljs-attr">        volumeMounts:</span>
+<span class="hljs-attr">          - name:</span> <span class="hljs-string">&quot;oss1&quot;</span>
+<span class="hljs-attr">            mountPath:</span> <span class="hljs-string">&quot;/data&quot;</span>
+<span class="hljs-attr">        livenessProbe:</span>
+<span class="hljs-attr">          exec:</span>
+<span class="hljs-attr">            command:</span>
+<span class="hljs-bullet">            -</span> sh
+<span class="hljs-bullet">            -</span> -c
+<span class="hljs-bullet">            -</span> cd /data
+<span class="hljs-attr">          initialDelaySeconds:</span> <span class="hljs-number">30</span>
+<span class="hljs-attr">          periodSeconds:</span> <span class="hljs-number">30</span>
+<span class="hljs-attr">      volumes:</span>
+<span class="hljs-attr">        - name:</span> <span class="hljs-string">&quot;oss1&quot;</span>
+<span class="hljs-attr">          flexVolume:</span>
+<span class="hljs-attr">            driver:</span> <span class="hljs-string">&quot;alicloud/oss&quot;</span>
+<span class="hljs-attr">            options:</span>
+<span class="hljs-attr">              bucket:</span> <span class="hljs-string">&quot;docker&quot;</span>
+<span class="hljs-attr">              url:</span> <span class="hljs-string">&quot;oss-cn-hangzhou.aliyuncs.com&quot;</span>
+<span class="hljs-attr">              akId:</span> ***
+<span class="hljs-attr">              akSecret:</span> ***
+<span class="hljs-attr">              otherOpts:</span> <span class="hljs-string">&quot;-o max_stat_cache_size=0 -o allow_other&quot;</span>
+</code></pre>
+<p>Kubernetes Volume &#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E3B;&#x6D41;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x5B58;&#xFF0C;&#x6BD4;&#x5982; Cephfs&#x3001;GlusterFS &#x7B49;&#xFF0C;&#x4E0B;&#x9762;&#x662F; Cephfs &#x7684;&#x4F8B;&#x5B50;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4017" alt="5fac3aa8a04b95789bdbc5f1b5af3a89.png"></p>
+<p>Ceph &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684; /some/path/in/side/cephfs &#x76EE;&#x5F55;&#x88AB; mount &#x5230;&#x5BB9;&#x5668;&#x8DEF;&#x5F84; /test-ceph&#x3002;</p>
+<p>&#x76F8;&#x5BF9;&#x4E8E; emptyDir &#x548C; hostPath&#xFF0C;&#x8FD9;&#x4E9B; Volume &#x7C7B;&#x578B;&#x7684;&#x6700;&#x5927;&#x7279;&#x70B9;&#x5C31;&#x662F;&#x4E0D;&#x4F9D;&#x8D56; Kubernetes&#x3002;Volume &#x7684;&#x5E95;&#x5C42;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x7531;&#x72EC;&#x7ACB;&#x7684;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#xFF0C;&#x4E0E; Kubernetes &#x96C6;&#x7FA4;&#x662F;&#x5206;&#x79BB;&#x7684;&#x3002;&#x6570;&#x636E;&#x88AB;&#x6301;&#x4E45;&#x5316;&#x540E;&#xFF0C;&#x5373;&#x4F7F;&#x6574;&#x4E2A; Kubernetes &#x5D29;&#x6E83;&#x4E5F;&#x4E0D;&#x4F1A;&#x53D7;&#x635F;&#x3002;</p>
+<p>Volume &#x63D0;&#x4F9B;&#x4E86;&#x975E;&#x5E38;&#x597D;&#x7684;&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;&#x65B9;&#x6848;&#xFF0C;&#x4E0D;&#x8FC7;&#x5728;&#x53EF;&#x7BA1;&#x7406;&#x6027;&#x4E0A;&#x8FD8;&#x6709;&#x4E0D;&#x8DB3;&#x3002;</p>
+<h3 id="pv--pvc">PV &amp; PVC</h3>
+<p>Volume &#x63D0;&#x4F9B;&#x4E86;&#x975E;&#x5E38;&#x597D;&#x7684;&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;&#x65B9;&#x6848;&#xFF0C;&#x4E0D;&#x8FC7;&#x5728;&#x53EF;&#x7BA1;&#x7406;&#x6027;&#x4E0A;&#x8FD8;&#x6709;&#x4E0D;&#x8DB3;&#x3002;</p>
+<p>&#x62FF; AWS EBS  &#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#xFF0C;&#x8981;&#x4F7F;&#x7528; Volume&#xFF0C;Pod &#x5FC5;&#x987B;&#x4E8B;&#x5148;&#x77E5;&#x9053;&#x5982;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<p>1.&#x5F53;&#x524D; Volume &#x6765;&#x81EA; AWS EBS&#x3002;
+2.EBS Volume &#x5DF2;&#x7ECF;&#x63D0;&#x524D;&#x521B;&#x5EFA;&#xFF0C;&#x5E76;&#x4E14;&#x77E5;&#x9053;&#x786E;&#x5207;&#x7684; volume-id&#x3002;</p>
+<p>Pod &#x901A;&#x5E38;&#x662F;&#x7531;&#x5E94;&#x7528;&#x7684;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x7EF4;&#x62A4;&#xFF0C;&#x800C; Volume &#x5219;&#x901A;&#x5E38;&#x662F;&#x7531;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x7684;&#x7BA1;&#x7406;&#x5458;&#x7EF4;&#x62A4;&#x3002;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x8981;&#x83B7;&#x5F97;&#x4E0A;&#x9762;&#x7684;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ul>
+<li>&#x8981;&#x4E48;&#x8BE2;&#x95EE;&#x7BA1;&#x7406;&#x5458;&#x3002;</li>
+<li>&#x8981;&#x4E48;&#x81EA;&#x5DF1;&#x5C31;&#x662F;&#x7BA1;&#x7406;&#x5458;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x5E26;&#x6765;&#x4E00;&#x4E2A;&#x7BA1;&#x7406;&#x4E0A;&#x7684;&#x95EE;&#x9898;&#xFF1A;&#x5E94;&#x7528;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x548C;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x7684;&#x804C;&#x8D23;&#x8026;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x4E86;&#x3002;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x89C4;&#x6A21;&#x8F83;&#x5C0F;&#x6216;&#x8005;&#x5BF9;&#x4E8E;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x8FD8;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x3002;&#x4F46;&#x5F53;&#x96C6;&#x7FA4;&#x89C4;&#x6A21;&#x53D8;&#x5927;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5BF9;&#x4E8E;&#x751F;&#x6210;&#x73AF;&#x5883;&#xFF0C;&#x8003;&#x8651;&#x5230;&#x6548;&#x7387;&#x548C;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x8FD9;&#x5C31;&#x6210;&#x4E86;&#x5FC5;&#x987B;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>Kubernetes &#x7ED9;&#x51FA;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F; PersistentVolume &#x548C; PersistentVolumeClaim&#x3002;</p>
+<p>PersistentVolume (PV) &#x662F;&#x5916;&#x90E8;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x4E00;&#x5757;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x7531;&#x7BA1;&#x7406;&#x5458;&#x521B;&#x5EFA;&#x548C;&#x7EF4;&#x62A4;&#x3002;&#x4E0E; Volume &#x4E00;&#x6837;&#xFF0C;PV &#x5177;&#x6709;&#x6301;&#x4E45;&#x6027;&#xFF0C;&#x751F;&#x547D;&#x5468;&#x671F;&#x72EC;&#x7ACB;&#x4E8E; Pod&#x3002;</p>
+<p>PersistentVolumeClaim (PVC) &#x662F;&#x5BF9; PV &#x7684;&#x7533;&#x8BF7; (Claim)&#x3002;PVC &#x901A;&#x5E38;&#x7531;&#x666E;&#x901A;&#x7528;&#x6237;&#x521B;&#x5EFA;&#x548C;&#x7EF4;&#x62A4;&#x3002;&#x9700;&#x8981;&#x4E3A; Pod &#x5206;&#x914D;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#x65F6;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; PVC&#xFF0C;&#x6307;&#x660E;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#x7684;&#x5BB9;&#x91CF;&#x5927;&#x5C0F;&#x548C;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#xFF08;&#x6BD4;&#x5982;&#x53EA;&#x8BFB;&#xFF09;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;Kubernetes &#x4F1A;&#x67E5;&#x627E;&#x5E76;&#x63D0;&#x4F9B;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684; PV&#x3002;</p>
+<p>&#x6709;&#x4E86; PersistentVolumeClaim&#xFF0C;&#x7528;&#x6237;&#x53EA;&#x9700;&#x8981;&#x544A;&#x8BC9; Kubernetes &#x9700;&#x8981;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x5173;&#x5FC3;&#x771F;&#x6B63;&#x7684;&#x7A7A;&#x95F4;&#x4ECE;&#x54EA;&#x91CC;&#x5206;&#x914D;&#xFF0C;&#x5982;&#x4F55;&#x8BBF;&#x95EE;&#x7B49;&#x5E95;&#x5C42;&#x7EC6;&#x8282;&#x4FE1;&#x606F;&#x3002;&#x8FD9;&#x4E9B; Storage Provider &#x7684;&#x5E95;&#x5C42;&#x4FE1;&#x606F;&#x4EA4;&#x7ED9;&#x7BA1;&#x7406;&#x5458;&#x6765;&#x5904;&#x7406;&#xFF0C;&#x53EA;&#x6709;&#x7BA1;&#x7406;&#x5458;&#x624D;&#x5E94;&#x8BE5;&#x5173;&#x5FC3;&#x521B;&#x5EFA; PersistentVolume &#x7684;&#x7EC6;&#x8282;&#x4FE1;&#x606F;&#x3002;</p>
+<p>Kubernetes &#x652F;&#x6301;&#x591A;&#x79CD;&#x7C7B;&#x578B;&#x7684; PersistentVolume&#xFF0C;&#x6BD4;&#x5982; AWS EBS&#x3001;Ceph&#x3001;NFS &#x7B49;&#xFF0C;&#x5B8C;&#x6574;&#x5217;&#x8868;&#x8BF7;&#x53C2;&#x8003;<a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes" target="_blank">Types of Persistent Volumes</a>
+&#x6CE8;: &#x963F;&#x91CC;&#x4E91;&#x76EE;&#x524D;&#x4E5F;PV PVC&#x521B;&#x5EFA;.</p>
+<h5 id="pv&#x548C;pvc&#x751F;&#x547D;&#x5468;&#x671F;">PV&#x548C;pvc&#x751F;&#x547D;&#x5468;&#x671F;</h5>
+<ol>
+<li>privisioning
+&#x9759;&#x6001;:&#x63D0;&#x524D;&#x521B;&#x5EFA;&#x4E86; PV&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7; PVC &#x7533;&#x8BF7; PV &#x5E76;&#x5728; Pod &#x4E2D;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x53EB;&#x505A;&#x9759;&#x6001;&#x4F9B;&#x7ED9;&#xFF08;Static Provision&#xFF09;&#x3002;</li>
+</ol>
+<p>&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#xFF08;Dynamical Provision&#xFF09;&#xFF0C;&#x5373;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6EE1;&#x8DB3; PVC &#x6761;&#x4EF6;&#x7684; PV&#xFF0C;&#x4F1A;&#x52A8;&#x6001;&#x521B;&#x5EFA; PV&#x3002;&#x76F8;&#x6BD4;&#x9759;&#x6001;&#x4F9B;&#x7ED9;&#xFF0C;&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x6709;&#x660E;&#x663E;&#x7684;&#x4F18;&#x52BF;&#xFF1A;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x524D;&#x521B;&#x5EFA; PV&#xFF0C;&#x51CF;&#x5C11;&#x4E86;&#x7BA1;&#x7406;&#x5458;&#x7684;&#x5DE5;&#x4F5C;&#x91CF;&#xFF0C;&#x6548;&#x7387;&#x9AD8;&#x3002;</p>
+<ol>
+<li>binding&#x72B6;&#x6001;</li>
+<li>&#x4F7F;&#x7528;&#x4E2D;
+pod &#x4F7F;&#x7528;pvc, &#x96C6;&#x7FA4;&#x68C0;&#x6D4B;bound&#x72B6;&#x6001;&#x7684;&#x5377;&#x5E76;&#x6302;&#x8F7D;&#x5230;pod&#x4E0A;.&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;acccess mode.</li>
+</ol>
+<p>4.Use Protection&#x72B6;&#x6001;
+&#x5F53;Pod&#x6B63;&#x5728;&#x4F7F;&#x7528;pvc&amp;PV&#x7684;&#x65F6;&#x5019;,&#x5C1D;&#x8BD5;&#x5220;&#x9664;PV&#x6216;&#x8005;PV,&#x6B64;&#x65F6;&#x72B6;&#x6001;&#x4E3A;
+Terminating and the Finalizers </p>
+<p>5.&#x56DE;&#x6536;&#x7B56;&#x7565;,&#x6709;&#x4E09;&#x79CD;&#x60C5;&#x51B5;
+&#x4FDD;&#x7559;: &#x5220;&#x9664;PV,&#x4ECD;&#x7136;&#x4FDD;&#x7559;,&#x5982;(EBS , GCE PD, Cinder&#x7B49;
+&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x6E05;&#x9664;
+&#x5220;&#x9664;: &#x6709;&#x4E9B;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x76F4;&#x63A5;&#x5220;&#x9664;,&#x5220;&#x9664;PV&#x7684;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5220;&#x9664;&#x5377;&#x7684;&#x5185;&#x5BB9;.
+&#x56DE;&#x6536;: &#x4E00;&#x822C;&#x4E0D;&#x63A8;&#x8350;,&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x8C03;&#x6574;&#x7684;&#x65B9;&#x5F0F;.</p>
+<h5 id="nfs-&#x9759;&#x6001;pv&#x5B9E;&#x8DF5;">NFS &#x9759;&#x6001;PV&#x5B9E;&#x8DF5;</h5>
+<p>1.&#x90E8;&#x7F72;nfs&#x670D;&#x52A1;&#x7AEF;&#x5230;k8s03,&#x76EE;&#x5F55;&#x4E3A;/data/</p>
+<pre><code class="lang-shell">yum install nfs-utils rpcbind -y
+mkdir -p /data/pv1
+echo &quot;/data  *(rw,no_root_squash)&quot; &gt; /etc/exports
+
+systemctl start rpcbind &amp;&amp; systemctl start nfs
+rpcinfo -p localhost
+showmount -e localhost
+</code></pre>
+<ol>
+<li>&#x8282;&#x70B9;&#x90E8;&#x7F72;NFS&#x5BA2;&#x6237;&#x7AEF;
+```shell
+yum install nfs-utils -y
+systemctl start nfs</li>
+</ol>
+<pre><code>&#x4E0B;&#x9762;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; PV mypv1&#xFF0C;&#x914D;&#x7F6E;&#x6587;&#x4EF6; nfs-pv1.yml &#x5982;&#x4E0B;&#xFF1A;
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mypv1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    path: /data/pv1
+    server: 10.0.0.83
+</code></pre><p>&#x2460; capacity &#x6307;&#x5B9A; PV &#x7684;&#x5BB9;&#x91CF;&#x4E3A; 1G&#x3002;</p>
+<p>&#x2461; accessModes &#x6307;&#x5B9A;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#x4E3A; ReadWriteOnce&#xFF0C;&#x652F;&#x6301;&#x7684;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#x6709;&#xFF1A;
+ReadWriteOnce &#x2013; PV &#x80FD;&#x4EE5; read-write &#x6A21;&#x5F0F; mount &#x5230;&#x5355;&#x4E2A;&#x8282;&#x70B9;&#x3002;
+ReadOnlyMany &#x2013; PV &#x80FD;&#x4EE5; read-only &#x6A21;&#x5F0F; mount &#x5230;&#x591A;&#x4E2A;&#x8282;&#x70B9;&#x3002;
+ReadWriteMany &#x2013; PV &#x80FD;&#x4EE5; read-write &#x6A21;&#x5F0F; mount &#x5230;&#x591A;&#x4E2A;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x2462; persistentVolumeReclaimPolicy &#x6307;&#x5B9A;&#x5F53; PV &#x7684;&#x56DE;&#x6536;&#x7B56;&#x7565;&#x4E3A; Recycle&#xFF0C;&#x652F;&#x6301;&#x7684;&#x7B56;&#x7565;&#x6709;&#xFF1A;
+Retain &#x2013; &#x9700;&#x8981;&#x7BA1;&#x7406;&#x5458;&#x624B;&#x5DE5;&#x56DE;&#x6536;&#x3002;
+Recycle &#x2013; &#x6E05;&#x9664; PV &#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6548;&#x679C;&#x76F8;&#x5F53;&#x4E8E;&#x6267;&#x884C; rm -rf /volume/*&#x3002;
+Delete &#x2013; &#x5220;&#x9664; Storage Provider &#x4E0A;&#x7684;&#x5BF9;&#x5E94;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#xFF0C;&#x4F8B;&#x5982; AWS EBS&#x3001;GCE PD&#x3001;Azure Disk&#x3001;OpenStack Cinder Volume &#x7B49;&#x3002;</p>
+<p>&#x2463; storageClassName &#x6307;&#x5B9A; PV &#x7684; class &#x4E3A; nfs&#x3002;&#x76F8;&#x5F53;&#x4E8E;&#x4E3A; PV &#x8BBE;&#x7F6E;&#x4E86;&#x4E00;&#x4E2A;&#x5206;&#x7C7B;&#xFF0C;PVC &#x53EF;&#x4EE5;&#x6307;&#x5B9A; class &#x7533;&#x8BF7;&#x76F8;&#x5E94; class &#x7684; PV&#x3002;</p>
+<p>&#x2464; &#x6307;&#x5B9A; PV &#x5728; NFS &#x670D;&#x52A1;&#x5668;&#x4E0A;&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x3002;</p>
+<p>&#x521B;&#x5EFA; mypv1&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4018" alt="93160f4e6b1604f4311f27464df50d77.png"></p>
+<p>STATUS &#x4E3A; Available&#xFF0C;&#x8868;&#x793A; mypv1 &#x5C31;&#x7EEA;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB; PVC &#x7533;&#x8BF7;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x521B;&#x5EFA; PVC mypvc1&#xFF0C;&#x914D;&#x7F6E;&#x6587;&#x4EF6; nfs-pvc1.yml &#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolumeClaim
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> mypvc1
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteOnce
+<span class="hljs-attr">  resources:</span>
+<span class="hljs-attr">    requests:</span>
+<span class="hljs-attr">      storage:</span> <span class="hljs-number">1</span>Gi
+<span class="hljs-attr">  storageClassName:</span> nfs
+</code></pre>
+<p>PVC &#x5C31;&#x5F88;&#x7B80;&#x5355;&#x4E86;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6307;&#x5B9A; PV &#x7684;&#x5BB9;&#x91CF;&#xFF0C;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#x548C; class</p>
+<p>&#x4ECE; kubectl get pvc &#x548C; kubectl get pv &#x7684;&#x8F93;&#x51FA;&#x53EF;&#x4EE5;&#x770B;&#x5230; mypvc1 &#x5DF2;&#x7ECF; Bound &#x5230; mypv1&#xFF0C;&#x7533;&#x8BF7;&#x6210;&#x529F;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x5728; Pod &#x4E2D;&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x4E86;&#xFF0C;Pod &#x914D;&#x7F6E;&#x6587;&#x4EF6; nfs-pod.yml &#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> mypod1
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">    - name:</span> mypod1
+<span class="hljs-attr">      image:</span> busybox
+<span class="hljs-attr">      args:</span>
+<span class="hljs-bullet">      -</span> /bin/sh
+<span class="hljs-bullet">      -</span> -c
+<span class="hljs-bullet">      -</span> sleep <span class="hljs-number">30000</span>
+<span class="hljs-attr">      volumeMounts:</span>
+<span class="hljs-attr">      - mountPath:</span> <span class="hljs-string">&quot;/data&quot;</span>
+<span class="hljs-attr">        name:</span> mydata
+<span class="hljs-attr">  volumes:</span>
+<span class="hljs-attr">    - name:</span> mydata
+<span class="hljs-attr">      persistentVolumeClaim:</span>
+<span class="hljs-attr">        claimName:</span> mypvc1
+</code></pre>
+<p>&#x4E0E;&#x4F7F;&#x7528;&#x666E;&#x901A; Volume &#x7684;&#x683C;&#x5F0F;&#x7C7B;&#x4F3C;&#xFF0C;&#x5728; volumes &#x4E2D;&#x901A;&#x8FC7; persistentVolumeClaim &#x6307;&#x5B9A;&#x4F7F;&#x7528; mypvc1 &#x7533;&#x8BF7;&#x7684; Volume&#x3002;
+&#x521B;&#x5EFA; mypod1&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl apply -f nfs-pod.yml
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4019" alt="be8d72995fbeda8f9fdbe8c035a8957b.png"></p>
+<p>&#x53EF;&#x89C1;&#xFF0C;&#x5728; Pod &#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6; /data/hello &#x786E;&#x5B9E;&#x5DF2;&#x7ECF;&#x4FDD;&#x5B58;&#x5230;&#x4E86; NFS &#x670D;&#x52A1;&#x5668;&#x76EE;&#x5F55; /data/pv1 &#x4E2D;&#x3002;</p>
+<h4 id="&#x52A8;&#x6001;provision">&#x52A8;&#x6001;provision</h4>
+<p>&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#xFF08;Dynamical Provision&#xFF09;&#xFF0C;&#x5373;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6EE1;&#x8DB3; PVC &#x6761;&#x4EF6;&#x7684; PV&#xFF0C;&#x4F1A;&#x52A8;&#x6001;&#x521B;&#x5EFA; PV&#x3002;&#x76F8;&#x6BD4;&#x9759;&#x6001;&#x4F9B;&#x7ED9;&#xFF0C;&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x6709;&#x660E;&#x663E;&#x7684;&#x4F18;&#x52BF;&#xFF1A;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x524D;&#x521B;&#x5EFA; PV&#xFF0C;&#x51CF;&#x5C11;&#x4E86;&#x7BA1;&#x7406;&#x5458;&#x7684;&#x5DE5;&#x4F5C;&#x91CF;&#xFF0C;&#x6548;&#x7387;&#x9AD8;&#x3002;</p>
+<p>&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x662F;&#x901A;&#x8FC7; StorageClass &#x5B9E;&#x73B0;&#x7684;&#xFF0C;StorageClass &#x5B9A;&#x4E49;&#x4E86;&#x5982;&#x4F55;&#x521B;&#x5EFA; PV.
+&#x6BCF;&#x4E2A;StorageClass&#x5305;&#x542B;&#x4E09;&#x4E2A;&#x533A;&#x57DF; provisioner,parameters,&#x548C;reclaimPolicy.</p>
+<p>&#x793A;&#x4F8B;1:</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">kind:</span> StorageClass
+<span class="hljs-attr">apiVersion:</span> storage.k8s.io/v1
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> standard
+<span class="hljs-attr">provisioner:</span> kubernetes.io/aws-ebs
+<span class="hljs-attr">parameters:</span>
+<span class="hljs-attr">  type:</span> gp2
+<span class="hljs-attr">reclaimPolicy:</span> Retain
+</code></pre>
+<p>&#x793A;&#x4F8B;2:</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">kind:</span> StorageClass
+<span class="hljs-attr">apiVersion:</span> storage.k8s.io/v1
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> slow
+<span class="hljs-attr">provisioner:</span> kubernetes.io/gce-pd
+<span class="hljs-attr">parameters:</span>
+<span class="hljs-attr">  type:</span> pd-standard
+<span class="hljs-attr">  replication-type:</span> none
+</code></pre>
+<p>&#x8FD9;&#x4E24;&#x4E2A; StorageClass &#x90FD;&#x4F1A;&#x52A8;&#x6001;&#x521B;&#x5EFA; AWS EBS&#xFF0C;&#x4E0D;&#x540C;&#x5728;&#x4E8E; standard &#x521B;&#x5EFA;&#x7684;&#x662F; gp2 &#x7C7B;&#x578B;&#x7684; EBS&#xFF0C;&#x800C; slow &#x521B;&#x5EFA;&#x7684;&#x662F; pd-statdard &#x7C7B;&#x578B;&#x7684; EBS&#x3002;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684; EBS &#x652F;&#x6301;&#x7684;&#x53C2;&#x6570;&#x53EF;&#x53C2;&#x8003; AWS &#x5B98;&#x65B9;&#x6587;&#x6863;&#x3002;</p>
+<p>StorageClass &#x652F;&#x6301; Delete &#x548C; Retain &#x4E24;&#x79CD; reclaimPolicy&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; Delete&#x3002;</p>
+<p>&#x4E0E;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#xFF0C;PVC &#x5728;&#x7533;&#x8BF7; PV &#x65F6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6307;&#x5B9A; StorageClass &#x548C;&#x5BB9;&#x91CF;&#x4EE5;&#x53CA;&#x8BBF;&#x95EE;&#x6A21;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4020" alt="1a4f9dd8b7e467d26c5b1a5382a0004b.png">
+&#x9664;&#x4E86; AWS EBS&#xFF0C;Kubernetes &#x652F;&#x6301;&#x5176;&#x4ED6;&#x591A;&#x79CD;&#x52A8;&#x6001;&#x4F9B;&#x7ED9; PV &#x7684; Provisioner&#xFF0C;&#x5B8C;&#x6574;&#x5217;&#x8868;&#x8BF7;&#x53C2;&#x8003; <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner" target="_blank">Storage Classes</a></p>
+<h4 id="mysql&#x6301;&#x4E45;&#x5316;&#x5B58;&#x50A8;&#x5B9E;&#x8DF5;">mysql&#x6301;&#x4E45;&#x5316;&#x5B58;&#x50A8;&#x5B9E;&#x8DF5;</h4>
+<p>&#x6B65;&#x9AA4;:
+1.&#x521B;&#x5EFA;PV&#x548C;PVC
+2.&#x90E8;&#x7F72;mysql
+3.&#x6DFB;&#x52A0;&#x6570;&#x636E;
+4.&#x6A21;&#x62DF;&#x5B95;&#x673A;&#x6545;&#x969C;
+5.&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;</p>
+<h5 id="&#x521B;&#x5EFA;-pv&#x548C;pvc">&#x521B;&#x5EFA; PV&#x548C;PVC</h5>
+<p>&#x521B;&#x5EFA;mysql-pv.yml</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolume
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> mysql-pv
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteOnce
+<span class="hljs-attr">  capacity:</span>
+<span class="hljs-attr">    storage:</span> <span class="hljs-number">1</span>Gi
+<span class="hljs-attr">  persistentVolumeReclaimPolicy:</span> Retain
+<span class="hljs-attr">  storageClassName:</span> nfs
+<span class="hljs-attr">  nfs:</span>
+<span class="hljs-attr">    path:</span> /data/mysql-pv
+<span class="hljs-attr">    server:</span> <span class="hljs-number">10.0</span><span class="hljs-number">.0</span><span class="hljs-number">.83</span>
+</code></pre>
+<p>&#x521B;&#x5EFA;mysql-pvc.yml</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolumeClaim
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> mysql-pvc
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteOnce
+<span class="hljs-attr">  resources:</span>
+<span class="hljs-attr">    requests:</span>
+<span class="hljs-attr">      storage:</span> <span class="hljs-number">1</span>Gi
+<span class="hljs-attr">  storageClassName:</span> nfs
+</code></pre>
+<p>&#x521B;&#x5EFA; mysql-pv &#x548C; mysql-pvc&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl apply -f mysql-pv.yml
+kubectl apply -f mysql-pvc.yml
+kubectl get pv,pvc
+</code></pre>
+<h5 id="mysql&#x90E8;&#x7F72;">MySQL&#x90E8;&#x7F72;</h5>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4021" alt="9f19c63671b876be77ddc704480fe7d9.png"></p>
+<p>&#x8FD0;&#x884C;</p>
+<pre><code class="lang-shell">kubectl apply -f mysql.yml
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4022" alt="f10dde7fe1ceafd2a54e1f0714fe964e.png"></p>
+<p>MySQL &#x88AB;&#x90E8;&#x7F72;&#x5230; k8s01&#xFF0C;&#x4E0B;&#x9762;&#x901A;&#x8FC7;&#x5BA2;&#x6237;&#x7AEF;&#x8BBF;&#x95EE; Service mysql&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -ppassword
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4023" alt="64c6440087d099359b0c5b6e0a8e507c.png">
+&#x66F4;&#x65B0;&#x6570;&#x636E;&#x5E93;&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4024" alt="fb973519b423c3a122ab8b699b12a7a7.png">
+&#x2460; &#x5207;&#x6362;&#x5230;&#x6570;&#x636E;&#x5E93; mysql&#x3002;
+&#x2461; &#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868; my_id&#x3002;
+&#x2462; &#x63D2;&#x5165;&#x4E00;&#x6761;&#x6570;&#x636E;&#x3002;
+&#x2463; &#x786E;&#x8BA4;&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x5199;&#x5165;&#x3002;
+&#x5173;&#x95ED; k8s01&#xFF0C;&#x6A21;&#x62DF;&#x8282;&#x70B9;&#x5B95;&#x673A;&#x6545;&#x969C;&#x3002;
+&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#xFF0C;Kubernetes &#x5C06; MySQL &#x8FC1;&#x79FB;&#x5230; k8s05&#x4E0A;</p>
+<p>&#x91CD;&#x65B0;&#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;&#x767B;&#x5F55;,&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;...</p>
+<p>Mysql&#x670D;&#x52A1;&#x6062;&#x590D;,&#x6570;&#x636E;&#x5B8C;&#x597D;.
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4025" alt="ce1848969c273e0e7c4274d20c0289e1.png"></p>
+<h4 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h4>
+<p>&#x8FD9;&#x91CC;&#x8BA8;&#x8BBA;&#x4E86; Kubernetes &#x5982;&#x4F55;&#x7BA1;&#x7406;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#x3002;
+emptyDir &#x548C; hostPath &#x7C7B;&#x578B;&#x7684; Volume &#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x4F46;&#x53EF;&#x6301;&#x4E45;&#x6027;&#x4E0D;&#x5F3A;&#xFF0C;Kubernetes &#x652F;&#x6301;&#x591A;&#x79CD;&#x5916;&#x90E8;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x7684; Volume&#x3002;</p>
+<p>PV &#x548C; PVC &#x5206;&#x79BB;&#x4E86;&#x7BA1;&#x7406;&#x5458;&#x548C;&#x666E;&#x901A;&#x7528;&#x6237;&#x7684;&#x804C;&#x8D23;&#xFF0C;&#x66F4;&#x9002;&#x5408;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x5B66;&#x4E60;&#x4E86;&#x5982;&#x4F55;&#x901A;&#x8FC7; StorageClass &#x5B9E;&#x73B0;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x52A8;&#x6001;&#x4F9B;&#x7ED9;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6F14;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5728; MySQL &#x4E2D;&#x4F7F;&#x7528; PersistentVolume &#x5B9E;&#x73B0;&#x6570;&#x636E;&#x6301;&#x4E45;&#x6027;&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +1203,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"存储管理","level":"1.7.1.10","depth":3,"next":{"title":"配置管理及Secret处理","level":"1.7.1.11","depth":3,"path":"配置管理及Secret.md","ref":"配置管理及Secret.md","articles":[]},"previous":{"title":"健康检查","level":"1.7.1.9","depth":3,"path":"健康检查.md","ref":"健康检查.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"存储管理.md","mtime":"2019-01-19T15:37:29.576Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"存储管理","level":"1.7.1.10","depth":3,"next":{"title":"配置管理及Secret处理","level":"1.7.1.11","depth":3,"path":"配置管理及Secret.md","ref":"配置管理及Secret.md","articles":[]},"previous":{"title":"健康检查","level":"1.7.1.9","depth":3,"path":"健康检查.md","ref":"健康检查.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"存储管理.md","mtime":"2019-01-21T07:13:56.208Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

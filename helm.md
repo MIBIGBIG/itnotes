@@ -298,7 +298,10 @@ Helm 通过模板创建 Kubernetes 能够理解的 YAML 格式的资源配置文
 ![50242451f400564671920e1a9b6f0b87.png](evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4060)
 
 从结构看，文件的内容非常像 Secret 配置，只是大部分属性值变成了{{ xxx }}。这些 {{ xxx }} 实际上是模板的语法。Helm 采用了 Go 语言的模板来编写 chart。Go 模板非常强大，支持变量、对象、函数、流控制等功能。下面我们通过解析 templates/secrets.yaml 模板
-① {{ template "mysql.fullname" . }} 定义 Secret 的 name。
+```yaml
+① \\{{ template "mysql.fullname" . }} 
+```
+定义 Secret 的 name。
 关键字 template 的作用是引用一个子模板 mysql.fullname。这个子模板是在 templates/_helpers.tpl 文件中定义的。
 ![52d04effc1800157d7ff1a4fd85f0e8d.png](evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4058)
 这个定义还是很复杂的，因为它用到了模板语言中的对象、函数、流控制等概念。

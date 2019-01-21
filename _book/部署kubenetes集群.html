@@ -813,6 +813,253 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x90E8;&#x7F72;kubenetes&#x96C6;&#x7FA4;">&#x90E8;&#x7F72;kubenetes&#x96C6;&#x7FA4;</h1>
+<p>[toc]</p>
+<h3 id="k8s&#x90E8;&#x7F72;">K8S&#x90E8;&#x7F72;</h3>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3837" alt="1ed9fb4bcb94a5d1bef4eb077fea26f5.png"></p>
+<h4 id="&#x90E8;&#x7F72;&#x51C6;&#x5907;">&#x90E8;&#x7F72;&#x51C6;&#x5907;</h4>
+<p>&#x7CFB;&#x7EDF;:CentOS 7.5
+&#x5185;&#x5B58;:2 GB or more of RAM per machine (any less will leave little room for your apps)
+CPU: 2 CPUs or more
+&#x7F51;&#x7EDC;: Full network connectivity between all machines in the cluster (public or private network is fine)
+&#x73AF;&#x5883;&#x8981;&#x6C42;: &#x4E3B;&#x673A;&#x540D;&#x552F;&#x4E00; MAC&#x5730;&#x5740;&#x552F;&#x4E00; UUID&#x552F;&#x4E00;
+SWAP: &#x7981;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;</p>
+<p>k8s03: 10.0.0.83
+k8s01: 10.0.0.81
+k8s04: 10.0.0.84</p>
+<p>&#x5B98;&#x65B9;&#x5B89;&#x88C5;&#x6587;&#x6863;&#x53EF;&#x4EE5;&#x53C2;&#x8003; <a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" target="_blank">https://kubernetes.io/docs/setup/independent/install-kubeadm/</a></p>
+<h5 id="&#x7981;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;">&#x7981;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;</h5>
+<p>&#x5728;&#x5B9E;&#x9645;&#x7981;&#x7528;&#x4EA4;&#x6362;&#x7A7A;&#x95F4;&#x4E4B;&#x524D;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x67E5;&#x770B;&#x5185;&#x5B58;&#x8D1F;&#x8F7D;&#x7A0B;&#x5EA6;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x53D1;&#x51FA;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x6765;&#x786E;&#x5B9A;&#x4FDD;&#x5B58;&#x4EA4;&#x6362;&#x533A;&#x57DF;&#x7684;&#x5206;&#x533A;&#x3002;</p>
+<pre><code class="lang-shell">#free -h 
+&#x68C0;&#x67E5;&#x4EA4;&#x6362;&#x7A7A;&#x95F4;
+
+&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x53D1;&#x51FA;&#x4EE5;&#x4E0B;blkid&#x547D;&#x4EE4; &#xFF0C;&#x67E5;&#x627E;TYPE=&#x201D;swap&#x201D;&#x884C;&#x4EE5;&#x786E;&#x5B9A;&#x4EA4;&#x6362;&#x5206;&#x533A;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;
+
+#blkid
+</code></pre>
+<p>&#x5728;&#x8BC6;&#x522B;&#x4EA4;&#x6362;&#x5206;&#x533A;&#x6216;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x6765;&#x7981;&#x7528;&#x4EA4;&#x6362;&#x533A;&#x57DF;&#x3002;</p>
+<pre><code class="lang-shell">[root@docker03 ~]# swapoff /dev/mapper/centos_model-swap
+
+[root@docker03 ~]# swapoff -a
+##&#x9A8C;&#x8BC1;
+[root@docker03 ~]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           1.8G        216M        1.0G        9.5M        539M        1.4G
+Swap:            0B          0B          0B
+</code></pre>
+<p>&#x7981;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;</p>
+<p>&#x4E3A;&#x4E86;&#x5728;Linux&#x4E2D;&#x6C38;&#x4E45;&#x7981;&#x7528;&#x4EA4;&#x6362;&#x7A7A;&#x95F4;&#xFF0C;&#x6253;&#x5F00;/ etc / fstab&#x6587;&#x4EF6;&#xFF0C;&#x641C;&#x7D22;&#x4EA4;&#x6362;&#x884C;&#x5E76;&#x5728;&#x884C;&#x7684;&#x524D;&#x9762;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;# &#xFF08;hashtag&#xFF09;&#x6807;&#x8BB0;&#x6765;&#x6CE8;&#x91CA;&#x6574;&#x884C;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3827" alt="6685f5343b9f013babd5f53eb92a2b3b.png">
+&#x6C38;&#x4E45;&#x7981;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;</p>
+<p>&#x4E4B;&#x540E;&#xFF0C; &#x91CD;&#x65B0;&#x542F;&#x52A8;&#x7CFB;&#x7EDF;&#x4EE5;&#x5E94;&#x7528;&#x65B0;&#x7684;&#x4EA4;&#x6362;&#x8BBE;&#x7F6E;&#xFF0C;&#x6216;&#x8005;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x53D1;&#x51FA;mount -a&#x547D;&#x4EE4;&#x53EF;&#x80FD;&#x4F1A;&#x5931;&#x6548;&#x3002;</p>
+<pre><code class="lang-shell"># mount -a
+</code></pre>
+<p>&#x7CFB;&#x7EDF;&#x91CD;&#x542F;&#x540E;,&#x518D;&#x6B21;&#x786E;&#x8BA4;</p>
+<pre><code class="lang-shell"># free -h
+# blkid 
+# lsblk
+</code></pre>
+<h5 id="&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;selinux">&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;,selinux</h5>
+<pre><code class="lang-shell">systemctl stop firewalld &amp;&amp; systemctl disable firewalld
+setenforce 0
+sed -i &quot;s/SELINUX=enforcing/SELINUX=disabled/g&quot; /etc/sysconfig/selinux
+</code></pre>
+<h5 id="sysctl&#x914D;&#x7F6E;">sysctl&#x914D;&#x7F6E;</h5>
+<p>&#x786E;&#x4FDD;sysctl&#x4E2D;net.bridge.bridge-nf-call-iptables&#x7684;&#x503C;&#x4E3A;1&#xFF1A;</p>
+<pre><code class="lang-shell">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+</code></pre>
+<h4 id="&#x5B89;&#x88C5;docker">&#x5B89;&#x88C5;docker</h4>
+<p>&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x9700;&#x8981;&#x5B89;&#x88C5; Docker&#x3002;</p>
+<pre><code class="lang-shell">wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
+sed -i &apos;s#download.docker.com#mirrors.ustc.edu.cn/docker-ce#g&apos; /etc/yum.repos.d/docker-ce.repo
+yum install docker-ce -y
+</code></pre>
+<h4 id="&#x5B89;&#x88C5;kubelet&#x3001;kubeadm-&#x548C;-kubectl">&#x5B89;&#x88C5;kubelet&#x3001;kubeadm &#x548C; kubectl</h4>
+<p>&#x5B89;&#x88C5;kubernetes&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88C5;kubelet, kubeadm&#x7B49;&#x5305;&#xFF0C;&#x4F46;k8s&#x5B98;&#x7F51;&#x7ED9;&#x7684;yum&#x6E90;&#x662F;packages.cloud.google.com&#xFF0C;&#x56FD;&#x5185;&#x8BBF;&#x95EE;&#x4E0D;&#x4E86;&#xFF0C;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x963F;&#x91CC;&#x4E91;&#x7684;yum&#x4ED3;&#x5E93;&#x955C;&#x50CF;&#x3002;</p>
+<pre><code class="lang-shell">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+</code></pre>
+<p>&#x4E0B;&#x8F7D;K8S&#x7EC4;&#x4EF6;&#x5230;&#x6240;&#x6709;&#x8282;&#x70B9;..</p>
+<pre><code class="lang-shell">
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable kubelet &amp;&amp; systemctl start kubelet
+</code></pre>
+<p>kubelet &#x8FD0;&#x884C;&#x5728; Cluster &#x6240;&#x6709;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x8D1F;&#x8D23;&#x542F;&#x52A8; Pod &#x548C;&#x5BB9;&#x5668;&#x3002;</p>
+<p>kubeadm &#x7528;&#x4E8E;&#x521D;&#x59CB;&#x5316; Cluster&#x3002;</p>
+<p>kubectl &#x662F; Kubernetes &#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;&#x901A;&#x8FC7; kubectl &#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x548C;&#x7BA1;&#x7406;&#x5E94;&#x7528;&#xFF0C;&#x67E5;&#x770B;&#x5404;&#x79CD;&#x8D44;&#x6E90;&#xFF0C;&#x521B;&#x5EFA;&#x3001;&#x5220;&#x9664;&#x548C;&#x66F4;&#x65B0;&#x5404;&#x79CD;&#x7EC4;&#x4EF6;&#x3002;</p>
+<p>&#x786E;&#x4FDD;iptables&#x8BBE;&#x7F6E;</p>
+<pre><code class="lang-shell">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+</code></pre>
+<h5 id="&#x6CE8;&#x610F;">&#x6CE8;&#x610F;</h5>
+<p>&#x5728;&#x6D4B;&#x8BD5;&#x65F6;&#x53D1;&#x73B0;&#x8001;&#x7248;&#x672C;docker&#x9A71;&#x52A8;&#x4E0D;&#x662F;cgroupfs&#xFF0C;&#x5BFC;&#x81F4;kubernetes&#x62A5;&#x9519;&#x3002;&#x67E5;&#x770B;&#x9A71;&#x52A8;&#x7248;&#x672C;&#xFF1A;</p>
+<pre><code class="lang-shell">docker info | grep -i cgroup
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x4FEE;&#x6539;kubernetes&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-shell">vi /etc/default/kubelet
+KUBELET_EXTRA_ARGS=--cgroup-driver=&#x6539;&#x4E3A;&#x5F53;&#x524D;&#x9A71;&#x52A8;
+systemctl daemon-reload
+systemctl restart kubelet
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3839" alt="96fb7cf84ed33601472c7b62a1ff8b34.png"></p>
+<h5 id="&#x7528;-kubeadm-&#x521B;&#x5EFA;-cluster">&#x7528; kubeadm &#x521B;&#x5EFA; Cluster</h5>
+<p>&#x5B8C;&#x6574;&#x7684;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x53EF;&#x4EE5;&#x53C2;&#x8003; <a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/" target="_blank">https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/</a></p>
+<h5 id="master&#x4E0B;&#x8F7D;&#x6240;&#x9700;&#x955C;&#x50CF;">master&#x4E0B;&#x8F7D;&#x6240;&#x9700;&#x955C;&#x50CF;</h5>
+<p>&#x4E0B;&#x8F7D;&#x670D;&#x52A1;&#x6240;&#x9700;&#x955C;&#x50CF;</p>
+<p>&#x53EF;&#x4EE5;&#x8DF3;&#x8FC7;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x4F1A;&#x81EA;&#x52A8;&#x4E0B;&#x8F7D;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x6709;&#x5899;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5C3D;&#x91CF;&#x63D0;&#x524D;&#x51C6;&#x5907;&#x597D;&#x6216;&#x8005;&#x8BBE;&#x7F6E;&#x79D1;&#x5B66;&#x2191;net&#x3002;&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x53EF;&#x4EE5;&#x9996;&#x5148;&#x8BBE;&#x7F6E;docker&#x4EE3;&#x7406;.</p>
+<pre><code class="lang-shell">mkdir /etc/systemd/system/docker.service.d
+cat &lt;&lt;EOF &gt; /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment=&quot;HTTP_PROXY=http://127.0.0.1:1080&quot;
+EOF
+systemctl daemon-reload
+systemctl restart docker
+</code></pre>
+<p>&#x4E0B;&#x8F7D;&#x955C;&#x50CF;</p>
+<p>kubeadm config images pull --kubernetes-version v1.13.1
+&#x5F97;&#x5230;&#x955C;&#x50CF;</p>
+<h6 id="&#x521D;&#x59CB;&#x5316;master">&#x521D;&#x59CB;&#x5316;master</h6>
+<p>&#x6B64;&#x5904;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x4E9B;&#x5751;,&#x8981;&#x5148;&#x51C6;&#x5907;&#x597D;http-proxy,&#x4E0D;&#x7136;&#x521D;&#x59CB;&#x5316;&#x65F6;docker pull gcr.io&#x548C;pian.io&#x955C;&#x50CF;&#x65F6;&#x4F1A;&#x88AB;.&#x5899;...
+&#x6B64;&#x5904;&#x5F3A;&#x70C8;&#x1F44E;&#x4E0B;&#x5899;...&#x6309;&#x7167;&#x5B98;&#x7F51;&#x6559;&#x7A0B;&#x6765;&#x7684;&#x4F24;&#x4E0D;&#x8D77;&#x554A;(&#x88AB;&#x6298;&#x817E;&#x597D;&#x4E45;)</p>
+<p>&#x5728; Master &#x4E0A;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-shell">kubeadm init --apiserver-advertise-address 10.0.0.83 --kubernetes-version=v1.13.1 --pod-network-cidr=10.244.0.0/16
+</code></pre>
+<p>--apiserver-advertise-address&#xFF1A;api-server&#x670D;&#x52A1;&#x76D1;&#x542C;&#x5730;&#x5740;&#xFF0C;&#x5373;master&#x7684;ip</p>
+<p>--kubernetes-version&#xFF1A;&#x6307;&#x5B9A;&#x8981;&#x90E8;&#x7F72;&#x7684;kubernetes&#x7248;&#x672C;&#xFF0C;&#x6B64;&#x5904;&#x4E3A;1.13.1</p>
+<p>--pod-network-cidr&#xFF1A;&#x6307;&#x5B9A;pod&#x7F51;&#x7EDC;&#x5206;&#x914D;&#x5730;&#x5740;&#x8303;&#x56F4;&#x3002;&#x9700;&#x8981;&#x4E0E;&#x4E0B;&#x4E00;&#x6B65;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x63D2;&#x4EF6;&#x7684;&#x914D;&#x7F6E;&#x4E00;&#x81F4;&#xFF0C;&#x6B64;&#x5904;&#x4F7F;&#x7528;Flannel</p>
+<pre><code class="lang-shell">[init] Using Kubernetes version: v1.13.1
+[preflight] Running pre-flight checks
+    [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 18.09.0. Latest validated version: 18.06
+    [WARNING Hostname]: hostname &quot;k8s&quot; could not be reached
+    [WARNING Hostname]: hostname &quot;kube-master&quot;: lookup kube-master on 192.168.2.1:53: no such host
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using &apos;kubeadm config images pull&apos;
+[kubelet-start] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
+[kubelet-start] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[kubelet-start] Activating the kubelet service
+[certs] Using certificateDir folder &quot;/etc/kubernetes/pki&quot;
+[certs] Generating &quot;front-proxy-ca&quot; certificate and key
+[certs] Generating &quot;front-proxy-client&quot; certificate and key
+[certs] Generating &quot;etcd/ca&quot; certificate and key
+[certs] Generating &quot;etcd/peer&quot; certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [kube-master localhost] and IPs [10.0.0.83 127.0.0.1 ::1]
+[certs] Generating &quot;etcd/healthcheck-client&quot; certificate and key
+[certs] Generating &quot;apiserver-etcd-client&quot; certificate and key
+[certs] Generating &quot;etcd/server&quot; certificate and key
+[certs] etcd/server serving cert is signed for DNS names [kube-master localhost] and IPs [10.0.0.83 127.0.0.1 ::1]
+[certs] Generating &quot;ca&quot; certificate and key
+[certs] Generating &quot;apiserver-kubelet-client&quot; certificate and key
+[certs] Generating &quot;apiserver&quot; certificate and key
+[certs] apiserver serving cert is signed for DNS names [kube-master kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 10.0.0.83]
+[certs] Generating &quot;sa&quot; key and public key
+[kubeconfig] Using kubeconfig folder &quot;/etc/kubernetes&quot;
+[kubeconfig] Writing &quot;admin.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;kubelet.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;controller-manager.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;scheduler.conf&quot; kubeconfig file
+[control-plane] Using manifest folder &quot;/etc/kubernetes/manifests&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-apiserver&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-controller-manager&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-scheduler&quot;
+[etcd] Creating static Pod manifest for local etcd in &quot;/etc/kubernetes/manifests&quot;
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory &quot;/etc/kubernetes/manifests&quot;. This can take up to 4m0s
+[apiclient] All control plane components are healthy after 23.502901 seconds
+[uploadconfig] storing the configuration used in ConfigMap &quot;kubeadm-config&quot; in the &quot;kube-system&quot; Namespace
+[kubelet] Creating a ConfigMap &quot;kubelet-config-1.13&quot; in namespace kube-system with the configuration for the kubelets in the cluster
+[patchnode] Uploading the CRI Socket information &quot;/var/run/dockershim.sock&quot; to the Node API object &quot;kube-master&quot; as an annotation
+[mark-control-plane] Marking the node kube-master as control-plane by adding the label &quot;node-role.kubernetes.io/master=&apos;&apos;&quot;
+[mark-control-plane] Marking the node kube-master as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[bootstrap-token] Using token: thmy85.7ahn8zezyt6m39yy
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstraptoken] creating the &quot;cluster-info&quot; ConfigMap in the &quot;kube-public&quot; namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join 10.0.0.83:6443 --token 57p8re.bwy6gsi69cephqrs --discovery-token-ca-cert-hash sha256:7fd3b0d1c70529c1661f50383f184aab80c60f9da4719767321ab4b04418ef48
+</code></pre>
+<h4 id="&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h4>
+<p>&#x4E0A;&#x4E00;&#x6B65;&#x8F93;&#x51FA;&#x4E2D;&#x63D0;&#x793A;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5426;&#x5219;&#x6267;&#x884C;kubectl&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+<p>&#x6309;&#x7167;&#x63D0;&#x793A;&#x6267;&#x884C;</p>
+<pre><code class="lang-shell">mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</code></pre>
+<p>&#x518D;&#x6B21;&#x6267;&#x884C;</p>
+<pre><code class="lang-shell">[root@k8s03 ~]# kubectl get nodes
+NAME    STATUS     ROLES    AGE     VERSION
+k8s01   NotReady   &lt;none&gt;   101m    v1.13.1
+k8s02   NotReady   &lt;none&gt;   2m34s   v1.13.1
+k8s03   NotReady   master   123m    v1.13.1
+</code></pre>
+<p>&#x5B89;&#x88C5;Pod&#x7F51;&#x7EDC;&#x63D2;&#x4EF6;,&#x4F7F;pod&#x53EF;&#x4EE5;&#x76F8;&#x4E92;&#x901A;&#x4FE1;</p>
+<pre><code class="lang-shell">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+</code></pre>
+<h4 id="&#x8282;&#x70B9;&#x52A0;&#x5165;">&#x8282;&#x70B9;&#x52A0;&#x5165;</h4>
+<p>&#x5207;&#x6362;&#x5230;node&#x670D;&#x52A1;&#x5668;,&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;master&#x65F6;&#x6700;&#x540E;&#x6253;&#x5370;&#x7684;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-shell">kubeadm join 10.0.0.83:6443 --token 57p8re.bwy6gsi69cephqrs --discovery-token-ca-cert-hash sha256:7fd3b0d1c70529c1661f50383f184aab80c60f9da4719767321ab4b04418ef48
+</code></pre>
+<p>&#x5982;&#x679C;&#x5F53;&#x65F6;&#x6CA1;&#x6709;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;master&#x7684; kubeadm token list &#x67E5;&#x770B;&#x3002;
+token&#x7684;&#x503C;</p>
+<pre><code class="lang-shell">kubeadm token list
+</code></pre>
+<p>--discovery-token-ca-cert-hash &#x7684;&#x503C;</p>
+<pre><code class="lang-shell">openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &apos;s/^.* //&apos;
+</code></pre>
+<p>&#x6839;&#x636E;&#x63D0;&#x793A;,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;kubectl get nodes &#x67E5;&#x770B;&#x8282;&#x70B9;&#x7684;&#x72B6;&#x6001;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3828" alt="b07f3d2cd03483287e644ac6299f7208.png">
+&#x76EE;&#x524D;&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x662F; NotReady&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x9700;&#x8981;&#x542F;&#x52A8;&#x82E5;&#x5E72;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E9B;&#x7EC4;&#x4EF6;&#x90FD;&#x662F;&#x5728; Pod &#x4E2D;&#x8FD0;&#x884C;&#xFF0C;&#x9700;&#x8981;&#x9996;&#x5148;&#x4ECE; google &#x4E0B;&#x8F7D;&#x955C;&#x50CF;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x67E5;&#x770B; Pod &#x7684;&#x72B6;&#x6001;&#xFF1A;</p>
+<pre><code class="lang-shell">kubectl get pod --all-namespaces
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3829" alt="761fc39cbb578e14160dc1784c91ba07.png"></p>
+<p>Pending&#x3001;ContainerCreating&#x3001;ImagePullBackOff &#x90FD;&#x8868;&#x660E; Pod &#x6CA1;&#x6709;&#x5C31;&#x7EEA;&#xFF0C;Running &#x624D;&#x662F;&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; kubectl describe pod <pod name=""> &#x67E5;&#x770B; Pod &#x5177;&#x4F53;&#x60C5;&#x51B5;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</pod></p>
+<pre><code class="lang-shell">kubectl describe pod kube-flannel-ds-amd64-rt9s4 --namespace=kube-system
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3830" alt="495cab8e5fa8761c418cbe28edceb585.png"></p>
+<p>&#x4E3A;&#x4E86;&#x8282;&#x7701;&#x7BC7;&#x5E45;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x622A;&#x53D6;&#x547D;&#x4EE4;&#x8F93;&#x51FA;&#x7684;&#x6700;&#x540E;&#x90E8;&#x5206;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;&#x4E0B;&#x8F7D; image &#x65F6;&#x5931;&#x8D25;&#xFF0C;&#x5982;&#x679C;&#x7F51;&#x7EDC;&#x8D28;&#x91CF;&#x4E0D;&#x597D;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x662F;&#x5F88;&#x5E38;&#x89C1;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8010;&#x5FC3;&#x7B49;&#x5F85;&#xFF0C;&#x56E0;&#x4E3A; Kubernetes &#x4F1A;&#x91CD;&#x8BD5;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x624B;&#x5DE5;&#x6267;&#x884C; docker pull &#x53BB;&#x4E0B;&#x8F7D;&#x8FD9;&#x4E2A;&#x955C;&#x50CF;&#x3002;</p>
+<p>&#x7B49;&#x5F85;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;image &#x90FD;&#x6210;&#x529F;&#x4E0B;&#x8F7D;&#x540E;&#xFF0C;&#x6240;&#x6709; Pod &#x4F1A;&#x5904;&#x4E8E; Running &#x72B6;&#x6001;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3836" alt="999482fc8464cc4bb7e381696bba5b85.png"></p>
+<h5 id="debug-notready">debug NotReady</h5>
+<p>&#x9996;&#x5148; describe nodes </p>
+<pre><code class="lang-shell">$ kubectl describe nodes
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x95EE;&#x9898;,SSH &#x8FDB;&#x95EE;&#x9898;node&#x67E5;&#x770B;kubelet logs&#x8F93;&#x51FA;</p>
+<pre><code class="lang-shell">journalctl -u kubelet
+</code></pre>
+<p>&#x8FD9;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x8282;&#x70B9;&#x90FD;&#x5DF2;&#x7ECF; Ready&#xFF0C;Kubernetes Cluster &#x521B;&#x5EFA;&#x6210;&#x529F;&#xFF0C;&#x4E00;&#x5207;&#x51C6;&#x5907;&#x5C31;&#x7EEA;&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +1103,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"next":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"path":"k8s架构原理.md","ref":"k8s架构原理.md","articles":[]},"previous":{"title":"kubeadm管理工具","level":"1.7.1.2","depth":3,"path":"K8S概念和简单体验.md","ref":"K8S概念和简单体验.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"部署kubenetes集群.md","mtime":"2019-01-19T17:24:32.678Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"部署kubenetes集群","level":"1.7.1.3","depth":3,"next":{"title":"k8s\b简单架构原理","level":"1.7.1.4","depth":3,"path":"k8s架构原理.md","ref":"k8s架构原理.md","articles":[]},"previous":{"title":"kubeadm管理工具","level":"1.7.1.2","depth":3,"path":"K8S概念和简单体验.md","ref":"K8S概念和简单体验.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"部署kubenetes集群.md","mtime":"2019-01-21T07:09:30.675Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

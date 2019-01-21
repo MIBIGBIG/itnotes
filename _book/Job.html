@@ -813,6 +813,118 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="job&#x7BA1;&#x7406;">Job&#x7BA1;&#x7406;</h1>
+<p>&#x5BB9;&#x5668;&#x6309;&#x7167;&#x6301;&#x7EED;&#x8FD0;&#x884C;&#x7684;&#x65F6;&#x95F4;&#x53EF;&#x5206;&#x4E3A;&#x4E24;&#x7C7B;&#xFF1A;&#x670D;&#x52A1;&#x7C7B;&#x5BB9;&#x5668;&#x548C;&#x5DE5;&#x4F5C;&#x7C7B;&#x5BB9;&#x5668;&#x3002;</p>
+<p>&#x670D;&#x52A1;&#x7C7B;&#x5BB9;&#x5668;&#x901A;&#x5E38;&#x6301;&#x7EED;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x76F4;&#x8FD0;&#x884C;&#xFF0C;&#x6BD4;&#x5982; http server&#xFF0C;daemon &#x7B49;&#x3002;&#x5DE5;&#x4F5C;&#x7C7B;&#x5BB9;&#x5668;&#x5219;&#x662F;&#x4E00;&#x6B21;&#x6027;&#x4EFB;&#x52A1;&#xFF0C;&#x6BD4;&#x5982;&#x6279;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B8C;&#x6210;&#x540E;&#x5BB9;&#x5668;&#x5C31;&#x9000;&#x51FA;&#x3002;</p>
+<p>Kubernetes &#x7684; Deployment&#x3001;ReplicaSet &#x548C; DaemonSet &#x90FD;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x7C7B;&#x5BB9;&#x5668;&#xFF1B;&#x5BF9;&#x4E8E;&#x5DE5;&#x4F5C;&#x7C7B;&#x5BB9;&#x5668;&#xFF0C;&#x6211;&#x4EEC;&#x7528; Job&#x3002;</p>
+<p>&#x5148;&#x770B;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; Job &#x914D;&#x7F6E;&#x6587;&#x4EF6; myjob.yml&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> batch/v1
+<span class="hljs-attr">kind:</span> Job
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> myjob
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      name:</span> myjob
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - name:</span> hello
+<span class="hljs-attr">        image:</span> busybox
+<span class="hljs-attr">        command:</span> [<span class="hljs-string">&quot;echo&quot;</span>,<span class="hljs-string">&quot;hello k8s!&quot;</span>]
+<span class="hljs-attr">      restartPolicy:</span> Never
+</code></pre>
+<p>&#x2460; batch/v1 &#x662F;&#x5F53;&#x524D; Job &#x7684; apiVersion&#x3002;
+&#x2461; &#x6307;&#x660E;&#x5F53;&#x524D;&#x8D44;&#x6E90;&#x7684;&#x7C7B;&#x578B;&#x4E3A; Job&#x3002;
+&#x2462; restartPolicy &#x6307;&#x5B9A;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x4E0B;&#x9700;&#x8981;&#x91CD;&#x542F;&#x5BB9;&#x5668;&#x3002;&#x5BF9;&#x4E8E; Job&#xFF0C;&#x53EA;&#x80FD;&#x8BBE;&#x7F6E;&#x4E3A; Never &#x6216;&#x8005; OnFailure&#x3002;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6; controller&#xFF08;&#x6BD4;&#x5982; Deployment&#xFF09;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A; Always &#x3002;</p>
+<p>&#x901A;&#x8FC7; kubectl apply -f myjob.yml &#x542F;&#x52A8; Job&#x3002;
+kubectl get job &#x67E5;&#x770B; Job &#x7684;&#x72B6;&#x6001;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3890" alt="57dda8bc56119926f3aad0001706564a.png">
+&#x7A0D;&#x7B49;&#x4E00;&#x4F1A;,&#x518D;&#x6B21;&#x68C0;&#x67E5;
+completions&#x4E3A;1/1,&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x6309;&#x7167;&#x9884;&#x671F;&#x542F;&#x52A8;&#x4E86;&#x4E00;&#x4E2A;Pod,&#x5E76;&#x4E14;&#x5DF2;&#x7ECF;&#x6210;&#x529F;&#x6267;&#x884C;.</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3891" alt="2a36ab0fa5cf38cba401fe62ebe9c46c.png">
+kubectl get pod &#x67E5;&#x770B; Pod &#x7684;&#x72B6;&#x6001;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3892" alt="6fda08ba7c5b9343905dcc1ba75e30d8.png"></p>
+<p>&#x56E0;&#x4E3A; Pod &#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x5BB9;&#x5668;&#x5DF2;&#x7ECF;&#x9000;&#x51FA;&#xFF0C;&#x9700;&#x8981;&#x7528; --show-all &#x624D;&#x80FD;&#x67E5;&#x770B; Completed &#x72B6;&#x6001;&#x7684; Pod&#x3002;</p>
+<p>kubectl logs &#x53EF;&#x4EE5;&#x67E5;&#x770B; Pod &#x7684;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3893" alt="d9cbec0d342f8695cdb08a54697b684b.png"></p>
+<p>&#x4EE5;&#x4E0A;&#x662F; Pod &#x6210;&#x529F;&#x6267;&#x884C;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x679C; Pod &#x5931;&#x8D25;&#x4E86;&#x4F1A;&#x600E;&#x4E48;&#x6837;&#x5462;&#xFF1F;</p>
+<p>&#x4FEE;&#x6539;myjob.yml,&#x6545;&#x610F;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3894" alt="51116bef6a74599142a3ffc4cca9f214.png"></p>
+<p>&#x5148;&#x5220;&#x9664;&#x4E4B;&#x524D;&#x7684; Job,&#x4FEE;&#x6539;&#x540E;&#x91CD;&#x65B0;&#x542F;&#x52A8;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3895" alt="56167bae9ed18c5b3516951acf203c72.png">
+&#x8FD0;&#x884C;&#x65B0;&#x7684; Job &#x5E76;&#x67E5;&#x770B;&#x72B6;&#x6001;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3896" alt="3dfc2e3ae39d2dd4f52d40694ee5565a.png">
+&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6709;&#x591A;&#x4E2A;pod,&#x72B6;&#x6001;&#x5747;&#x4E3A;&#x4E0D;&#x6B63;&#x5E38;,kubectl describe pod&#x67E5;&#x770B;&#x67D0;&#x4E2A;pod&#x7684;&#x542F;&#x52A8;&#x65E5;&#x5FD7;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3898" alt="d5e9c9961dc7eed73078434795b23ac8.png">
+&#x65E5;&#x5FD7;&#x663E;&#x793A;&#x6CA1;&#x6709;&#x53EF;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#xFF0C;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x7684;&#x9884;&#x671F;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x89E3;&#x91CA;&#x4E00;&#x4E2A;&#x73B0;&#x8C61;&#xFF1A;&#x4E3A;&#x4EC0;&#x4E48; kubectl get pod &#x4F1A;&#x770B;&#x5230;&#x8FD9;&#x4E48;&#x591A;&#x4E2A;&#x5931;&#x8D25;&#x7684; Pod&#xFF1F;</p>
+<p>&#x539F;&#x56E0;&#x662F;&#xFF1A;&#x5F53;&#x7B2C;&#x4E00;&#x4E2A; Pod &#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x5BB9;&#x5668;&#x5931;&#x8D25;&#x9000;&#x51FA;&#xFF0C;&#x6839;&#x636E; restartPolicy: Never&#xFF0C;&#x6B64;&#x5931;&#x8D25;&#x5BB9;&#x5668;&#x4E0D;&#x4F1A;&#x88AB;&#x91CD;&#x542F;&#xFF0C;&#x4F46; Job DESIRED &#x7684; Pod &#x662F; 1&#xFF0C;&#x76EE;&#x524D; SUCCESSFUL &#x4E3A; 0&#xFF0C;&#x4E0D;&#x6EE1;&#x8DB3;&#xFF0C;&#x6240;&#x4EE5; Job controller &#x4F1A;&#x542F;&#x52A8;&#x65B0;&#x7684; Pod&#xFF0C;&#x76F4;&#x5230; SUCCESSFUL &#x4E3A; 1&#x3002;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;SUCCESSFUL &#x6C38;&#x8FDC;&#x4E5F;&#x5230;&#x4E0D;&#x4E86; 1&#xFF0C;&#x6240;&#x4EE5; Job controller &#x4F1A;&#x4E00;&#x76F4;&#x521B;&#x5EFA;&#x65B0;&#x7684; Pod&#x3002;&#x4E3A;&#x4E86;&#x7EC8;&#x6B62;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#xFF0C;&#x53EA;&#x80FD;&#x5220;&#x9664; Job&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3899" alt="fe84b9b2b44d8fcf896a136adadc13de.png"></p>
+<p>&#x5982;&#x679C;&#x5C06; restartPolicy &#x8BBE;&#x7F6E;&#x4E3A; OnFailure &#x4F1A;&#x600E;&#x4E48;&#x6837;&#xFF1F;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5B9E;&#x8DF5;&#x4E00;&#x4E0B;&#xFF0C;&#x4FEE;&#x6539; myjob.yml &#x540E;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x3002;
+Job &#x7684; completion Pod &#x6570;&#x91CF;&#x8FD8;&#x662F;&#x4E3A; 0&#xFF0C;&#x770B;&#x770B; Pod &#x7684;&#x60C5;&#x51B5;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3901" alt="9700d16b964d182fc72763b1bdd524e3.png">
+&#x8FD9;&#x91CC;&#x53EA;&#x6709;&#x4E00;&#x4E2A; Pod&#xFF0C;&#x4E0D;&#x8FC7; RESTARTS &#x4E3A; 2&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x65AD;&#x589E;&#x52A0;&#xFF0C;&#x8BF4;&#x660E; OnFailure &#x751F;&#x6548;&#xFF0C;&#x5BB9;&#x5668;&#x5931;&#x8D25;&#x540E;&#x4F1A;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;</p>
+<h4 id="&#x5E76;&#x884C;&#x6267;&#x884C;job">&#x5E76;&#x884C;&#x6267;&#x884C;job</h4>
+<p>&#x6709;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x80FD;&#x540C;&#x65F6;&#x8FD0;&#x884C;&#x591A;&#x4E2A; Pod&#xFF0C;&#x63D0;&#x9AD8; Job &#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x3002;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; parallelism &#x8BBE;&#x7F6E;&#x3002;
+kubectl delete -f myjob.yml</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3902" alt="a35696e088050a2ce0216cede1103430.png">
+&#x4FEE;&#x6539;&#x540E;&#x91CD;&#x65B0;&#x6267;&#x884C;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3903" alt="9fc927112f670b96f1d254992524b5f6.png">
+Job &#x4E00;&#x5171;&#x542F;&#x52A8;&#x4E86;&#x4E24;&#x4E2A; Pod&#xFF0C;&#x800C;&#x4E14; AGE &#x76F8;&#x540C;&#xFF0C;&#x53EF;&#x89C1;&#x662F;&#x5E76;&#x884C;&#x8FD0;&#x884C;&#x7684;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; completions &#x8BBE;&#x7F6E; Job &#x6210;&#x529F;&#x5B8C;&#x6210; Pod &#x7684;&#x603B;&#x6570;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3905" alt="eaec3568fd980118b425a13567f1dada.png"></p>
+<p>&#x914D;&#x7F6E;&#x7684;&#x542B;&#x4E49;&#x662F;&#xFF1A;&#x6BCF;&#x6B21;&#x8FD0;&#x884C;&#x4E24;&#x4E2A; Pod&#xFF0C;&#x76F4;&#x5230;&#x603B;&#x5171;&#x6709; 6 &#x4E2A; Pod &#x6210;&#x529F;&#x5B8C;&#x6210;&#x3002;&#x5B9E;&#x8DF5;&#x4E00;&#x4E0B;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3904" alt="84fc022579f77688c7ce359a7b82805a.png"></p>
+<p>completion &#x4E3A; 6&#xFF0C;&#x7B26;&#x5408;&#x9884;&#x671F;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A; completions &#x548C; parallelism&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x5747;&#x4E3A; 1&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x6F14;&#x793A; Job &#x7684;&#x5E76;&#x884C;&#x7279;&#x6027;&#xFF0C;&#x5B9E;&#x9645;&#x7528;&#x9014;&#x4E0D;&#x5927;&#x3002;&#x4E0D;&#x8FC7;&#x73B0;&#x5B9E;&#x4E2D;&#x786E;&#x5B9E;&#x5B58;&#x5728;&#x5F88;&#x591A;&#x9700;&#x8981;&#x5E76;&#x884C;&#x5904;&#x7406;&#x7684;&#x573A;&#x666F;&#x3002;&#x6BD4;&#x5982;&#x6279;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF0C;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#xFF08;Pod&#xFF09;&#x90FD;&#x4F1A;&#x4ECE;&#x4EFB;&#x52A1;&#x6C60;&#x4E2D;&#x8BFB;&#x53D6;&#x4EFB;&#x52A1;&#x5E76;&#x6267;&#x884C;&#xFF0C;&#x526F;&#x672C;&#x8D8A;&#x591A;&#xFF0C;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x5C31;&#x8D8A;&#x77ED;&#xFF0C;&#x6548;&#x7387;&#x5C31;&#x8D8A;&#x9AD8;&#x3002;&#x8FD9;&#x79CD;&#x7C7B;&#x4F3C;&#x7684;&#x573A;&#x666F;&#x90FD;&#x53EF;&#x4EE5;&#x7528; Job &#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<h4 id="&#x5B9A;&#x65F6;&#x6267;&#x884C;job">&#x5B9A;&#x65F6;&#x6267;&#x884C;job</h4>
+<p>Linux &#x4E2D;&#x6709; cron &#x7A0B;&#x5E8F;&#x5B9A;&#x65F6;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#xFF0C;Kubernetes &#x7684; CronJob &#x63D0;&#x4F9B;&#x4E86;&#x7C7B;&#x4F3C;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9A;&#x65F6;&#x6267;&#x884C; Job&#x3002;CronJob &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> batch/v2alpha1
+<span class="hljs-attr">kind:</span> CronJob
+<span class="hljs-attr">medadata:</span>
+<span class="hljs-attr">  name:</span> hello
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  schedule:</span> <span class="hljs-string">&quot;*/1 * * * *&quot;</span>
+<span class="hljs-attr">  jobTemplate:</span>
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      template:</span>
+<span class="hljs-attr">        spec:</span>
+<span class="hljs-attr">          containers:</span>
+<span class="hljs-attr">          - name:</span> hello
+<span class="hljs-attr">            image:</span> busybox
+<span class="hljs-attr">            command:</span> [<span class="hljs-string">&quot;echo&quot;</span>, <span class="hljs-string">&quot;Hello k8S!&quot;</span>]
+<span class="hljs-attr">          restartPolicy:</span> OnFailure
+</code></pre>
+<p>&#x2460; batch/v2alpha1 &#x662F;&#x5F53;&#x524D; CronJob &#x7684; apiVersion&#x3002;</p>
+<p>&#x2461; &#x6307;&#x660E;&#x5F53;&#x524D;&#x8D44;&#x6E90;&#x7684;&#x7C7B;&#x578B;&#x4E3A; CronJob&#x3002;</p>
+<p>&#x2462; schedule &#x6307;&#x5B9A;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8FD0;&#x884C; Job&#xFF0C;&#x5176;&#x683C;&#x5F0F;&#x4E0E; Linux cron &#x4E00;&#x81F4;&#x3002;&#x8FD9;&#x91CC; <em>/1 </em> <em> </em> * &#x7684;&#x542B;&#x4E49;&#x662F;&#x6BCF;&#x4E00;&#x5206;&#x949F;&#x542F;&#x52A8;&#x4E00;&#x6B21;&#x3002;</p>
+<p>&#x2463; jobTemplate &#x5B9A;&#x4E49; Job &#x7684;&#x6A21;&#x677F;&#xFF0C;&#x683C;&#x5F0F;&#x4E0E;&#x524D;&#x9762; Job &#x4E00;&#x81F4;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x901A;&#x8FC7; kubectl apply &#x521B;&#x5EFA; CronJob&#x3002;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl apply -f cronjob.yml
+error: unable to recognize &quot;cronjob.yml&quot;: no matches for kind &quot;CronJob&quot; in version &quot;batch/v2alpha1&quot;
+</code></pre>
+<p>&#x5931;&#x8D25;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; Kubernetes &#x9ED8;&#x8BA4;&#x6CA1;&#x6709; enable CronJob &#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x5728; kube-apiserver &#x4E2D;&#x52A0;&#x5165;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x3002;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4FEE;&#x6539; kube-apiserver &#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6; /etc/kubernetes/manifests/kube-apiserver.yaml&#xFF1A;</p>
+<p>kube-apiserver &#x672C;&#x8EAB;&#x4E5F;&#x662F;&#x4E2A; Pod&#xFF0C;&#x5728;&#x542F;&#x52A8;&#x53C2;&#x6570;&#x4E2D;&#x52A0;&#x4E0A; --runtime-config=batch/v2alpha1=true &#x5373;&#x53EF;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3906" alt="0caafa61d846784cfe597dcada6a8d68.png"></p>
+<p>&#x7136;&#x540E;&#x91CD;&#x542F; kubelet &#x670D;&#x52A1;&#xFF1A;</p>
+<p>systemctl restart kubelet.service
+kubelet &#x4F1A;&#x91CD;&#x542F; kube-apiserver Pod&#x3002;&#x901A;&#x8FC7; kubectl api-versions &#x786E;&#x8BA4; kube-apiserver &#x73B0;&#x5728;&#x5DF2;&#x7ECF;&#x652F;&#x6301; batch/v2alpha1&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3907" alt="a661a3c65fbe37dd6355e7468afc4ae2.png">
+&#x518D;&#x6B21;&#x521B;&#x5EFA;CronJob&#xFF1A;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl apply -f cronjob.yml
+cronjob.batch/hello created
+</code></pre>
+<p>&#x8FD9;&#x6B21;&#x6210;&#x529F;&#x4E86;&#x3002;&#x901A;&#x8FC7; kubectl get cronjob &#x67E5;&#x770B; CronJob &#x7684;&#x72B6;&#x6001;&#xFF1A;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl get cronjob
+NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        41s             5m54s
+</code></pre>
+<p>&#x7B49;&#x5F85;&#x51E0;&#x5206;&#x949F;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7; kubectl get jobs &#x67E5;&#x770B; Job &#x7684;&#x6267;&#x884C;&#x60C5;&#x51B5;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p3909" alt="68b21056854ba602c727211f24c307f9.png">
+&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6BCF;&#x9694;&#x4E00;&#x5206;&#x949F;&#x5C31;&#x4F1A;&#x542F;&#x52A8;&#x4E00;&#x4E2A; Job&#x3002;&#x6267;&#x884C; kubectl logs &#x53EF;&#x67E5;&#x770B;&#x67D0;&#x4E2A; Job &#x7684;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#xFF1A;</p>
+<pre><code class="lang-shell">[root@k8s03 k8s]# kubectl logs hello-1546582860-kzslr
+Hello k8S!
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x5BB9;&#x5668;&#x5316;&#x5E94;&#x7528;&#x662F; Kubernetes &#x6700;&#x91CD;&#x8981;&#x7684;&#x6838;&#x5FC3;&#x529F;&#x80FD;&#x3002;&#x4E3A;&#x6EE1;&#x8DB3;&#x4E0D;&#x540C;&#x7684;&#x4E1A;&#x52A1;&#x9700;&#x8981;&#xFF0C;Kubernetes &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD; Controller&#xFF0C;&#x5305;&#x62EC; Deployment&#x3001;DaemonSet&#x3001;Job&#x3001;CronJob &#x7B49;&#x3002;</p>
 
                                 
                                 </section>
@@ -856,7 +968,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Job管理","level":"1.7.1.7","depth":3,"next":{"title":"Service管理","level":"1.7.1.8","depth":3,"path":"Service.md","ref":"Service.md","articles":[]},"previous":{"title":"DaemonSet管理","level":"1.7.1.6","depth":3,"path":"DaemonSet.md","ref":"DaemonSet.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Job.md","mtime":"2019-01-20T06:16:43.888Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T06:33:17.475Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Job管理","level":"1.7.1.7","depth":3,"next":{"title":"Service管理","level":"1.7.1.8","depth":3,"path":"Service.md","ref":"Service.md","articles":[]},"previous":{"title":"DaemonSet管理","level":"1.7.1.6","depth":3,"path":"DaemonSet.md","ref":"DaemonSet.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Job.md","mtime":"2019-01-21T07:12:30.224Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:05:05.920Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
