@@ -334,7 +334,11 @@ Values 也是预定义的对象，代表的是 values.yaml 文件。而 .Values.
 ![04148404815565e81319e18949b244da.png](evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4059)
 因为 mysqlRootPassword 被注释掉了，没有赋值，所以逻辑判断会走 else，即随机生成密码。
 
-randAlphaNum、b64enc、quote 都是 Go 模板语言支持的函数，函数之间可以通过管道 | 连接。{{ randAlphaNum 10 | b64enc | quote }} 的作用是首先随机产生一个长度为 10 的字符串，然后将其 base64 编码，最后两边加上双引号。
+randAlphaNum、b64enc、quote 都是 Go 模板语言支持的函数，函数之间可以通过管道 | 连接。
+```yaml
+{{ randAlphaNum 10 | b64enc | quote }} 
+```
+的作用是首先随机产生一个长度为 10 的字符串，然后将其 base64 编码，最后两边加上双引号。
 
 templates/secrets.yaml 这个例子展示了 chart 模板主要的功能，我们最大的收获应该是：模板将 chart 参数化了，通过 values.yaml 可以灵活定制应用。
 
