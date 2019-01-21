@@ -5,11 +5,24 @@
 * DevOps工具链
   * 配置管理
     * terrform
+    * Packer
+    * SaltStack
   * 现代版本控制工具
+    * Svn
+    * Git && github
+    * Gitlab
   * 容器管理
+    * Docker
+    * AWS lambda
   * 持续集成工具
+    * Jenkins
+    * TravisCI
   * 持续交付
+    * Docker Swarm
+    * kubenetes
   * 日志监控
+    * ELK
+    * PrometheusStack
   * 信息安全
 * DevOps方法论
   * DevOps原则
