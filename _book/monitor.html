@@ -1,0 +1,1051 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>日志监控 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="kubenetes最佳实践.html" />
+    
+    
+    <link rel="prev" href="dash.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="DevOps理念.html">
+            
+                <a href="DevOps理念.html">
+            
+                    
+                    DevOps理念及核心技术概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="配置管理.html">
+            
+                <a href="配置管理.html">
+            
+                    
+                    配置管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="基础架构管理利器Terraform.html">
+            
+                <a href="基础架构管理利器Terraform.html">
+            
+                    
+                    1.1 基础架构管理利器Terraform
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="Ias.html">
+            
+                <a href="Ias.html">
+            
+                    
+                    1.1.1 Infrastructure as Code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="ter概览.html">
+            
+                <a href="ter概览.html">
+            
+                    
+                    1.1.2 Terraform概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="弹性基础架构工具Packer.html">
+            
+                <a href="弹性基础架构工具Packer.html">
+            
+                    
+                    1.2 弹性基础架构工具Packer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="SaltStack.html">
+            
+                <a href="SaltStack.html">
+            
+                    
+                    1.3 配置管理神器SaltStack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="现代版本控制.html">
+            
+                <a href="现代版本控制.html">
+            
+                    
+                    现代版本控制工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="企业级Subversion构建.html">
+            
+                <a href="企业级Subversion构建.html">
+            
+                    
+                    2.1 传统集中式版本控制: SVN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="基于git构建现代版本控制系统.html">
+            
+                <a href="基于git构建现代版本控制系统.html">
+            
+                    
+                    2.2 基于git构建现代版本控制系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="gitlab.html">
+            
+                <a href="gitlab.html">
+            
+                    
+                    2.3 企业级私库GitLab构建
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="容器管理.html">
+            
+                <a href="容器管理.html">
+            
+                    
+                    容器管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="docker.html">
+            
+                <a href="docker.html">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="Lambad.html">
+            
+                <a href="Lambad.html">
+            
+                    
+                    AWS Lambda
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="持续集成.html">
+            
+                <a href="持续集成.html">
+            
+                    
+                    持续集成
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="Jenkins持续集成.html">
+            
+                <a href="Jenkins持续集成.html">
+            
+                    
+                    持续集成jenkins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="pipeline.html">
+            
+                <a href="pipeline.html">
+            
+                    
+                    pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="TravisCI.html">
+            
+                <a href="TravisCI.html">
+            
+                    
+                    Travis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="CodeDeploy.html">
+            
+                <a href="CodeDeploy.html">
+            
+                    
+                    AWS CodeDeploy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="持续交付.html">
+            
+                <a href="持续交付.html">
+            
+                    
+                    持续交付
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="kubenetes基础.html">
+            
+                <a href="kubenetes基础.html">
+            
+                    
+                    kubenetes基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="容器平台生态.html">
+            
+                <a href="容器平台生态.html">
+            
+                    
+                    容器生态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.2" data-path="K8S概念和初步体验.html">
+            
+                <a href="K8S概念和初步体验.html">
+            
+                    
+                    kube概念和初步体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.3" data-path="部署kubenetes集群.html">
+            
+                <a href="部署kubenetes集群.html">
+            
+                    
+                    部署kubenetes集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.4" data-path="k8s架构原理.html">
+            
+                <a href="k8s架构原理.html">
+            
+                    
+                    k8s简单架构原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.5" data-path="deployment.html">
+            
+                <a href="deployment.html">
+            
+                    
+                    Deployment管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.6" data-path="DaemonSet.html">
+            
+                <a href="DaemonSet.html">
+            
+                    
+                    DaemonSet管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.7" data-path="Job.html">
+            
+                <a href="Job.html">
+            
+                    
+                    Job管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.8" data-path="Service.html">
+            
+                <a href="Service.html">
+            
+                    
+                    Service管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.9" data-path="健康检查.html">
+            
+                <a href="健康检查.html">
+            
+                    
+                    健康检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.10" data-path="存储管理.html">
+            
+                <a href="存储管理.html">
+            
+                    
+                    存储管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.11" data-path="配置管理及Secret.html">
+            
+                <a href="配置管理及Secret.html">
+            
+                    
+                    配置管理及Secret处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.12" data-path="helm.html">
+            
+                <a href="helm.html">
+            
+                    
+                    包管理工具Helm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.13" data-path="net.html">
+            
+                <a href="net.html">
+            
+                    
+                    网络管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.14" data-path="dash.html">
+            
+                <a href="dash.html">
+            
+                    
+                    Dashboard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.1.15" data-path="monitor.html">
+            
+                <a href="monitor.html">
+            
+                    
+                    日志监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="kubenetes最佳实践.html">
+            
+                <a href="kubenetes最佳实践.html">
+            
+                    
+                    kubenetes最佳实践
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="集群部署.html">
+            
+                <a href="集群部署.html">
+            
+                    
+                    集群部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="集群运维管理.html">
+            
+                <a href="集群运维管理.html">
+            
+                    
+                    集群运维
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.3" data-path="存储管理.html">
+            
+                <a href="存储管理.html">
+            
+                    
+                    存储管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.4" data-path="服务编排.html">
+            
+                <a href="服务编排.html">
+            
+                    
+                    服务编排
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5" data-path="持续集成.html">
+            
+                <a href="持续集成.html">
+            
+                    
+                    持续集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.6" data-path="kubenetes的监控.html">
+            
+                <a href="kubenetes的监控.html">
+            
+                    
+                    kubenetes的监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="日志监控.html">
+            
+                <a href="日志监控.html">
+            
+                    
+                    日志监控
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="elk.html">
+            
+                <a href="elk.html">
+            
+                    
+                    ELK Stack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="prometheus.html">
+            
+                <a href="prometheus.html">
+            
+                    
+                    Prometheus
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="devops方法论.html">
+            
+                <a href="devops方法论.html">
+            
+                    
+                    DevOps方法论
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >日志监控</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x65E5;&#x5FD7;&#x76D1;&#x63A7;">&#x65E5;&#x5FD7;&#x76D1;&#x63A7;</h1>
+<p>&#x521B;&#x5EFA; Kubernetes &#x96C6;&#x7FA4;&#x5E76;&#x90E8;&#x7F72;&#x5BB9;&#x5668;&#x5316;&#x5E94;&#x7528;&#x53EA;&#x662F;&#x7B2C;&#x4E00;&#x6B65;&#x3002;&#x4E00;&#x65E6;&#x96C6;&#x7FA4;&#x8FD0;&#x884C;&#x8D77;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x4E00;&#x8D77;&#x6B63;&#x5E38;&#xFF0C;&#x6240;&#x6709;&#x5FC5;&#x8981;&#x7EC4;&#x4EF6;&#x5C31;&#x4F4D;&#x5E76;&#x5404;&#x53F8;&#x5176;&#x804C;&#xFF0C;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x8D44;&#x6E90;&#x6EE1;&#x8DB3;&#x5E94;&#x7528;&#x7684;&#x9700;&#x6C42;&#x3002;Kubernetes &#x662F;&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD0;&#x7EF4;&#x56E2;&#x961F;&#x9700;&#x8981;&#x6709;&#x4E00;&#x5957;&#x5DE5;&#x5177;&#x5E2E;&#x52A9;&#x4ED6;&#x4EEC;&#x83B7;&#x77E5;&#x96C6;&#x7FA4;&#x7684;&#x5B9E;&#x65F6;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4E3A;&#x6545;&#x969C;&#x6392;&#x67E5;&#x63D0;&#x4F9B;&#x53CA;&#x65F6;&#x548C;&#x51C6;&#x786E;&#x7684;&#x6570;&#x636E;&#x652F;&#x6301;&#x3002;</p>
+<h4 id="weave-scope">Weave Scope</h4>
+<p>Weave Scope &#x662F; Docker &#x548C; Kubernetes &#x53EF;&#x89C6;&#x5316;&#x76D1;&#x63A7;&#x5DE5;&#x5177;&#x3002;Scope &#x63D0;&#x4F9B;&#x4E86;&#x81F3;&#x4E0A;&#x800C;&#x4E0B;&#x7684;&#x96C6;&#x7FA4;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x548C;&#x5E94;&#x7528;&#x7684;&#x5B8C;&#x6574;&#x89C6;&#x56FE;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x5BF9;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x5BB9;&#x5668;&#x5316;&#x5E94;&#x7528;&#x8FDB;&#x884C;&#x5B9E;&#x65F6;&#x76D1;&#x63A7;&#x548C;&#x95EE;&#x9898;&#x8BCA;&#x65AD;&#x3002;</p>
+<h5 id="&#x5B89;&#x88C5;&#x90E8;&#x7F72;scope">&#x5B89;&#x88C5;&#x90E8;&#x7F72;Scope</h5>
+<p>&#x5B89;&#x88C5; Scope &#x7684;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<p>kubectl apply --namespace weave -f &quot;<a href="https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl" target="_blank">https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl</a> version | base64 | tr -d &apos;\n&apos;)&quot;</p>
+<p>&#x90E8;&#x7F72;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x6709;&#x5982;&#x4E0B;&#x76F8;&#x5173;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>DaemonSet weave-scope-agent&#xFF0C;&#x96C6;&#x7FA4;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x90FD;&#x4F1A;&#x8FD0;&#x884C;&#x7684; scope agent &#x7A0B;&#x5E8F;&#xFF0C;&#x8D1F;&#x8D23;&#x6536;&#x96C6;&#x6570;&#x636E;&#x3002;</li>
+<li>Deployment weave-scope-app&#xFF0C;scope &#x5E94;&#x7528;&#xFF0C;&#x4ECE; agent &#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x901A;&#x8FC7; Web UI &#x5C55;&#x793A;&#x5E76;&#x4E0E;&#x7528;&#x6237;&#x4EA4;&#x4E92;&#x3002;</li>
+<li>Service weave-scope-app&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; ClusterIP &#x7C7B;&#x578B;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x5DF2;&#x901A;&#x8FC7; kubectl edit &#x4FEE;&#x6539;&#x4E3A; NodePort&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4123" alt="e361d02127ecf19ea55a78cdfd2bde41.png"></li>
+</ul>
+<h5 id="&#x4F7F;&#x7528;scope">&#x4F7F;&#x7528;Scope</h5>
+<p>&#x8BB0;&#x5F97;&#x5148;&#x4FEE;&#x6539;clusterIP&#x4E3A;NodePort,&#x4E4B;&#x540E;
+&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE; <a href="http://10.0.0.81:30693/&#xFF0C;Scope" target="_blank">http://10.0.0.81:30693/&#xFF0C;Scope</a> &#x9ED8;&#x8BA4;&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x7684; Controller&#xFF08;Deployment&#x3001;DaemonSet &#x7B49;&#xFF09;&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4124" alt="6e5f6eee2aab4d851014cd076073987c.png"></p>
+<h5 id="&#x62D3;&#x6251;&#x7ED3;&#x6784;">&#x62D3;&#x6251;&#x7ED3;&#x6784;</h5>
+<p>Scope &#x4F1A;&#x81EA;&#x52A8;&#x6784;&#x5EFA;&#x5E94;&#x7528;&#x548C;&#x96C6;&#x7FA4;&#x7684;&#x903B;&#x8F91;&#x62D3;&#x6251;&#x3002;&#x6BD4;&#x5982;&#x70B9;&#x51FB;&#x9876;&#x90E8; PODS&#xFF0C;&#x4F1A;&#x663E;&#x793A;&#x6240;&#x6709; Pod &#x4EE5;&#x53CA; Pod &#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4125" alt="9f590742fd5c8580b7aab8cb009f8be3.png">
+&#x70B9;&#x51FB; HOSTS&#xFF0C;&#x4E5F;&#x4F1A;&#x663E;&#x793A;&#x5404;&#x4E2A;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<h5 id="&#x5B9E;&#x65F6;&#x8D44;&#x6E90;&#x76D1;&#x63A7;">&#x5B9E;&#x65F6;&#x8D44;&#x6E90;&#x76D1;&#x63A7;</h5>
+<p>&#x53EF;&#x4EE5;&#x5728; Scope &#x4E2D;&#x67E5;&#x770B;&#x8D44;&#x6E90;&#x7684; CPU &#x548C;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x652F;&#x6301;&#x7684;&#x8D44;&#x6E90;&#x6709; Host&#x3001;Pod &#x548C; Container&#x3002;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4126" alt="d5f6a7511a153b8854bf4091b18148fa.png"></p>
+<h5 id="&#x5728;&#x7EBF;&#x64CD;&#x4F5C;">&#x5728;&#x7EBF;&#x64CD;&#x4F5C;</h5>
+<p>Scope &#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x4FBF;&#x6377;&#x7684;&#x5728;&#x7EBF;&#x64CD;&#x4F5C;&#x529F;&#x80FD;&#xFF0C;&#x6BD4;&#x5982;&#x9009;&#x4E2D;&#x67D0;&#x4E2A; Host&#xFF0C;&#x70B9;&#x51FB; &gt;_ &#x6309;&#x94AE;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6253;&#x5F00;&#x8282;&#x70B9;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x7EC8;&#x7AEF;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4127" alt="d07799da76f6944130004b684c408044.png"></p>
+<p>scale up /down
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4128" alt="0632e4fb11051f22200a3bd1defbf2f1.png"></p>
+<p>&#x53EF;&#x4EE5;&#x67E5;&#x770B; Pod &#x7684;&#x65E5;&#x5FD7;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4129" alt="b692b71fb07917a9988aeb019324a563.png"></p>
+<p>&#x53EF;&#x4EE5; attach&#x3001;restart&#x3001;stop &#x5BB9;&#x5668;&#xFF0C;&#x4EE5;&#x53CA;&#x76F4;&#x63A5;&#x5728; Scope &#x4E2D;&#x6392;&#x67E5;&#x95EE;&#x9898;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4130" alt="8576d5b867577bbcd97305d77d28d3d8.png"></p>
+<h5 id="&#x5F3A;&#x5927;&#x7684;&#x641C;&#x7D22;&#x529F;&#x80FD;">&#x5F3A;&#x5927;&#x7684;&#x641C;&#x7D22;&#x529F;&#x80FD;</h5>
+<p>Scope &#x652F;&#x6301;&#x5173;&#x952E;&#x5B57;&#x641C;&#x7D22;&#x548C;&#x5B9A;&#x4F4D;&#x8D44;&#x6E90;&#x3002;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4131" alt="20d099f2243e5a91bbe746d648d96536.png">
+&#x8FD8;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6761;&#x4EF6;&#x641C;&#x7D22;&#xFF0C;&#x6BD4;&#x5982;&#x67E5;&#x627E;&#x548C;&#x5B9A;&#x4F4D; MEMORY &gt; 100M &#x7684; Pod&#x3002;</p>
+<p>...&#x8FD8;&#x6709;&#x4E9B;&#x522B;&#x7684;&#x529F;&#x80FD;,&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x63A2;&#x7D22;</p>
+<h4 id="kube-prometheus">kube-prometheus</h4>
+<p><a href="https://github.com/coreos/prometheus-operator/tree/master/contrib/kube-prometheus" target="_blank">&#x5B98;&#x65B9;&#x6587;&#x6863;</a>
+Prometheus Operator &#x662F; CoreOS &#x5F00;&#x53D1;&#x7684;&#x57FA;&#x4E8E; Prometheus &#x7684; Kubernetes &#x76D1;&#x63A7;&#x65B9;&#x6848;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x76EE;&#x524D;&#x529F;&#x80FD;&#x6700;&#x5168;&#x9762;&#x7684;&#x5F00;&#x6E90;&#x65B9;&#x6848;,&#x540C;&#x65F6;&#x4E5F;&#x662F;&#x5B98;&#x65B9;&#x63A8;&#x8350;&#x7684;.&#x6211;&#x4EEC;&#x5148;&#x901A;&#x8FC7;&#x622A;&#x56FE;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x5B83;&#x80FD;&#x5E72;&#x4EC0;&#x4E48;&#x3002;</p>
+<p>Prometheus Operator &#x901A;&#x8FC7; Grafana &#x5C55;&#x793A;&#x76D1;&#x63A7;&#x6570;&#x636E;&#xFF0C;&#x9884;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x7684; Dashboard&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4133" alt="67c2b82f4a600b6ee019121e58419a2f.png"></p>
+<p>&#x53EF;&#x4EE5;&#x76D1;&#x63A7; Kubernetes &#x96C6;&#x7FA4;&#x7684;&#x6574;&#x4F53;&#x5065;&#x5EB7;&#x72B6;&#x6001;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4135" alt="33d00ed91f6ec2edba4c153583969006.png"></p>
+<p>&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#x7684;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4136" alt="3b8de71b60636dea94e20682cd641920.png">
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4137" alt="6431b5bc5bbe48b2ace44c64ae950fcc.png">
+Kubernetes &#x5404;&#x4E2A;&#x7BA1;&#x7406;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4138" alt="108755ca4d6b57479675bb094b10ecc7.png">
+&#x8282;&#x70B9;&#x7684;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4139" alt="a317fef659e90aeea4fd2fb8cd213b91.png"></p>
+<p>Deployment&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4140" alt="c32c9f1ca32467a79887dc8e6f693a52.png"></p>
+<p>Pod&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x7B49;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4141" alt="9c2b4c5cf57c0d277c86359419cadc9e.png"></p>
+<p>&#x8FD9;&#x4E9B; Dashboard &#x5C55;&#x793A;&#x4E86;&#x4ECE;&#x96C6;&#x7FA4;&#x5230; Pod &#x7684;&#x8FD0;&#x884C;&#x72B6;&#x51B5;&#xFF0C;&#x80FD;&#x591F;&#x5E2E;&#x52A9;&#x7528;&#x6237;&#x66F4;&#x597D;&#x5730;&#x8FD0;&#x7EF4; Kubernetes&#x3002;&#x800C;&#x4E14; Prometheus Operator &#x8FED;&#x4EE3;&#x975E;&#x5E38;&#x5FEB;&#xFF0C;&#x76F8;&#x4FE1;&#x4F1A;&#x7EE7;&#x7EED;&#x5F00;&#x53D1;&#x51FA;&#x66F4;&#x591A;&#x66F4;&#x597D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#x503C;&#x5F97;&#x6211;&#x4EEC;&#x82B1;&#x4E9B;&#x65F6;&#x95F4;&#x5B66;&#x4E60;&#x548C;&#x5B9E;&#x8DF5;&#x3002;</p>
+<h5 id="prometheus&#x67B6;&#x6784;">Prometheus&#x67B6;&#x6784;</h5>
+<p>&#x56E0;&#x4E3A; Prometheus Operator &#x662F;&#x57FA;&#x4E8E; Prometheus &#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5148;&#x4E86;&#x89E3;&#x4E00;&#x4E0B; Prometheus&#x3002;</p>
+<p>Prometheus &#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x4F18;&#x79C0;&#x7684;&#x76D1;&#x63A7;&#x5DE5;&#x5177;&#x3002;&#x51C6;&#x786E;&#x7684;&#x8BF4;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x76D1;&#x63A7;&#x65B9;&#x6848;&#x3002;Prometheus &#x63D0;&#x4F9B;&#x4E86;&#x6570;&#x636E;&#x641C;&#x96C6;&#x3001;&#x5B58;&#x50A8;&#x3001;&#x5904;&#x7406;&#x3001;&#x53EF;&#x89C6;&#x5316;&#x548C;&#x544A;&#x8B66;&#x4E00;&#x5957;&#x5B8C;&#x6574;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;Prometheus &#x7684;&#x6838;&#x5FC3;&#x67B6;&#x6784;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4142" alt="258aa2acee0281c316646e1ee3aa8a54.png"></p>
+<ul>
+<li><p>Prometheus Server
+Prometheus Server &#x8D1F;&#x8D23;&#x4ECE; Exporter &#x62C9;&#x53D6;&#x548C;&#x5B58;&#x50A8;&#x76D1;&#x63A7;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x7075;&#x6D3B;&#x7684;&#x67E5;&#x8BE2;&#x8BED;&#x8A00;&#xFF08;PromQL&#xFF09;&#x4F9B;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+<li><p>Exporter
+Exporter &#x8D1F;&#x8D23;&#x6536;&#x96C6;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#xFF08;host, container...&#xFF09;&#x7684;&#x6027;&#x80FD;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; HTTP &#x63A5;&#x53E3;&#x4F9B; Prometheus Server &#x83B7;&#x53D6;&#x3002;</p>
+</li>
+<li><p>&#x53EF;&#x89C6;&#x5316;&#x7EC4;&#x4EF6;
+&#x76D1;&#x63A7;&#x6570;&#x636E;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x5C55;&#x73B0;&#x5BF9;&#x4E8E;&#x76D1;&#x63A7;&#x65B9;&#x6848;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x3002;&#x4EE5;&#x524D; Prometheus &#x81EA;&#x5DF1;&#x5F00;&#x53D1;&#x4E86;&#x4E00;&#x5957;&#x5DE5;&#x5177;&#xFF0C;&#x4E0D;&#x8FC7;&#x540E;&#x6765;&#x5E9F;&#x5F03;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x5F00;&#x6E90;&#x793E;&#x533A;&#x51FA;&#x73B0;&#x4E86;&#x66F4;&#x4E3A;&#x4F18;&#x79C0;&#x7684;&#x4EA7;&#x54C1; Grafana&#x3002;Grafana &#x80FD;&#x591F;&#x4E0E; Prometheus &#x65E0;&#x7F1D;&#x96C6;&#x6210;&#xFF0C;&#x63D0;&#x4F9B;&#x5B8C;&#x7F8E;&#x7684;&#x6570;&#x636E;&#x5C55;&#x793A;&#x80FD;&#x529B;&#x3002;</p>
+</li>
+<li><p>Alertmanager
+&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x57FA;&#x4E8E;&#x76D1;&#x63A7;&#x6570;&#x636E;&#x7684;&#x544A;&#x8B66;&#x89C4;&#x5219;&#xFF0C;&#x89C4;&#x5219;&#x4F1A;&#x89E6;&#x53D1;&#x544A;&#x8B66;&#x3002;&#x4E00;&#x65E6; Alermanager &#x6536;&#x5230;&#x544A;&#x8B66;&#xFF0C;&#x4F1A;&#x901A;&#x8FC7;&#x9884;&#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x5F0F;&#x53D1;&#x51FA;&#x544A;&#x8B66;&#x901A;&#x77E5;&#x3002;&#x652F;&#x6301;&#x7684;&#x65B9;&#x5F0F;&#x5305;&#x62EC; Email&#x3001;PagerDuty&#x3001;Webhook &#x7B49;.</p>
+</li>
+</ul>
+<h5 id="prometheus-operator-&#x67B6;&#x6784;">Prometheus Operator &#x67B6;&#x6784;</h5>
+<p>Prometheus Operator &#x7684;&#x76EE;&#x6807;&#x662F;&#x5C3D;&#x53EF;&#x80FD;&#x7B80;&#x5316;&#x5728; Kubernetes &#x4E2D;&#x90E8;&#x7F72;&#x548C;&#x7EF4;&#x62A4; Prometheus &#x7684;&#x5DE5;&#x4F5C;&#x3002;&#x5176;&#x67B6;&#x6784;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4143" alt="2eec8684458fd0a4c5cb277cd9baa0b4.png"></p>
+<ul>
+<li><p>Operator
+Operator &#x5373; Prometheus Operator&#xFF0C;&#x5728; Kubernetes &#x4E2D;&#x4EE5; Deployment &#x8FD0;&#x884C;&#x3002;&#x5176;&#x804C;&#x8D23;&#x662F;&#x90E8;&#x7F72;&#x548C;&#x7BA1;&#x7406; Prometheus Server&#xFF0C;&#x6839;&#x636E; ServiceMonitor &#x52A8;&#x6001;&#x66F4;&#x65B0; Prometheus Server &#x7684;&#x76D1;&#x63A7;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li><p>Prometheus Server
+Prometheus Server &#x4F1A;&#x4F5C;&#x4E3A; Kubernetes &#x5E94;&#x7528;&#x90E8;&#x7F72;&#x5230;&#x96C6;&#x7FA4;&#x4E2D;&#x3002;&#x4E3A;&#x4E86;&#x66F4;&#x597D;&#x5730;&#x5728; Kubernetes &#x4E2D;&#x7BA1;&#x7406; Prometheus&#xFF0C;CoreOS &#x7684;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4E13;&#x95E8;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x547D;&#x540D;&#x4E3A; Prometheus &#x7C7B;&#x578B;&#x7684; Kubernetes &#x5B9A;&#x5236;&#x5316;&#x8D44;&#x6E90;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A; Prometheus&#x770B;&#x4F5C;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684; Deployment&#xFF0C;&#x5B83;&#x7684;&#x7528;&#x9014;&#x5C31;&#x662F;&#x4E13;&#x95E8;&#x90E8;&#x7F72; Prometheus Server&#x3002;</p>
+</li>
+<li><p>Service
+&#x8FD9;&#x91CC;&#x7684; Service &#x5C31;&#x662F; Cluster &#x4E2D;&#x7684; Service &#x8D44;&#x6E90;&#xFF0C;&#x4E5F;&#x662F; Prometheus &#x8981;&#x76D1;&#x63A7;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5728; Prometheus &#x4E2D;&#x53EB;&#x505A; Target&#x3002;&#x6BCF;&#x4E2A;&#x76D1;&#x63A7;&#x5BF9;&#x8C61;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684; Service&#x3002;&#x6BD4;&#x5982;&#x8981;&#x76D1;&#x63A7; Kubernetes Scheduler&#xFF0C;&#x5C31;&#x5F97;&#x6709;&#x4E00;&#x4E2A;&#x4E0E; Scheduler &#x5BF9;&#x5E94;&#x7684; Service&#x3002;&#x5F53;&#x7136;&#xFF0C;Kubernetes &#x96C6;&#x7FA4;&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A; Service &#x7684;&#xFF0C;Prometheus Operator &#x4F1A;&#x8D1F;&#x8D23;&#x521B;&#x5EFA;&#x3002;</p>
+</li>
+<li><p>ServiceMonitor
+Operator &#x80FD;&#x591F;&#x52A8;&#x6001;&#x66F4;&#x65B0; Prometheus &#x7684; Target &#x5217;&#x8868;&#xFF0C;ServiceMonitor &#x5C31;&#x662F; Target &#x7684;&#x62BD;&#x8C61;&#x3002;&#x6BD4;&#x5982;&#x60F3;&#x76D1;&#x63A7; Kubernetes Scheduler&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E0E; Scheduler Service &#x76F8;&#x6620;&#x5C04;&#x7684; ServiceMonitor &#x5BF9;&#x8C61;&#x3002;Operator &#x5219;&#x4F1A;&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x65B0;&#x7684; ServiceMonitor&#xFF0C;&#x5E76;&#x5C06; Scheduler &#x7684; Target &#x6DFB;&#x52A0;&#x5230; Prometheus &#x7684;&#x76D1;&#x63A7;&#x5217;&#x8868;&#x4E2D;&#x3002;
+ServiceMonitor &#x4E5F;&#x662F; Prometheus Operator &#x4E13;&#x95E8;&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x79CD; Kubernetes &#x5B9A;&#x5236;&#x5316;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x3002;</p>
+</li>
+<li><p>Alertmanager
+&#x9664;&#x4E86; Prometheus &#x548C; ServiceMonitor&#xFF0C;Alertmanager &#x662F; Operator &#x5F00;&#x53D1;&#x7684;&#x7B2C;&#x4E09;&#x79CD; Kubernetes &#x5B9A;&#x5236;&#x5316;&#x8D44;&#x6E90;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A; Alertmanager &#x770B;&#x4F5C;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684; Deployment&#xFF0C;&#x5B83;&#x7684;&#x7528;&#x9014;&#x5C31;&#x662F;&#x4E13;&#x95E8;&#x90E8;&#x7F72; Alertmanager &#x7EC4;&#x4EF6;&#x3002;</p>
+<h5 id="prometheus-operator&#x90E8;&#x7F72;">prometheus-operator&#x90E8;&#x7F72;</h5>
+<p>&#x8981;&#x6C42;: 
+Kubernetes 1.10+ with Beta APIs
+Helm 2.10+ (For a workaround using an earlier version see below)</p>
+</li>
+</ul>
+<p>1.github&#x5730;&#x5740;
+<a href="https://github.com/helm/charts/tree/master/stable/prometheus-operator" target="_blank">https://github.com/helm/charts/tree/master/stable/prometheus-operator</a>
+ 2.&#x4F7F;&#x7528;helm&#x90E8;&#x7F72;
+&#x786E;&#x4FDD;helm&#x73AF;&#x5883;&#x6B63;&#x5E38;
+helm version</p>
+<ol>
+<li>&#x5B89;&#x88C5;<pre><code class="lang-shell">helm install --name my-prom stable/prometheus-operator
+</code></pre>
+</li>
+</ol>
+<p>&#x5B89;&#x88C5;:
+<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4144" alt="ae43c0e05c7977c99de09b41c294f7b1.png"></p>
+<p>&#x53EF;&#x80FD;&#x4F1A;&#x62A5;&#x9519;
+&#x89E3;&#x51B3;&#x65B9;&#x6CD5;:</p>
+<ul>
+<li>&#x91CD;&#x7F6E;helm
+```shell
+helm reset --force
+kubectl create serviceaccount --namespace kube-system tiller</li>
+</ul>
+<p>kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller</p>
+<p>kubectl patch deploy --namespace kube-system tiller-deploy -p &apos;{&quot;spec&quot;:{&quot;template&quot;:{&quot;spec&quot;:{&quot;serviceAccount&quot;:&quot;tiller&quot;}}}}&apos; </p>
+<pre><code>* &#x914D;&#x7F6E;rbac 
+kubectl create -f rbac-config.yaml
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: tiller-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: &quot;&quot;
+</code></pre><p>4.&#x68C0;&#x67E5;pod , svc&#x7B49;</p>
+<pre><code class="lang-shell">kubectl -n default get pods,svc,deployment,servicemonitor -l &quot;release=my-prom&quot;
+</code></pre>
+<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4145" alt="95e44f44a77b0edb7595c0a1fb91173d.png"></p>
+<p>8.&#x5168;&#x90E8;&#x8D77;&#x6765;&#x540E;&#xFF0C;&#x8BBF;&#x95EE;service/kube-prometheus-grafana 
+&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5404;&#x79CD;&#x76D1;&#x63A7;&#x6570;&#x636E;
+&#x9ED8;&#x8BA4;&#x7528;&#x6237;&#x540D;: admin
+&#x9ED8;&#x8BA4;&#x5BC6;&#x7801;:  prom-operator</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="dash.html" class="navigation navigation-prev " aria-label="Previous page: Dashboard">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="kubenetes最佳实践.html" class="navigation navigation-next " aria-label="Next page: kubenetes最佳实践">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"日志监控","level":"1.7.1.15","depth":3,"next":{"title":"kubenetes最佳实践","level":"1.7.2","depth":2,"path":"kubenetes最佳实践.md","ref":"kubenetes最佳实践.md","articles":[{"title":"集群部署","level":"1.7.2.1","depth":3,"path":"集群部署.md","ref":"集群部署.md","articles":[]},{"title":"集群运维","level":"1.7.2.2","depth":3,"path":"集群运维管理.md","ref":"集群运维管理.md","articles":[]},{"title":"存储管理","level":"1.7.2.3","depth":3,"path":"存储管理.md","ref":"存储管理.md","articles":[]},{"title":"\b服务编排","level":"1.7.2.4","depth":3,"path":"服务编排.md","ref":"服务编排.md","articles":[]},{"title":"持续集成","level":"1.7.2.5","depth":3,"path":"持续集成.md","ref":"持续集成.md","articles":[]},{"title":"kubenetes的监控","level":"1.7.2.6","depth":3,"path":"kubenetes的监控.md","ref":"kubenetes的监控.md","articles":[]}]},"previous":{"title":"Dashboard","level":"1.7.1.14","depth":3,"path":"dash.md","ref":"dash.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"monitor.md","mtime":"2019-01-21T07:17:31.206Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T08:09:58.382Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
