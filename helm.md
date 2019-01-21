@@ -319,11 +319,13 @@ Helm 通过模板创建 Kubernetes 能够理解的 YAML 格式的资源配置文
 helm install stable/mysql -n my
 </pre>
 那么：
+```yaml
 {{ .Chart.Name }} 的值为 mysql。
 {{ .Chart.Version }} 的值为 0.3.0。
 {{ .Release.Name }} 的值为 my。
 {{ .Release.Service }} 始终取值为 Tiller。
 {{ template "mysql.fullname" . }} 计算结果为 my-mysql。
+```
 
 ③ 这里指定 mysql-root-password 的值，不过使用了 if-else 的流控制，其逻辑为：
 如果 .Values.mysqlRootPassword 有值，则对其进行 base64 编码；否则随机生成一个 10 位的字符串并编码。
