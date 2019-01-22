@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Dashboard · GitBook</title>
+        <title>1.4 阿里云 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="monitor.html" />
+    <link rel="next" href="现代版本控制.html" />
     
     
-    <link rel="prev" href="net.html" />
+    <link rel="prev" href="SaltStack.html" />
     
 
     </head>
@@ -200,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="阿里云.html">
+        <li class="chapter active" data-level="1.3.4" data-path="阿里云.html">
             
                 <a href="阿里云.html">
             
@@ -589,7 +589,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7.1.14" data-path="dash.html">
+        <li class="chapter " data-level="1.7.1.14" data-path="dash.html">
             
                 <a href="dash.html">
             
@@ -810,7 +810,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Dashboard</a>
+        <a href="." >1.4 阿里云</a>
     </h1>
 </div>
 
@@ -825,86 +825,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="dashboard">Dashboard</h1>
-<p>[toc]</p>
-<h4 id="&#x914D;&#x7F6E;">&#x914D;&#x7F6E;</h4>
-<p>&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;&#x914D;&#x7F6E;,&#x8FD0;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x6307;&#x4EE4;&#x5F00;&#x542F;</p>
-<pre><code class="lang-shell">kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
-</code></pre>
-<p>Dashboard &#x4F1A;&#x5728; kube-system namespace &#x4E2D;&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684; Deployment &#x548C; Service&#x3002;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4108" alt="3cbb31766b4213438e9d872519182be4.png"></p>
-<p>&#x56E0;&#x4E3A; Service &#x662F; ClusterIP &#x7C7B;&#x578B;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4F7F;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x901A;&#x8FC7; kubectl --namespace=kube-system edit service kubernetes-dashboard &#x4FEE;&#x6539;&#x6210; NodePort &#x7C7B;&#x578B;&#x3002;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4109" alt="6a23d0e365c8b61a89e9fc7e0a52ddea.png"></p>
-<p>&#x4FDD;&#x5B58;&#x4FEE;&#x6539;&#xFF0C;&#x6B64;&#x65F6;&#x5DF2;&#x7ECF;&#x4E3A; Service &#x5206;&#x914D;&#x4E86;&#x7AEF;&#x53E3;31831
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4110" alt="dbfd70f56038d1f95395236053637048.png">
-&#x901A;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE; Dashboard 
- <a href="https://10.0.0.81:31831" target="_blank">https://10.0.0.81:31831</a>
- <img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4111" alt="87b1f2620fc22c5c6546704482e50422.png"></p>
-<h5 id="&#x767B;&#x5F55;&#x6743;&#x9650;&#x914D;&#x7F6E;">&#x767B;&#x5F55;&#x6743;&#x9650;&#x914D;&#x7F6E;</h5>
-<p>Dashboard &#x652F;&#x6301; Kubeconfig &#x548C; Token &#x4E24;&#x79CD;&#x8BA4;&#x8BC1;&#x65B9;&#x5F0F;&#xFF0C;&#x4E3A;&#x4E86;&#x7B80;&#x5316;&#x914D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6; dashboard-admin.yaml &#x4E3A; Dashboard &#x9ED8;&#x8BA4;&#x7528;&#x6237;&#x8D4B;&#x4E88; admin &#x6743;&#x9650;&#x3002;</p>
-<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x7528;&#x6237;,&#x4EC5;&#x4F5C;&#x4E3A;&#x7EC3;&#x4E60;&#x4F7F;&#x7528;:</p>
-<ol>
-<li>&#x521B;&#x5EFA;service account
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-name: admin-user
-namespace: kube-system</li>
-</ol>
-<pre><code>2. &#x96C6;&#x7FA4;&#x6743;&#x9650;&#x8BBE;&#x7F6E;
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kube-system
-</code></pre><ol>
-<li>Bearer Token
-&#x9700;&#x8981;&#x4F7F;&#x7528;token&#x767B;&#x5F55;,&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x884C;<pre><code class="lang-shell">kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk &apos;{print $1}&apos;)
-</code></pre>
-</li>
-</ol>
-<p>&#x6253;&#x5370;&#x51FA;token,&#x7C7B;&#x4F3C;&#x4E8E;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4113" alt="3455707752a5a8ade830862355f75a73.png">
-&#x627E;&#x5230;admin-user,&#x590D;&#x5236;token</p>
-<p><img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4115" alt="e9d09de0c5c963ecfa548ac5e9bae9fb.png">
-&#x6DFB;&#x52A0;&#x5230;&#x4EE4;&#x724C;,&#x70B9;&#x51FB;&#x767B;&#x5F55;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4116" alt="1e5745f8c05f7517e5438f2661c57edc.png"></p>
-<h4 id="&#x4F7F;&#x7528;&#x573A;&#x666F;">&#x4F7F;&#x7528;&#x573A;&#x666F;</h4>
-<ol>
-<li>&#x90E8;&#x7F72;deployment
-&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F93;&#x5165;&#x8981;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7684;&#x540D;&#x5B57;&#x3001;&#x955C;&#x50CF;&#x3001;&#x526F;&#x672C;&#x6570;&#x7B49;&#x4FE1;&#x606F;&#xFF1B;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0A;&#x4F20; YAML &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;&#x5982;&#x679C;&#x662F;&#x4E0A;&#x4F20;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F; Deployment&#x3002;</li>
-</ol>
-<p>&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x6587;&#x672C;&#x6846;&#x8F93;&#x5165;yaml&#x6216;&#x8005;json&#x6587;&#x4EF6;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4117" alt="89ff3ed04d4c617607961784be35fd2f.png"></p>
-<ol>
-<li>&#x5728;&#x7EBF;&#x64CD;&#x4F5C;pod
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4118" alt="be068534cf4abc046bb62c077e05d4df.png">
-&#x4E00;&#x4E3A;&#x65E5;&#x5FD7; 2&#x4E3A;yaml&#x5220;&#x9664;,&#x7F16;&#x8F91;&#x7B49;&#x64CD;&#x4F5C;</li>
-<li><p>&#x7F16;&#x8F91;yaml
-&#x6BD4;&#x5982;&#x70B9;&#x51FB; View/edit YAML &#x53EF;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#x8D44;&#x6E90;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4FDD;&#x5B58;&#x540E;&#x7ACB;&#x5373;&#x751F;&#x6548;&#xFF0C;&#x5176;&#x6548;&#x679C;&#x4E0E; kubectl edit &#x4E00;&#x6837;&#x3002;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4119" alt="9a9ffd17c505deb6f6804fa917333c13.png"></p>
-</li>
-<li><p>&#x67E5;&#x770B;&#x8D44;&#x6E90;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4120" alt="d0143855ece5623423d3f3fb7613c7c3.png"></p>
-</li>
-<li><p>&#x67E5;&#x770B;pod&#x65E5;&#x5FD7;
-&#x5728; Pod &#x53CA;&#x5176;&#x7236;&#x8D44;&#x6E90;&#xFF08;DaemonSet&#x3001;ReplicaSet &#x7B49;&#xFF09;&#x9875;&#x9762;</p>
-</li>
-</ol>
-<p>&#x70B9;&#x51FB; <img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4122" alt="0162bd25df96909ef160bad02327a69b.png"></p>
-<p>&#x6309;&#x94AE;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B; Pod &#x7684;&#x65E5;&#x5FD7;&#xFF0C;&#x5176;&#x6548;&#x679C;&#x4E0E; kubectl logs &#x4E00;&#x6837;&#x3002;
-<img src="evernotecid://8FFE4719-72F7-4332-B58A-CDD367D554D8/appyinxiangcom/18527455/ENResource/p4121" alt="50edc895ef2ad58fe431329e4647a90d.png">
-Kubernetes Dashboard &#x754C;&#x9762;&#x8BBE;&#x8BA1;&#x53CB;&#x597D;&#xFF0C;&#x81EA;&#x89E3;&#x91CA;&#x6027;&#x5F3A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x4F5C; GUI &#x7248;&#x7684; kubectl&#xFF0C;&#x66F4;&#x591A;&#x529F;&#x80FD;&#x7559;&#x7ED9;&#x5927;&#x5BB6;&#x81EA;&#x5DF1;&#x63A2;&#x7D22;&#x3002;</p>
-<p>Kubernetes Dashboard &#x7684;&#x5B89;&#x88C5;&#x548C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x3002;Dashboard&#x80FD;&#x5B8C;&#x6210;&#x65E5;&#x5E38;&#x7BA1;&#x7406;&#x7684;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177; kubectl &#x7684;&#x6709;&#x76CA;&#x8865;&#x5145;&#x3002;</p>
+                                <h1 id="14-&#x963F;&#x91CC;&#x4E91;">1.4 &#x963F;&#x91CC;&#x4E91;</h1>
 
                                 
                                 </section>
@@ -932,12 +853,12 @@ Kubernetes Dashboard &#x754C;&#x9762;&#x8BBE;&#x8BA1;&#x53CB;&#x597D;&#xFF0C;&#x
 
             
                 
-                <a href="net.html" class="navigation navigation-prev " aria-label="Previous page: 网络管理">
+                <a href="SaltStack.html" class="navigation navigation-prev " aria-label="Previous page: 1.3 配置管理神器SaltStack">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="monitor.html" class="navigation navigation-next " aria-label="Next page: 日志监控">
+                <a href="现代版本控制.html" class="navigation navigation-next " aria-label="Next page: 现代版本控制工具">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -948,7 +869,7 @@ Kubernetes Dashboard &#x754C;&#x9762;&#x8BBE;&#x8BA1;&#x53CB;&#x597D;&#xFF0C;&#x
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Dashboard","level":"1.7.1.14","depth":3,"next":{"title":"日志监控","level":"1.7.1.15","depth":3,"path":"monitor.md","ref":"monitor.md","articles":[]},"previous":{"title":"网络管理","level":"1.7.1.13","depth":3,"path":"net.md","ref":"net.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dash.md","mtime":"2019-01-21T07:16:18.577Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-22T08:51:14.126Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.4 阿里云","level":"1.3.4","depth":2,"next":{"title":"现代版本控制工具","level":"1.4","depth":1,"path":"现代版本控制.md","ref":"现代版本控制.md","articles":[{"title":"2.1 传统集中式版本控制: SVN","level":"1.4.1","depth":2,"path":"企业级Subversion构建.md","ref":"企业级Subversion构建.md","articles":[]},{"title":"2.2 基于git构建现代版本控制系统","level":"1.4.2","depth":2,"path":"基于git构建现代版本控制系统.md","ref":"基于git构建现代版本控制系统.md","articles":[]},{"title":"2.3 企业级私库GitLab构建","level":"1.4.3","depth":2,"path":"gitlab.md","ref":"gitlab.md","articles":[]}]},"previous":{"title":"1.3 配置管理神器SaltStack","level":"1.3.3","depth":2,"path":"SaltStack.md","ref":"SaltStack.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"阿里云.md","mtime":"2019-01-22T08:51:03.414Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-22T08:51:14.126Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
